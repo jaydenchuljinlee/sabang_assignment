@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+
+	<!--          -->
+	<!-- CSS 시작 -->
+
+	<!-- 부트스트랩 CSS -->
+	<link rel="stylesheet" href="//unpkg.com/bootstrap@4/dist/css/bootstrap.min.css">
+	<style>
+		/* 로그인 아이디 input */
+		#id_input{
+			background:url(/resources/img/login_id.png) no-repeat 0 0;
+		}
+
+		/* 로그인 비밀번호 input */
+		#pwd_input{
+			background:url(/resources/img/login_pwd.png) no-repeat 0 0;
+		}
+
+		/* 체크박스 디자인 */
+		.check { position:relative; margin-bottom:12px; padding-left:25px; font-size:15px; cursor:pointer; user-select:none;-webkit-user-select:none; -moz-user-select:none; -ms-user-select:none;}
+
+		.check input {position:absolute; opacity:0; cursor:pointer;}
+		.checkmark {position:absolute; top:0; left:0px; width:20px; height:20px; background-color:#fff; border:1px solid #ddd;}
+		.check:hover input ~ .checkmark {background-color:#ccc;}
+		.check input:checked ~ .checkmark {background-color:#2196F3;}
+		.checkmark:after {display:none; position:absolute; content:"";}
+		.check input:checked ~ .checkmark:after {display:block;}
+		.check .checkmark:after {top:2px; left:7px; width:5px; height:10px; border:solid white; border-width:0 3px 3px 0; transform:rotate(45deg);-webkit-transform:rotate(45deg); -ms-transform:rotate(45deg);}
+
+		/* 메인 로그인,회원가입 버튼 */
+		.main_btn {
+			font-size:20px;
+			border-radius:.3rem;padding:.5rem 1rem;
+		}
+
+		.main_btn_login {
+			background-color: #007bff;
+			border:none;
+			color:#fff;
+		}
+
+		.main_btn_login:hover {
+			background-color : #7cb2ec;
+		}
+
+		.main_btn_join {
+			background-color: #fff;
+			border:1px solid #007bff;
+			color:#007bff;
+		}
+
+	</style>
+
+	<!--          -->
+	<!-- Javascript 시작 -->
+
+	<!-- Jquery Javascript -->
+	<script src='//unpkg.com/jquery@3/dist/jquery.min.js'></script>
+
+	<!-- 부트스트랩 Javascript -->
+	<script src='//unpkg.com/popper.js@1/dist/umd/popper.min.js'></script>
+	<script src='//unpkg.com/bootstrap@4/dist/js/bootstrap.min.js'></script>
+ </head>
+ <body>
+	<div class="contents" style="margin-top:200px;">
+		<div class="container">
+			<form id="main_frm">
+				<div class="login_frm form-group col-4 mx-auto">
+					<div class="id_frm">
+						<label class="sr-only" for="id_input">Email address</label>
+						<input type="text" id="id_input" class="form-control" name="id">
+						<label class="sr-only" for="pwd_input">Password</label>
+						<input type="text" id="pwd_input" class="form-control" name="pwd">
+					</div>
+					<div class="chk_frm mt-2">
+						<label class="check mx-1">아이디 저장
+							<input type="checkbox" checked="checked" name="save_id">
+							<span class="checkmark"></span>
+						</label>
+						<a href="#" id="find_idpw" class=" mx-1" style="color:#000000">ID/PW 찾기</a>
+						<a href="https://goo.gl/forms/9BaMaefq1tQiydHJ2" id="find_idpw" class=" mx-1" style="color:#000000">DM 쿠폰입력</a>
+					</div>
+					<div class="btn_frm mt-2">
+						<button type="button" class="main_btn main_btn_login col-12 my-1">로그인</button>
+						</br>
+						<button type="button" class="main_btn main_btn_join col-12 my-1">회원가입</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+ </body>
+</html>
