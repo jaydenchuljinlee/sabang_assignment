@@ -50,7 +50,7 @@
 		<div class="container">
 			<div class="user-list form-group col-12 mx-auto p-4 text-center" style="border: 1px solid #dee2e6;">
 				<span class="font-weight-normal display-4">가입이 완료되었습니다!</span>
-				</br>
+				
 				<button id="user_list" class="list_btn next-page">회원정보 리스트 보기</button>
 			</div>
 		</div>

@@ -19,6 +19,59 @@
  
 
 	<style>
+		/* 체크박스 디자인 */
+		.check { 
+			position:relative; 
+			margin-bottom:12px; 
+			padding-left:25px; 
+			font-size:15px; 
+			cursor:pointer; 
+			user-select:none;
+			-webkit-user-select:none; 
+			-moz-user-select:none; 
+			-ms-user-select:none;
+		}
+
+		.check input {
+			position:absolute; 
+			opacity:0; 
+			cursor:pointer;
+		}
+		.checkmark {
+			position:absolute; 
+			top:0; 
+			left:0px; 
+			width:20px; 
+			height:20px; 
+			background-color:#fff; 
+			border:1px solid #ddd;
+		}
+		.check:hover input ~ .checkmark {
+			background-color:#ccc;
+		}
+		.check input:checked ~ .checkmark {
+			background-color:#2196F3;
+		}
+		.checkmark:after {
+			display:none; 
+			position:absolute; 
+			content:"";
+		}
+		.check input:checked ~ .checkmark:after {
+			display:block;
+		}
+		.check .checkmark:after {
+			top:2px; 
+			left:7px; 
+			width:5px; 
+			height:10px; 
+			border:solid white; 
+			border-width:0 3px 3px 0; 
+			transform:rotate(45deg);
+			-webkit-transform:rotate(45deg); 
+			-ms-transform:rotate(45deg);
+		}
+		
 		/* 라디오 버튼 디자인 */
 		.checks {position: relative;}
 		.checks input[type="radio"] { 
@@ -72,7 +125,6 @@
 			box-shadow: inset 0px 0px 10px rgba(0,0,0,0.3); 
 		}
 
-		/* 테이블 관련 CSS */
 		.table td, .table th {
 			border-top : none;
 			border-bottom : 1px solid #dee2e6;
@@ -83,7 +135,6 @@
 			color:#999;
 		} 
 
-		/* 버튼 관련 CSS */
 		.join-btn {
 			display: inline-block;
 			font-weight: 400;
@@ -101,25 +152,10 @@
 			border-color: #007bff;
 		}
 
-		/* 셀렉트박스 관련 CSS */
 		.sabang-select {
 			border-radius:.25rem;
 			border:1px solid #ced4da;
 			color:#999;
-		}
-
-		/* 사업자 유형*/
-		.buisnessman {
-			border:1px solid #007bff;
-			background:#fff;
-			color:#007bff;
-			font-size:15px;
-			cursor:pointer;
-		}
-
-		.buisnessman-selected {
-			background:#007bff;
-			color:#fff;
 		}
 	</style>
 
@@ -142,12 +178,6 @@
 
 				location.href = id+".html";
 			});
-
-			$(".buisnessman").on("click",function() {
-				$(".buisnessman-selected").removeClass("buisnessman-selected");
-
-				$(this).addClass("buisnessman-selected");
-			})
 		});
 	</script>
  </head>
@@ -432,19 +462,19 @@
 						</th>
 						<td colspan="3">
 							<div class="form-inline">
-								<div class="col-2 p-2 buisnessman buisnessman-selected mx-2 text-center">
+								<div class="col-2 p-2 buisnessman selected mx-2 text-center" style="border:1px solid #007bff;background:#007bff;color:#fff;font-size:15px;">
 									<span>법인사업자</span>
 								</div>
-								<div class="col-2 p-2 buisnessman mx-2 text-center">
+								<div class="col-2 p-2 buisnessman mx-2 text-center" style="border:1px solid #007bff;background:#fff;color:#007bff;font-size:15px;">
 									<span>일반사업자</span>
 								</div>
-								<div class="col-2 p-2 buisnessman mx-2 text-center">
+								<div class="col-2 p-2 buisnessman mx-2 text-center" style="border:1px solid #007bff;background:#fff;color:#007bff;font-size:15px;">
 									<span>면세사업자</span>
 								</div>
-								<div class="col-2 p-2 buisnessman mx-2 text-center">
+								<div class="col-2 p-2 buisnessman mx-2 text-center" style="border:1px solid #007bff;background:#fff;color:#007bff;font-size:15px;">
 									<span>간이사업자</span>
 								</div>
-								<div class="col-2 p-2 buisnessman mx-2 text-center">
+								<div class="col-2 p-2 buisnessman mx-2 text-center" style="border:1px solid #007bff;background:#fff;color:#007bff;font-size:15px;">
 									<span>해외사업자</span>
 								</div>
 							</div>
@@ -569,8 +599,261 @@
 			<!-- 회사정보 End -->
 			<!--              -->
 
+			<!-- 가입경로 -->
+			<div class="account-info p-3 mt-3" style="border-bottom:2px solid #000000">
+				<span style="font-size:20px;">가입경로</span>
+				<span style="font-size:15px;color:red">(* 표시는 필수 입력입니다.)</span>
+				
+			</div>
+			
+			<!-- 가입경로 section -->
+			<table class="table mt-3">
+				<colgroup>
+					<col width="20%">
+				</colgroup>
+				<tbody>
+					<!-- 계정정보 사방넷 가입경로 입력-->
+					<tr>
+						<th scope="row">
+							<span class=" mx-2" style="color:red">*</span>
+							<span >사방넷 가입경로</span>
+							
+						</th>
+						<td colspan="3">
+							<div class="">
+								<select class="sabang-select col-6" name="mail" style="height:38px;">
+									<option value="naver">선택</option>
+									<option value="gmail">인쇄물(우편수령)</option>
+									<option value="hanmail">인터넷 정보 검색(관련 키워드 검색)</option>
+									<option value="daum">동종 업체의 사례</option>
+									<option value="nate">지인 추천</option>
+									<option value="gmail">온라인 배너 광고</option>
+									<option value="gmail">바이럴(블로그,카페 등)</option>
+								</select>
+							</div>
+						</td>
+					</tr>
+					<!-- 계정정보 추천인 아이디/쿠폰코드 입력 -->
+					<tr>
+						<th scope="row">
+							<span >추천인 아이디</span>
+						</th>
+						<td>
+							<input class="form-control col-8 mx-1" type="text" id="ex_rd2" style="display:inline;">
+						</td>
+						<th scope="row">
+							<span >쿠폰코드</span>
+						</th>
+						<td>
+							<input class="form-control col-8 mx-1" type="text" id="ex_rd2" style="display:inline;">
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<!-- 가입경로 End -->
+			<!--              -->
+
+			<!-- 추가정보 -->
+			<div class="account-info p-3 mt-3" style="border-bottom:2px solid #000000">
+				<span style="font-size:20px;">추가정보</span>
+				
+			</div>
+			
+			<!-- 추가정보 section -->
+			<table class="table mt-3">
+				<colgroup>
+					<col width="20%">
+				</colgroup>
+				<tbody>
+					<!-- 추가정보 자사 쇼핑몰형태 입력-->
+					<tr>
+						<th scope="row">
+							<span >자사 쇼핑몰형태</span>
+							
+						</th>
+						<td colspan="3">
+							<div class="">
+								<select class="sabang-select col-6" name="mail" style="height:38px;">
+									<option value="naver">선택</option>
+									<option value="gmail">자체 구축 및 개발</option>
+									<option value="hanmail">호스팅(카페24,메이크샵,고도몰 등)</option>
+									<option value="daum">SNS(블로그페이,SNS폼 등)</option>
+									<option value="nate">자체 쇼핑몰 없음</option>
+									<option value="gmail">기타</option>
+								</select>
+							</div>
+						</td>
+					</tr>
+					<!-- 추가정보 입점 쇼핑몰 수 입력-->
+					<tr>
+						<th scope="row">
+							<span >입점 쇼핑몰 수</span>
+						</th>
+						<td colspan="3">
+							<div class="">
+								<select class="sabang-select col-6" name="mail" style="height:38px;">
+									<option value="naver">선택</option>
+									<option value="gmail">0~10</option>
+									<option value="hanmail">11~20</option>
+									<option value="daum">21~30</option>
+									<option value="nate">31~40</option>
+									<option value="gmail">41~50</option>
+									<option value="gmail">51~60</option>
+								</select>
+							</div>
+						</td>
+					</tr>
+					<!-- 추가정보 현재 사용 중인 솔루션 입력-->
+					<tr>
+						<th scope="row">
+							<span >현재 사용 중인 솔루션</span>
+							
+						</th>
+						<td colspan="3">
+							<div class="">
+								<label class="check mx-1">플레이 오토
+									<input type="checkbox" name="save_id">
+									<span class="checkmark"></span>
+								</label>
+								<label class="check mx-1">삽링커
+									<input type="checkbox"  name="save_id">
+									<span class="checkmark"></span>
+								</label>
+								<label class="check mx-1">이셀러스
+									<input type="checkbox"  name="save_id">
+									<span class="checkmark"></span>
+								</label>
+								<label class="check mx-1">EC모니터
+									<input type="checkbox"  name="save_id">
+									<span class="checkmark"></span>
+								</label>
+								<label class="check mx-1">샵플링
+									<input type="checkbox"  name="save_id">
+									<span class="checkmark"></span>
+								</label>
+								<label class="check mx-1">더존
+									<input type="checkbox"  name="save_id">
+									<span class="checkmark"></span>
+								</label>
+								<label class="check mx-1">이카운트
+									<input type="checkbox"  name="save_id">
+									<span class="checkmark"></span>
+								</label>
+								<label class="check mx-1">굿스플로
+									<input type="checkbox" c name="save_id">
+									<span class="checkmark"></span>
+								</label>
+								<label class="check mx-1">이지 어드민
+									<input type="checkbox"  name="save_id">
+									<span class="checkmark"></span>
+								</label>
+								<label class="check mx-1">셀메이드
+									<input type="checkbox"  name="save_id">
+									<span class="checkmark"></span>
+								</label>
+								<label class="check mx-1">세원ERP
+									<input type="checkbox"  name="save_id">
+									<span class="checkmark"></span>
+								</label>
+								<label class="check mx-1">이알피아
+									<input type="checkbox"  name="save_id">
+									<span class="checkmark"></span>
+								</label>
+								<label class="check mx-1">이벗매니저
+									<input type="checkbox"  name="save_id">
+									<span class="checkmark"></span>
+								</label>
+								<label class="check mx-1">얼마에요
+									<input type="checkbox"  name="save_id">
+									<span class="checkmark"></span>
+								</label>
+								<label class="check mx-1">XMD
+									<input type="checkbox"  name="save_id">
+									<span class="checkmark"></span>
+								</label>
+							</div>
+						</td>
+					</tr>
+					<!-- 추가정보 전에 사용해본 솔루션 입력-->
+					<tr>
+						<th scope="row">
+							<span >전에 사용해본 솔루션</span>
+							
+						</th>
+						<td colspan="3">
+							<div class="">
+								<label class="check mx-1">플레이 오토
+									<input type="checkbox" name="save_id">
+									<span class="checkmark"></span>
+								</label>
+								<label class="check mx-1">삽링커
+									<input type="checkbox"  name="save_id">
+									<span class="checkmark"></span>
+								</label>
+								<label class="check mx-1">이셀러스
+									<input type="checkbox"  name="save_id">
+									<span class="checkmark"></span>
+								</label>
+								<label class="check mx-1">EC모니터
+									<input type="checkbox"  name="save_id">
+									<span class="checkmark"></span>
+								</label>
+								<label class="check mx-1">샵플링
+									<input type="checkbox"  name="save_id">
+									<span class="checkmark"></span>
+								</label>
+								<label class="check mx-1">더존
+									<input type="checkbox"  name="save_id">
+									<span class="checkmark"></span>
+								</label>
+								<label class="check mx-1">이카운트
+									<input type="checkbox"  name="save_id">
+									<span class="checkmark"></span>
+								</label>
+								<label class="check mx-1">굿스플로
+									<input type="checkbox" c name="save_id">
+									<span class="checkmark"></span>
+								</label>
+								<label class="check mx-1">이지 어드민
+									<input type="checkbox"  name="save_id">
+									<span class="checkmark"></span>
+								</label>
+								<label class="check mx-1">셀메이드
+									<input type="checkbox"  name="save_id">
+									<span class="checkmark"></span>
+								</label>
+								<label class="check mx-1">세원ERP
+									<input type="checkbox"  name="save_id">
+									<span class="checkmark"></span>
+								</label>
+								<label class="check mx-1">이알피아
+									<input type="checkbox"  name="save_id">
+									<span class="checkmark"></span>
+								</label>
+								<label class="check mx-1">이벗매니저
+									<input type="checkbox"  name="save_id">
+									<span class="checkmark"></span>
+								</label>
+								<label class="check mx-1">얼마에요
+									<input type="checkbox"  name="save_id">
+									<span class="checkmark"></span>
+								</label>
+								<label class="check mx-1">XMD
+									<input type="checkbox"  name="save_id">
+									<span class="checkmark"></span>
+								</label>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<!-- 계정정보 End -->
+			<!--              -->
+
+
 			<div class="next_btn text-center mt-5 pt-5 mb-5">
-				<button id="join_added" type="button" class="btn btn-outline-primary btn-lg next-page">다음단계</button>
+				<button type="button" class="btn btn-outline-primary btn-lg next-page">정보수정</button>
+
 			</div>
 		</div>
 	</div>

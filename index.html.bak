@@ -25,15 +25,57 @@
 		}
 
 		/* 체크박스 디자인 */
-		.check { position:relative; margin-bottom:12px; padding-left:25px; font-size:15px; cursor:pointer; user-select:none;-webkit-user-select:none; -moz-user-select:none; -ms-user-select:none;}
+		.check { 
+			position:relative; 
+			margin-bottom:12px; 
+			padding-left:25px; 
+			font-size:15px; 
+			cursor:pointer; 
+			user-select:none;
+			-webkit-user-select:none; 
+			-moz-user-select:none; 
+			-ms-user-select:none;
+		}
 
-		.check input {position:absolute; opacity:0; cursor:pointer;}
-		.checkmark {position:absolute; top:0; left:0px; width:20px; height:20px; background-color:#fff; border:1px solid #ddd;}
-		.check:hover input ~ .checkmark {background-color:#ccc;}
-		.check input:checked ~ .checkmark {background-color:#2196F3;}
-		.checkmark:after {display:none; position:absolute; content:"";}
-		.check input:checked ~ .checkmark:after {display:block;}
-		.check .checkmark:after {top:2px; left:7px; width:5px; height:10px; border:solid white; border-width:0 3px 3px 0; transform:rotate(45deg);-webkit-transform:rotate(45deg); -ms-transform:rotate(45deg);}
+		.check input {
+			position:absolute; 
+			opacity:0; 
+			cursor:pointer;
+		}
+		.checkmark {
+			position:absolute; 
+			top:0; 
+			left:0px; 
+			width:20px; 
+			height:20px; 
+			background-color:#fff; 
+			border:1px solid #ddd;
+		}
+		.check:hover input ~ .checkmark {
+			background-color:#ccc;
+		}
+		.check input:checked ~ .checkmark {
+			background-color:#2196F3;
+		}
+		.checkmark:after {
+			display:none; 
+			position:absolute; 
+			content:"";
+		}
+		.check input:checked ~ .checkmark:after {
+			display:block;
+		}
+		.check .checkmark:after {
+			top:2px; 
+			left:7px; 
+			width:5px; 
+			height:10px; 
+			border:solid white; 
+			border-width:0 3px 3px 0; 
+			transform:rotate(45deg);
+			-webkit-transform:rotate(45deg); 
+			-ms-transform:rotate(45deg);
+		}
 
 		/* 메인 로그인,회원가입 버튼 */
 		.main_btn {
@@ -63,17 +105,31 @@
 	<!-- Javascript 시작 -->
 
 	<!-- Jquery Javascript -->
-	<script src='//unpkg.com/jquery@3/dist/jquery.min.js'></script>
+	<script src='http://code.jquery.com/jquery-latest.js'></script>
 
 	<!-- 부트스트랩 Javascript -->
 	<script src='//unpkg.com/popper.js@1/dist/umd/popper.min.js'></script>
 	<script src='//unpkg.com/bootstrap@4/dist/js/bootstrap.min.js'></script>
+
+	<!-- 페이지 이동 스크립트         -->
+	<script>
+		$(document).ready(function() {
+			
+			$(".next-page").on("click",function() {
+				var id = $(this).attr("id");
+
+				location.href = id+".html";
+			});
+			
+			
+		});
+	</script>
  </head>
  <body>
 	<div class="contents" style="margin-top:200px;">
 		<div class="container">
 			<form id="main_frm">
-				<div class="login_frm form-group col-4 mx-auto">
+				<div class="login_frm form-group col-4 mx-auto p-4" style="border: 8px solid #007bff;">
 					<div class="id_frm">
 						<label class="sr-only" for="id_input">Email address</label>
 						<input type="text" id="id_input" class="form-control" name="id">
@@ -89,13 +145,14 @@
 						<a href="https://goo.gl/forms/9BaMaefq1tQiydHJ2" id="find_idpw" class=" mx-1" style="color:#000000">DM 쿠폰입력</a>
 					</div>
 					<div class="btn_frm mt-2">
-						<button type="button" class="main_btn main_btn_login col-12 my-1">로그인</button>
+						<button type="button" id="user_list" class="main_btn main_btn_login col-12 my-1 next-page">로그인</button>
 						</br>
-						<button type="button" class="main_btn main_btn_join col-12 my-1">회원가입</button>
+						<button type="button" id="join_agree" class="main_btn main_btn_join col-12 my-1 next-page">회원가입</button>
 					</div>
 				</div>
 			</form>
 		</div>
 	</div>
  </body>
+	
 </html>

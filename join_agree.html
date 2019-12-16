@@ -23,6 +23,17 @@
 			transition-duration:0.5s;
 		}
 
+		.agree {
+			border : 1px solid #dee2e6;
+		}
+
+		.child-agree-checked.agree-checked{
+			border:1px solid #0075df;
+		}
+
+		.child-agree-checked.agree-checked > span{
+			color:#0075df;
+		}
 	</style>
 
 	<!--          -->
@@ -34,6 +45,62 @@
 	<!-- 부트스트랩 Javascript -->
 	<script src='//unpkg.com/popper.js@1/dist/umd/popper.min.js'></script>
 	<script src='//unpkg.com/bootstrap@4/dist/js/bootstrap.min.js'></script>
+
+	<!-- 페이지 이동 스크립트         -->
+	<script>
+		$(document).ready(function() {
+			
+			$(".next-page").on("click",function() {
+				var id = $(this).attr("id");
+
+				location.href = id+".html";
+			});
+
+			$(".child-agree").on("click",function() {
+				var chk = $(this).attr("class");
+
+				if (chk.indexOf("child-agree-checked") != -1) {
+					$(this).removeClass("child-agree-checked");
+					$("#all-agree").removeClass("agree-checked");
+					$(this).children().eq(1).show();
+				} else {
+					$(this).addClass("child-agree-checked");
+					$(this).children().eq(1).hide();
+
+					var len = $(".child-agree-checked").length;
+
+					console.log(len);
+				}
+			});
+
+			$("#all-agree").on("click",function() {
+				var chk = $(this).attr("class");
+
+				if (chk.indexOf("agree-checked") != 1) {
+					$(this).removeClass("agree-checked");
+					$(".child-agree").removeClass("child-agree-checked");
+
+					var nodes = $(".child-agree").children();
+
+					nodes.each(function() {
+						$(this).eq(1).show();
+					});
+
+				} else {
+					$(this).addClass("agree-checked");
+					$(".child-agree").addClass("child-agree-checked");
+
+					var nodes = $(".child-agree").children();
+
+					nodes.each(function() {
+						$(this).eq(1).hide();
+					});
+				}
+			});
+		});
+
+	
+	</script>
  </head>
  <body>
  	<div class="contents" style="margin-top:200px;">
@@ -46,38 +113,38 @@
 			<div class="join_img text-center mt-5">
 				<img src="/resources/img/join_agree.png">
 			</div>
-			<div id="all-agree" class="agree text-center border p-3 mt-3">
+			<div id="all-agree" class="agree text-center p-3 mt-3">
 				<span style="font-size:20px">전체동의</span>
 				</br>
 				<div class=" mt-3"></div>
-				<span class="text-secondary">이용약관 동의 (필수), 개인정보 수집 및 이용 동의(필수)</span>
+				<span>이용약관 동의 (필수), 개인정보 수집 및 이용 동의(필수)</span>
 			</div>
-			<div class="first-agree mt-3">
-				<div class="agree border-left border-right border-top p-3">
+			<div class="mt-3">
+				<div class="agree child-agree p-3">
 					<span style="font-size:20px"><strong>사방넷 이용약관에 동의합니다.</strong></span>
-					<span class="text-danger" style="font-size:20px"><strong>(필수)</strong></span>
+					<span style="font-size:20px;color:#dc3545;"><strong>(필수)</strong></span>
 					</br>
 					<div class=" mt-2"></div>
-					<span class="text-secondary">이용약관에 동의하셔야 회원가입이 가능합니다.</span>
+					<span>이용약관에 동의하셔야 회원가입이 가능합니다.</span>
 				</div>
 				<div class="agree-contents border p-5" style="overflow:scroll;">
 					<p>asdf</p>
 				</div>
 			</div>
-			<div class="first-agree mt-3">
-				<div class="agree border-left border-right border-top p-3">
+			<div class="mt-3">
+				<div class="agree child-agree p-3">
 					<span style="font-size:20px"><strong>사방넷 이용약관에 동의합니다.</strong></span>
-					<span class="text-danger" style="font-size:20px"><strong>(필수)</strong></span>
+					<span style="font-size:20px;color:#dc3545;"><strong>(필수)</strong></span>
 					</br>
 					<div class=" mt-2"></div>
-					<span class="text-secondary">이용약관에 동의하셔야 회원가입이 가능합니다.</span>
+					<span>이용약관에 동의하셔야 회원가입이 가능합니다.</span>
 				</div>
 				<div class="agree-contents border p-5" style="overflow:scroll;">
 					<p>asdf</p>
 				</div>
 			</div>
 			<div class="next_btn text-center mt-5 pt-5 mb-5">
-				<button type="button" class="btn btn-outline-primary btn-lg">다음단계</button>
+				<button type="button" id="join_default" class="btn btn-outline-primary btn-lg next-page">다음단계</button>
 
 			</div>
 		</div>

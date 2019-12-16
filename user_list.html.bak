@@ -35,23 +35,46 @@
 
 	<!-- 페이지 이동 스크립트         -->
 	<script>
-		$(document).ready(function() {
-			
+		$({
 			$(".next-page").on("click",function() {
-				var id = $(this).attr("id");
+				var page_name = $(this).attr("id");
 
 				location.href = id+".html";
-			});
-		});
+			})
+		})
 	</script>
  </head>
  <body>
 	<div class="contents" style="margin-top:200px;">
 		<div class="container">
 			<div class="user-list form-group col-12 mx-auto p-4 text-center" style="border: 1px solid #dee2e6;">
-				<span class="font-weight-normal display-4">가입이 완료되었습니다!</span>
-				</br>
-				<button id="user_list" class="list_btn next-page">회원정보 리스트 보기</button>
+				<span class="font-weight-normal display-4">회원정보 리스트</span>
+				<table class="table bolder table-hover col-8 mx-auto mt-5">
+					<thead>
+						<th>회원 ID</th>
+						<th>회원 이름</th>
+						<th>가입일</th>
+						<th>수정일</th>
+						<th>기타</th>
+					</thead>
+					<tbody>
+						<tr>
+							<td>asddqe</td>
+							<td>철진</td>
+							<td>2019-12-16</td>
+							<td>2019-12-16</td>
+							<td>수정</td>
+						</tr>
+						<tr>
+							<td>cheoljin</td>
+							<td>이철진</td>
+							<td>2019-12-16</td>
+							<td>2019-12-16</td>
+							<td>비활성화</td>
+						</tr>
+					</tbody>
+				</table>
+				<button id="user_update" class="list_btn next-page">정보수정</button>
 			</div>
 		</div>
 	</div>

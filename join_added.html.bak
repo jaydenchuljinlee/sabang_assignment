@@ -121,14 +121,13 @@
 
 	<!-- 페이지 이동 스크립트         -->
 	<script>
-		$(document).ready(function() {
-			
+		$({
 			$(".next-page").on("click",function() {
-				var id = $(this).attr("id");
+				var page_name = $(this).attr("id");
 
 				location.href = id+".html";
-			});
-		});
+			})
+		})
 	</script>
  </head>
  <body>
