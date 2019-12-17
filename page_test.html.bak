@@ -18,7 +18,7 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
 	<!-- style.css -->
 	<link rel="stylesheet" href="/resources/css/style.css" />
-	
+
 	<!--          -->
 	<!-- Javascript 시작 -->
 
@@ -28,7 +28,7 @@
 	<!-- 부트스트랩 Javascript -->
 	<script src='//unpkg.com/popper.js@1/dist/umd/popper.min.js'></script>
 	<script src='//unpkg.com/bootstrap@4/dist/js/bootstrap.min.js'></script>
-
+	
  </head>
  <body>
  	<div class="contents" style="margin-top:200px;">
@@ -66,12 +66,12 @@
 						</th>
 						<td class="form-inline">
 							<div class="checks col-4">
-								<input type="radio" id="ex_rd2">
-								<label for="ex_rd2">종합몰버전</label> 
+								<input type="radio" id="version_radio" name="version">
+								<label for="version_radio">종합몰버전</label> 
 							</div>
 							<div class="checks col-4">
-								<input type="radio" id="ex_rd2">
-								<label for="ex_rd2">오픈플러스</label> 
+								<input type="radio" id="version_radio" name="version">
+								<label for="version_radio">오픈플러스</label> 
 							</div>
 						</td>
 					</tr>
@@ -82,8 +82,8 @@
 							<span >아이디</span>
 						</th>
 						<td>
-							<input class="form-control col-4 mx-1" type="text" id="ex_rd2" style="display:inline;">
-							<button type="button" class="join-btn join-btn-outline mx-1">다음단계</button>
+							<input class="form-control col-4 mx-1" type="text" name="id" style="display:inline;">
+							<button type="button" class="join-btn join-btn-outline mx-1">중복확인</button>
 							</br>
 							<span class="join-added-info">중복확인 아이디는 영문 또는 숫자를 입력해 주세요.</span>
 						</td>
@@ -95,7 +95,7 @@
 							<span >비밀번호</span>
 						</th>
 						<td>
-							<input class="form-control col-4 mx-1" type="text" id="ex_rd2">
+							<input class="form-control col-4 mx-1" type="text" name="password">
 							
 							<span class="join-added-info" >비밀번호는 영문, 숫자, 특수문자를 조합하여 10자 이상 입력해 주세요.</span>
 						</td>
@@ -107,7 +107,7 @@
 							<span>비밀번호 확인</span>
 						</th>
 						<td>
-							<input class="form-control col-4 mx-1" type="text" id="ex_rd2">
+							<input class="form-control col-4 mx-1" type="text" id="confirm_pwd">
 							
 							<span class="join-added-info" >	비밀번호 확인을 위해 다시 한번 입력해주세요.</span>
 						</td>
@@ -136,7 +136,7 @@
 							<span >담당자명</span>
 						</th>
 						<td class="form-inline">
-							<input class="form-control col-4 mx-1" type="text" id="ex_rd2">
+							<input class="form-control col-4 mx-1" type="text" name="manager">
 						</td>
 					</tr>
 					<!-- 담당자정보 담당자직급 입력 -->
@@ -145,7 +145,7 @@
 							<span >담당자직급</span>
 						</th>
 						<td >
-							<input class="form-control col-4 mx-1" type="text" id="ex_rd2">
+							<input class="form-control col-4 mx-1" type="text" name="manager_rank">
 						</td>
 					</tr>
 					<!-- 담당자정보 회사전화번호 입력 -->
@@ -153,13 +153,14 @@
 						<th scope="row">
 							<span class=" mx-2" style="color:red">*</span>
 							<span >회사전화번호</span>
+							<input type="hidden" id="company_call_input" name="company_call">
 						</th>
 						<td class="form-inline">
-							<input class="form-control col-1 mx-1" type="text" id="ex_rd2">
+							<input class="form-control col-1 mx-1" type="text" id="company_call_input1">
 							-
-							<input class="form-control col-1 mx-1" type="text" id="ex_rd2">
+							<input class="form-control col-1 mx-1" type="text" id="company_call_input1">
 							-
-							<input class="form-control col-1 mx-1" type="text" id="ex_rd2">
+							<input class="form-control col-1 mx-1" type="text" id="company_call_input2">
 						</td>
 					</tr>
 					<!-- 담당자정보 휴대폰번호 입력 -->
@@ -167,13 +168,14 @@
 						<th scope="row">
 							<span class=" mx-2" style="color:red">*</span>
 							<span >휴대폰번호</span>
+							<input type="hidden" id="manager_call_input" name="manager_call">
 						</th>
 						<td class="form-inline">
-							<input class="form-control col-1 mx-1" type="text" id="ex_rd2">
+							<input class="form-control col-1 mx-1" type="text" id="manager_call_input1">
 							-
-							<input class="form-control col-1 mx-1" type="text" id="ex_rd2">
+							<input class="form-control col-1 mx-1" type="text" id="manager_call_input2">
 							-
-							<input class="form-control col-1 mx-1" type="text" id="ex_rd2">
+							<input class="form-control col-1 mx-1" type="text" id="manager_call_input3">
 						</td>
 					</tr>
 					<!-- 담당자정보 이메일주소 입력 -->
@@ -181,11 +183,12 @@
 						<th scope="row">
 							<span class=" mx-2" style="color:red">*</span>
 							<span >이메일주소</span>
+							<input type="hidden" id="email_input" name="email">
 						</th>
 						<td class="form-inline">
-							<input class="form-control col-3 mx-1" type="text" id="ex_rd2">
+							<input class="form-control col-3 mx-1" type="text" id="email_id">
 							@
-							<input class="form-control col-4 mx-1" type="text" id="ex_rd2">
+							<input class="form-control col-4 mx-1" type="text" id="email_address">
 							<select class="sabang-select" name="mail" style="height:38px;">
 								<option value="naver">naver.com</option>
 								<option value="gmail">gmail.com</option>
@@ -204,14 +207,14 @@
 						</th>
 						<td>
 							<div id="manager-agree" class="form-inline">
-								<div class="checks col-4">
-									<input type="radio" id="ex_rd2">
-									<label for="ex_rd2">종합몰버전</label> 
-								</div>
-								<div class="checks col-4">
-									<input type="radio" id="ex_rd2">
-									<label for="ex_rd2">오픈플러스</label> 
-								</div>
+								<label class="check mx-1">문자 수신 동의
+									<input type="checkbox" name="reception_aggree">
+									<span class="checkmark"></span>
+								</label>
+								<label class="check mx-1">이메일 수신 동의
+									<input type="checkbox" name="reception_aggree">
+									<span class="checkmark"></span>
+								</label>
 							</div>
 							<div id="manager-table" class="mt-4">
 								<table class="table text-center" style="border-top:2px solid black;">
@@ -277,7 +280,7 @@
 						</th>
 						<td colspan="3">
 							<div class="col-3 p-0">
-								<select class="sabang-select mx-1" name="category" style="width:100%;height:38px;">
+								<select class="sabang-select mx-1" name="sectors" style="width:100%;height:38px;">
 									<option value="default">카테고리</option>
 									<option value="total_product">종합상품벤더</option>
 									<option value="fasion">패션</option>
@@ -293,14 +296,14 @@
 							<span >회사명</span>
 						</th>
 						<td>
-							<input class="form-control col-6 mx-1" type="text" id="ex_rd2">
+							<input class="form-control col-6 mx-1" type="text" name="company">
 						</td>
 						<th scope="row">
 							<span class=" mx-2" style="color:red">*</span>
 							<span >대표자명</span>
 						</th>
 						<td>
-							<input class="form-control col-6 mx-1" type="text" id="ex_rd2">
+							<input class="form-control col-6 mx-1" type="text" name="representative">
 						</td>
 					</tr>
 					<!-- 회사정보 사업자유형 입력 -->
@@ -308,22 +311,23 @@
 						<th scope="row">
 							<span class=" mx-2" style="color:red">*</span>
 							<span >사업자유형</span>
+							<input type="hidden" id="business_type_input" name="business_type">
 						</th>
 						<td colspan="3">
 							<div class="form-inline">
-								<div class="col-2 p-2 buisnessman selected mx-2 text-center" style="border:1px solid #007bff;background:#007bff;color:#fff;font-size:15px;">
+								<div class="col-2 p-2 buisnessman buisnessman-selected mx-2 text-center">
 									<span>법인사업자</span>
 								</div>
-								<div class="col-2 p-2 buisnessman mx-2 text-center" style="border:1px solid #007bff;background:#fff;color:#007bff;font-size:15px;">
+								<div class="col-2 p-2 buisnessman mx-2 text-center">
 									<span>일반사업자</span>
 								</div>
-								<div class="col-2 p-2 buisnessman mx-2 text-center" style="border:1px solid #007bff;background:#fff;color:#007bff;font-size:15px;">
+								<div class="col-2 p-2 buisnessman mx-2 text-center">
 									<span>면세사업자</span>
 								</div>
-								<div class="col-2 p-2 buisnessman mx-2 text-center" style="border:1px solid #007bff;background:#fff;color:#007bff;font-size:15px;">
+								<div class="col-2 p-2 buisnessman mx-2 text-center">
 									<span>간이사업자</span>
 								</div>
-								<div class="col-2 p-2 buisnessman mx-2 text-center" style="border:1px solid #007bff;background:#fff;color:#007bff;font-size:15px;">
+								<div class="col-2 p-2 buisnessman mx-2 text-center">
 									<span>해외사업자</span>
 								</div>
 							</div>
@@ -334,16 +338,17 @@
 						<th scope="row">
 							<span class=" mx-2" style="color:red">*</span>
 							<span >사업자등록번호</span>
+							<input type="hidden" id="business_no_input" name="business_no">
 						</th>
 						<td>
 							<div class="form-inline">
-								<input class="form-control col-2 mx-1" type="text" id="ex_rd2">
+								<input class="form-control col-2 mx-1" type="text" id="business_no_input1">
 								-
-								<input class="form-control col-2 mx-1" type="text" id="ex_rd2">
+								<input class="form-control col-2 mx-1" type="text" id="business_no_input2">
 								-
-								<input class="form-control col-2 mx-1" type="text" id="ex_rd2">
+								<input class="form-control col-2 mx-1" type="text" id="business_no_input3">
 
-								<div class="col-3 p-2 buisnessman mx-2 text-center" style="border:1px solid #007bff;background:#fff;color:#007bff;font-size:10px;">
+								<div class="col-3 p-2 buisnessman mx-2 text-center" style="font-size:10px;">
 									<span>사업자확인</span>
 								</div>
 							</div>
@@ -357,7 +362,7 @@
 						</th>
 						<td>
 							<div>
-								<input type="file" id="ex_rd2">
+								<input type="file" name="business_img">
 							</div>
 							<div style="color:#999;font-size:10px;">
 								<span>이미지 파일만 업로드 가능합니다.</span>
@@ -372,15 +377,15 @@
 						</th>
 						<td colspan="3">
 							<div class="form-inline">
-								<input class="form-control col-3 mx-1" type="text" id="ex_rd2">
+								<input class="form-control col-3 mx-1" type="text" id="search_zonecode" name="zondecode">
 
-								<div class="col-2 p-2 buisnessman mx-2 text-center" style="border:1px solid #007bff;background:#fff;color:#007bff;font-size:13px;">
+								<div id="search" class="col-2 p-2 buisnessman mx-2 text-center" style="font-size:13px;">
 									<span>주소검색</span>
 								</div>
-								<input class="form-control col-3 mx-1" type="text" id="ex_rd2">
+								<input class="form-control col-5 mx-1" type="text" id="search_address" name="company_address">
 							</div>
-							<div class="mt-1">
-								<input class="form-control col-7 mx-1" type="text" id="ex_rd2">
+							<div class="mt-1">	
+								<input class="form-control col-7 mx-1" type="text" id="address_details" name="company_address_detail">
 							</div>
 						</td>
 					</tr>
@@ -389,27 +394,29 @@
 						<th scope="row">
 							<span class=" mx-2" style="color:red">*</span>
 							<span >대표전화</span>
+							<input type="hidden" id="main_phone_input" name="main_phone">
 						</th>
 						<td>
 							<div class="form-inline">
-								<input class="form-control col-2 mx-1" type="text" id="ex_rd2">
+								<input class="form-control col-2 mx-1" type="text" id="main_phone_input1">
 								-
-								<input class="form-control col-2 mx-1" type="text" id="ex_rd2">
+								<input class="form-control col-2 mx-1" type="text" id="main_phone_input2">
 								-
-								<input class="form-control col-2 mx-1" type="text" id="ex_rd2">
+								<input class="form-control col-2 mx-1" type="text" id="main_phone_input3">
 							</div>
 						</td>
 						<th scope="row">
 							<span class=" mx-2" style="color:red">*</span>
 							<span >팩스번호</span>
+							<input type="hidden" id="fax_input" name="fax">
 						</th>
 						<td>
 							<div class="form-inline">
-								<input class="form-control col-2 mx-1" type="text" id="ex_rd2">
+								<input class="form-control col-2 mx-1" type="text" id="fax_input1">
 								-
-								<input class="form-control col-2 mx-1" type="text" id="ex_rd2">
+								<input class="form-control col-2 mx-1" type="text" id="fax_input2">
 								-
-								<input class="form-control col-2 mx-1" type="text" id="ex_rd2">
+								<input class="form-control col-2 mx-1" type="text" id="fax_input3">
 							</div>
 						</td>
 					</tr>
@@ -420,7 +427,7 @@
 						</th>
 						<td>
 							<div>
-								<input class="form-control col-10 mx-1" type="text" id="ex_rd2">
+								<input class="form-control col-10 mx-1" type="text" name="business_type">
 							</div>
 						</td>
 						<th scope="row">
@@ -429,16 +436,16 @@
 						</th>
 						<td>
 							<div>
-								<select class="sabang-select mx-1" name="category" style="width:100%;height:38px;">
+								<select class="sabang-select mx-1" name="employee_number" style="width:100%;height:38px;">
 									<option value="default">선택</option>
-									<option value="total_product">10인 미만</option>
-									<option value="fasion">10인 이상 30인 미만</option>
-									<option value="fasion">30인 이상 50인 미만</option>
-									<option value="fasion">50인 이상 100인 미만</option>
-									<option value="fasion">100인 이상 200인 미만</option>
-									<option value="fasion">200인 이상 300인 미만</option>
-									<option value="fasion">300인 이상 500인 미만</option>
-									<option value="fasion">500인 이상</option>
+									<option value="10인 미만">10인 미만</option>
+									<option value="10인 이상 30인 미만">10인 이상 30인 미만</option>
+									<option value="30인 이상 50인 미만">30인 이상 50인 미만</option>
+									<option value="50인 이상 100인 미만">50인 이상 100인 미만</option>
+									<option value="100인 이상 200인 미만">100인 이상 200인 미만</option>
+									<option value="200인 이상 300인 미만">200인 이상 300인 미만</option>
+									<option value="300인 이상 500인 미만">300인 이상 500인 미만</option>
+									<option value="500인 이상">500인 이상</option>
 								</select>
 							</div>
 						</td>
@@ -448,6 +455,24 @@
 			<!-- 회사정보 End -->
 			<!--              -->
 
+			<div class="next_btn text-center mt-5 pt-5 mb-5">
+				<button id="join_added" type="button" class="btn btn-outline-primary btn-lg next-page">다음단계</button>
+			</div>
+		</div>
+
+
+
+		<div class="container">
+			<!-- 회원가입 메인 텍스트 -->
+			<div class="text-center">
+				<span class="display-4 font-weight-normal">회원가입</span>
+				</br></br></br>
+				<span class="text-primary">회원가입시 7일 무료 테스트가 가능합니다</span>
+			</div>
+			<!-- 회원가입 프로세스 이미지 -->
+			<div class="join_img text-center mt-5">
+				<img src="/resources/img/join_added.png">
+			</div>
 			<!-- 가입경로 -->
 			<div class="account-info p-3 mt-3" style="border-bottom:2px solid #000000">
 				<span style="font-size:20px;">가입경로</span>
@@ -470,14 +495,14 @@
 						</th>
 						<td colspan="3">
 							<div class="">
-								<select class="sabang-select col-6" name="mail" style="height:38px;">
-									<option value="naver">선택</option>
-									<option value="gmail">인쇄물(우편수령)</option>
-									<option value="hanmail">인터넷 정보 검색(관련 키워드 검색)</option>
-									<option value="daum">동종 업체의 사례</option>
-									<option value="nate">지인 추천</option>
-									<option value="gmail">온라인 배너 광고</option>
-									<option value="gmail">바이럴(블로그,카페 등)</option>
+								<select class="sabang-select col-6" name="join_root" style="height:38px;">
+									<option value="default">선택</option>
+									<option value="mail">인쇄물(우편수령)</option>
+									<option value="search">인터넷 정보 검색(관련 키워드 검색)</option>
+									<option value="peer">동종 업체의 사례</option>
+									<option value="recommender">지인 추천</option>
+									<option value="banner">온라인 배너 광고</option>
+									<option value="marketing">바이럴(블로그,카페 등)</option>
 								</select>
 							</div>
 						</td>
@@ -488,13 +513,13 @@
 							<span >추천인 아이디</span>
 						</th>
 						<td>
-							<input class="form-control col-8 mx-1" type="text" id="ex_rd2" style="display:inline;">
+							<input class="form-control col-8 mx-1" type="text" name="recommender" style="display:inline;">
 						</td>
 						<th scope="row">
 							<span >쿠폰코드</span>
 						</th>
 						<td>
-							<input class="form-control col-8 mx-1" type="text" id="ex_rd2" style="display:inline;">
+							<input class="form-control col-8 mx-1" type="text" name="cuppon" style="display:inline;">
 						</td>
 					</tr>
 				</tbody>
@@ -523,12 +548,12 @@
 						<td colspan="3">
 							<div class="">
 								<select class="sabang-select col-6" name="mail" style="height:38px;">
-									<option value="naver">선택</option>
-									<option value="gmail">자체 구축 및 개발</option>
-									<option value="hanmail">호스팅(카페24,메이크샵,고도몰 등)</option>
-									<option value="daum">SNS(블로그페이,SNS폼 등)</option>
-									<option value="nate">자체 쇼핑몰 없음</option>
-									<option value="gmail">기타</option>
+									<option value="default">선택</option>
+									<option value="self">자체 구축 및 개발</option>
+									<option value="hosting">호스팅(카페24,메이크샵,고도몰 등)</option>
+									<option value="sns">SNS(블로그페이,SNS폼 등)</option>
+									<option value="not_use">자체 쇼핑몰 없음</option>
+									<option value="etc">기타</option>
 								</select>
 							</div>
 						</td>
@@ -537,17 +562,18 @@
 					<tr>
 						<th scope="row">
 							<span >입점 쇼핑몰 수</span>
+							
 						</th>
 						<td colspan="3">
 							<div class="">
 								<select class="sabang-select col-6" name="mail" style="height:38px;">
-									<option value="naver">선택</option>
-									<option value="gmail">0~10</option>
-									<option value="hanmail">11~20</option>
-									<option value="daum">21~30</option>
-									<option value="nate">31~40</option>
-									<option value="gmail">41~50</option>
-									<option value="gmail">51~60</option>
+									<option value="default">선택</option>
+									<option value="under_10">0~10</option>
+									<option value="under_20">11~20</option>
+									<option value="under_30">21~30</option>
+									<option value="under_40">31~40</option>
+									<option value="under_50">41~50</option>
+									<option value="under_60">51~60</option>
 								</select>
 							</div>
 						</td>
@@ -556,70 +582,27 @@
 					<tr>
 						<th scope="row">
 							<span >현재 사용 중인 솔루션</span>
-							
 						</th>
 						<td colspan="3">
 							<div class="">
-								<label class="check mx-1">플레이 오토
-									<input type="checkbox" name="save_id">
-									<span class="checkmark"></span>
-								</label>
-								<label class="check mx-1">삽링커
-									<input type="checkbox"  name="save_id">
-									<span class="checkmark"></span>
-								</label>
-								<label class="check mx-1">이셀러스
-									<input type="checkbox"  name="save_id">
-									<span class="checkmark"></span>
-								</label>
-								<label class="check mx-1">EC모니터
-									<input type="checkbox"  name="save_id">
-									<span class="checkmark"></span>
-								</label>
-								<label class="check mx-1">샵플링
-									<input type="checkbox"  name="save_id">
-									<span class="checkmark"></span>
-								</label>
-								<label class="check mx-1">더존
-									<input type="checkbox"  name="save_id">
-									<span class="checkmark"></span>
-								</label>
-								<label class="check mx-1">이카운트
-									<input type="checkbox"  name="save_id">
-									<span class="checkmark"></span>
-								</label>
-								<label class="check mx-1">굿스플로
-									<input type="checkbox" c name="save_id">
-									<span class="checkmark"></span>
-								</label>
-								<label class="check mx-1">이지 어드민
-									<input type="checkbox"  name="save_id">
-									<span class="checkmark"></span>
-								</label>
-								<label class="check mx-1">셀메이드
-									<input type="checkbox"  name="save_id">
-									<span class="checkmark"></span>
-								</label>
-								<label class="check mx-1">세원ERP
-									<input type="checkbox"  name="save_id">
-									<span class="checkmark"></span>
-								</label>
-								<label class="check mx-1">이알피아
-									<input type="checkbox"  name="save_id">
-									<span class="checkmark"></span>
-								</label>
-								<label class="check mx-1">이벗매니저
-									<input type="checkbox"  name="save_id">
-									<span class="checkmark"></span>
-								</label>
-								<label class="check mx-1">얼마에요
-									<input type="checkbox"  name="save_id">
-									<span class="checkmark"></span>
-								</label>
-								<label class="check mx-1">XMD
-									<input type="checkbox"  name="save_id">
-									<span class="checkmark"></span>
-								</label>
+								<?php
+									#데이터 베이스 연결
+									$conn = mysqli_connect(
+										'localhost',
+										'root',
+										'cheoljin1234',
+										'cheoljin'
+									);
+
+									#솔루션 정보 조회
+									$solutions			= "SELECT * FROM solutions";
+									$solutions_result	= mysqli_query($conn, $solutions);
+
+									while($solutions_row = mysqli_fetch_array($solutions_result)) {
+										echo '<label class="check mx-1">'.$solutions_row[1]
+											 .'<input type="checkbox" name="current_solutions" value="'.$solutions_row[0].'"><span class="checkmark"></span></label>';
+									}
+								?>
 							</div>
 						</td>
 					</tr>
@@ -631,66 +614,14 @@
 						</th>
 						<td colspan="3">
 							<div class="">
-								<label class="check mx-1">플레이 오토
-									<input type="checkbox" name="save_id">
-									<span class="checkmark"></span>
-								</label>
-								<label class="check mx-1">삽링커
-									<input type="checkbox"  name="save_id">
-									<span class="checkmark"></span>
-								</label>
-								<label class="check mx-1">이셀러스
-									<input type="checkbox"  name="save_id">
-									<span class="checkmark"></span>
-								</label>
-								<label class="check mx-1">EC모니터
-									<input type="checkbox"  name="save_id">
-									<span class="checkmark"></span>
-								</label>
-								<label class="check mx-1">샵플링
-									<input type="checkbox"  name="save_id">
-									<span class="checkmark"></span>
-								</label>
-								<label class="check mx-1">더존
-									<input type="checkbox"  name="save_id">
-									<span class="checkmark"></span>
-								</label>
-								<label class="check mx-1">이카운트
-									<input type="checkbox"  name="save_id">
-									<span class="checkmark"></span>
-								</label>
-								<label class="check mx-1">굿스플로
-									<input type="checkbox" c name="save_id">
-									<span class="checkmark"></span>
-								</label>
-								<label class="check mx-1">이지 어드민
-									<input type="checkbox"  name="save_id">
-									<span class="checkmark"></span>
-								</label>
-								<label class="check mx-1">셀메이드
-									<input type="checkbox"  name="save_id">
-									<span class="checkmark"></span>
-								</label>
-								<label class="check mx-1">세원ERP
-									<input type="checkbox"  name="save_id">
-									<span class="checkmark"></span>
-								</label>
-								<label class="check mx-1">이알피아
-									<input type="checkbox"  name="save_id">
-									<span class="checkmark"></span>
-								</label>
-								<label class="check mx-1">이벗매니저
-									<input type="checkbox"  name="save_id">
-									<span class="checkmark"></span>
-								</label>
-								<label class="check mx-1">얼마에요
-									<input type="checkbox"  name="save_id">
-									<span class="checkmark"></span>
-								</label>
-								<label class="check mx-1">XMD
-									<input type="checkbox"  name="save_id">
-									<span class="checkmark"></span>
-								</label>
+								<?php
+									$solutions_result	= mysqli_query($conn, $solutions);
+
+									while($solutions_row = mysqli_fetch_array($solutions_result)) {
+										echo '<label class="check mx-1">'.$solutions_row[1]
+											 .'<input type="checkbox" name="prev_solutions" value="'.$solutions_row[0].'"><span class="checkmark"></span></label>';
+									}
+								?>
 							</div>
 						</td>
 					</tr>
@@ -701,7 +632,7 @@
 
 
 			<div class="next_btn text-center mt-5 pt-5 mb-5">
-				<button type="button" id="user_list" class="btn btn-outline-primary btn-lg next-page">정보수정</button>
+				<button id="join_complete" type="button" class="btn btn-outline-primary btn-lg next-page">가입완료</button>
 
 			</div>
 		</div>
@@ -713,4 +644,38 @@
 
 	<!-- 페이지 이동 스크립트         -->
 	<script src="/resources/js/main.js"></script>
+
+	<!-- 다음주소api -->
+	<script type="text/JavaScript" src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+
+	<script>
+		$(document).ready(function() {
+
+			//사업자유형 div 클릭시 하이라이트 이동
+			$(".buisnessman").on("click",function() {
+				$(".buisnessman-selected").removeClass("buisnessman-selected");
+
+				$(this).addClass("buisnessman-selected");
+			})
+
+			//주소검색시 다음주소api 실행
+			$("#search").on("click",function() {
+				
+				new daum.Postcode({
+
+					oncomplete:function(data) {
+						
+						$("#search_zonecode").val(data.zonecode);
+						
+						$("#search_address").val(data.address);
+
+						$("#address_details").focus();
+					}
+
+				}).open();
+			});
+
+
+		});
+	</script>
 </html>

@@ -16,112 +16,8 @@
 
 	<!-- Font Awesome -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
- 
-
-	<style>
-		/* 라디오 버튼 디자인 */
-		.checks {position: relative;}
-		.checks input[type="radio"] { 
-			position: absolute; width: 1px; 
-			height: 1px; 
-			padding: 0; 
-			margin: -1px; 
-			overflow: hidden; 
-			clip:rect(0,0,0,0); 
-			border: 0; 
-		}
-		.checks input[type="radio"] + label {
-			display: inline-block; 
-			position: relative; 
-			padding-left: 30px; 
-			cursor: pointer; 
-			-webkit-user-select: none; 
-			-moz-user-select: none; 
-			-ms-user-select: none; 
-		}
-		.checks input[type="radio"] + label:before {
-			margin: 3px 4px 3px 4px;
-			content: ''; 
-			position: absolute; 
-			left: 0; width: 21px; 
-			height: 21px; 
-			background: #fafafa; 
-			border: 1px solid #cacece; 
-			border-radius: 100%; 
-			box-shadow: 0px 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05); 
-		}
-		.checks input[type="radio"] + label:active:before, .checks input[type="radio"]:checked + label:active:before {
-			margin: 3px 4px 3px 4px;  
-			box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px 1px 3px rgba(0,0,0,0.1); 
-		}
-		.checks input[type="radio"]:checked + label:before {
-			margin: 3px 4px 3px 4px; 
-			background: #E9ECEE; 
-			border-color: #adb8c0; 
-		}
-		.checks input[type="radio"]:checked + label:after {
-			margin: 6px 2px 0px 3px; 
-			content: ''; 
-			position: absolute; 
-			top: 1px; 
-			left: 5px; 
-			width: 13px; 
-			height: 13px; 
-			background: #99a1a7; 
-			border-radius: 100%; 
-			box-shadow: inset 0px 0px 10px rgba(0,0,0,0.3); 
-		}
-
-		/* 테이블 관련 CSS */
-		.table td, .table th {
-			border-top : none;
-			border-bottom : 1px solid #dee2e6;
-		}
-
-		.join-added-info {
-			font-size:12px;
-			color:#999;
-		} 
-
-		/* 버튼 관련 CSS */
-		.join-btn {
-			display: inline-block;
-			font-weight: 400;
-			text-align: center;
-			background-color: transparent;
-			padding: .375rem .75rem;
-			font-size: 1rem;
-			line-height: 1.5;
-			border-radius: .25rem;
-			border: 1px solid;
-		}
-
-		.join-btn-outline {
-			color: #007bff;
-			border-color: #007bff;
-		}
-
-		/* 셀렉트박스 관련 CSS */
-		.sabang-select {
-			border-radius:.25rem;
-			border:1px solid #ced4da;
-			color:#999;
-		}
-
-		/* 사업자 유형*/
-		.buisnessman {
-			border:1px solid #007bff;
-			background:#fff;
-			color:#007bff;
-			font-size:15px;
-			cursur:pointer;
-		}
-
-		.buisnessman-selected {
-			background:#007bff;
-			color:#fff;
-		}
-	</style>
+	<!-- style.css -->
+	<link rel="stylesheet" href="/resources/css/style.css" />
 
 	<!--          -->
 	<!-- Javascript 시작 -->
@@ -132,24 +28,7 @@
 	<!-- 부트스트랩 Javascript -->
 	<script src='//unpkg.com/popper.js@1/dist/umd/popper.min.js'></script>
 	<script src='//unpkg.com/bootstrap@4/dist/js/bootstrap.min.js'></script>
-
-	<!-- 페이지 이동 스크립트         -->
-	<script>
-		$(document).ready(function() {
-			
-			$(".next-page").on("click",function() {
-				var id = $(this).attr("id");
-
-				location.href = id+".html";
-			});
-
-			$(".buisnessman").on("click",function() {
-				$(".buisnessman-selected").removeClass("buisnessman-selected");
-
-				$(this).addClass("buisnessman-selected");
-			})
-		});
-	</script>
+	
  </head>
  <body>
  	<div class="contents" style="margin-top:200px;">
@@ -187,12 +66,12 @@
 						</th>
 						<td class="form-inline">
 							<div class="checks col-4">
-								<input type="radio" id="ex_rd2">
-								<label for="ex_rd2">종합몰버전</label> 
+								<input type="radio" id="version_radio" name="version">
+								<label for="version_radio">종합몰버전</label> 
 							</div>
 							<div class="checks col-4">
-								<input type="radio" id="ex_rd2">
-								<label for="ex_rd2">오픈플러스</label> 
+								<input type="radio" id="version_radio" name="version">
+								<label for="version_radio">오픈플러스</label> 
 							</div>
 						</td>
 					</tr>
@@ -203,8 +82,8 @@
 							<span >아이디</span>
 						</th>
 						<td>
-							<input class="form-control col-4 mx-1" type="text" id="ex_rd2" style="display:inline;">
-							<button type="button" class="join-btn join-btn-outline mx-1">다음단계</button>
+							<input class="form-control col-4 mx-1" type="text" name="id" style="display:inline;">
+							<button type="button" class="join-btn join-btn-outline mx-1">중복확인</button>
 							</br>
 							<span class="join-added-info">중복확인 아이디는 영문 또는 숫자를 입력해 주세요.</span>
 						</td>
@@ -216,7 +95,7 @@
 							<span >비밀번호</span>
 						</th>
 						<td>
-							<input class="form-control col-4 mx-1" type="text" id="ex_rd2">
+							<input class="form-control col-4 mx-1" type="text" name="password">
 							
 							<span class="join-added-info" >비밀번호는 영문, 숫자, 특수문자를 조합하여 10자 이상 입력해 주세요.</span>
 						</td>
@@ -228,7 +107,7 @@
 							<span>비밀번호 확인</span>
 						</th>
 						<td>
-							<input class="form-control col-4 mx-1" type="text" id="ex_rd2">
+							<input class="form-control col-4 mx-1" type="text" id="confirm_pwd">
 							
 							<span class="join-added-info" >	비밀번호 확인을 위해 다시 한번 입력해주세요.</span>
 						</td>
@@ -257,7 +136,7 @@
 							<span >담당자명</span>
 						</th>
 						<td class="form-inline">
-							<input class="form-control col-4 mx-1" type="text" id="ex_rd2">
+							<input class="form-control col-4 mx-1" type="text" name="manager">
 						</td>
 					</tr>
 					<!-- 담당자정보 담당자직급 입력 -->
@@ -266,7 +145,7 @@
 							<span >담당자직급</span>
 						</th>
 						<td >
-							<input class="form-control col-4 mx-1" type="text" id="ex_rd2">
+							<input class="form-control col-4 mx-1" type="text" name="manager_rank">
 						</td>
 					</tr>
 					<!-- 담당자정보 회사전화번호 입력 -->
@@ -274,13 +153,14 @@
 						<th scope="row">
 							<span class=" mx-2" style="color:red">*</span>
 							<span >회사전화번호</span>
+							<input type="hidden" id="company_call_input" name="company_call">
 						</th>
 						<td class="form-inline">
-							<input class="form-control col-1 mx-1" type="text" id="ex_rd2">
+							<input class="form-control col-1 mx-1" type="text" id="company_call_input1">
 							-
-							<input class="form-control col-1 mx-1" type="text" id="ex_rd2">
+							<input class="form-control col-1 mx-1" type="text" id="company_call_input1">
 							-
-							<input class="form-control col-1 mx-1" type="text" id="ex_rd2">
+							<input class="form-control col-1 mx-1" type="text" id="company_call_input2">
 						</td>
 					</tr>
 					<!-- 담당자정보 휴대폰번호 입력 -->
@@ -288,13 +168,14 @@
 						<th scope="row">
 							<span class=" mx-2" style="color:red">*</span>
 							<span >휴대폰번호</span>
+							<input type="hidden" id="manager_call_input" name="manager_call">
 						</th>
 						<td class="form-inline">
-							<input class="form-control col-1 mx-1" type="text" id="ex_rd2">
+							<input class="form-control col-1 mx-1" type="text" id="manager_call_input1">
 							-
-							<input class="form-control col-1 mx-1" type="text" id="ex_rd2">
+							<input class="form-control col-1 mx-1" type="text" id="manager_call_input2">
 							-
-							<input class="form-control col-1 mx-1" type="text" id="ex_rd2">
+							<input class="form-control col-1 mx-1" type="text" id="manager_call_input3">
 						</td>
 					</tr>
 					<!-- 담당자정보 이메일주소 입력 -->
@@ -302,11 +183,12 @@
 						<th scope="row">
 							<span class=" mx-2" style="color:red">*</span>
 							<span >이메일주소</span>
+							<input type="hidden" id="email_input" name="email">
 						</th>
 						<td class="form-inline">
-							<input class="form-control col-3 mx-1" type="text" id="ex_rd2">
+							<input class="form-control col-3 mx-1" type="text" id="email_id">
 							@
-							<input class="form-control col-4 mx-1" type="text" id="ex_rd2">
+							<input class="form-control col-4 mx-1" type="text" id="email_address">
 							<select class="sabang-select" name="mail" style="height:38px;">
 								<option value="naver">naver.com</option>
 								<option value="gmail">gmail.com</option>
@@ -325,14 +207,14 @@
 						</th>
 						<td>
 							<div id="manager-agree" class="form-inline">
-								<div class="checks col-4">
-									<input type="radio" id="ex_rd2">
-									<label for="ex_rd2">종합몰버전</label> 
-								</div>
-								<div class="checks col-4">
-									<input type="radio" id="ex_rd2">
-									<label for="ex_rd2">오픈플러스</label> 
-								</div>
+								<label class="check mx-1">문자 수신 동의
+									<input type="checkbox" name="reception_aggree">
+									<span class="checkmark"></span>
+								</label>
+								<label class="check mx-1">이메일 수신 동의
+									<input type="checkbox" name="reception_aggree">
+									<span class="checkmark"></span>
+								</label>
 							</div>
 							<div id="manager-table" class="mt-4">
 								<table class="table text-center" style="border-top:2px solid black;">
@@ -398,7 +280,7 @@
 						</th>
 						<td colspan="3">
 							<div class="col-3 p-0">
-								<select class="sabang-select mx-1" name="category" style="width:100%;height:38px;">
+								<select class="sabang-select mx-1" name="sectors" style="width:100%;height:38px;">
 									<option value="default">카테고리</option>
 									<option value="total_product">종합상품벤더</option>
 									<option value="fasion">패션</option>
@@ -414,14 +296,14 @@
 							<span >회사명</span>
 						</th>
 						<td>
-							<input class="form-control col-6 mx-1" type="text" id="ex_rd2">
+							<input class="form-control col-6 mx-1" type="text" name="company">
 						</td>
 						<th scope="row">
 							<span class=" mx-2" style="color:red">*</span>
 							<span >대표자명</span>
 						</th>
 						<td>
-							<input class="form-control col-6 mx-1" type="text" id="ex_rd2">
+							<input class="form-control col-6 mx-1" type="text" name="representative">
 						</td>
 					</tr>
 					<!-- 회사정보 사업자유형 입력 -->
@@ -429,6 +311,7 @@
 						<th scope="row">
 							<span class=" mx-2" style="color:red">*</span>
 							<span >사업자유형</span>
+							<input type="hidden" id="company_type_input" name="company_type">
 						</th>
 						<td colspan="3">
 							<div class="form-inline">
@@ -455,16 +338,17 @@
 						<th scope="row">
 							<span class=" mx-2" style="color:red">*</span>
 							<span >사업자등록번호</span>
+							<input type="hidden" id="business_no_input" name="business_no">
 						</th>
 						<td>
 							<div class="form-inline">
-								<input class="form-control col-2 mx-1" type="text" id="ex_rd2">
+								<input class="form-control col-2 mx-1" type="text" id="business_no_input1">
 								-
-								<input class="form-control col-2 mx-1" type="text" id="ex_rd2">
+								<input class="form-control col-2 mx-1" type="text" id="business_no_input2">
 								-
-								<input class="form-control col-2 mx-1" type="text" id="ex_rd2">
+								<input class="form-control col-2 mx-1" type="text" id="business_no_input3">
 
-								<div class="col-3 p-2 buisnessman mx-2 text-center" style="border:1px solid #007bff;background:#fff;color:#007bff;font-size:10px;">
+								<div class="col-3 p-2 buisnessman mx-2 text-center" style="font-size:10px;">
 									<span>사업자확인</span>
 								</div>
 							</div>
@@ -478,7 +362,7 @@
 						</th>
 						<td>
 							<div>
-								<input type="file" id="ex_rd2">
+								<input type="file" name="business_img">
 							</div>
 							<div style="color:#999;font-size:10px;">
 								<span>이미지 파일만 업로드 가능합니다.</span>
@@ -493,15 +377,15 @@
 						</th>
 						<td colspan="3">
 							<div class="form-inline">
-								<input class="form-control col-3 mx-1" type="text" id="ex_rd2">
+								<input class="form-control col-3 mx-1" type="text" id="search_zonecode" name="zondecode">
 
-								<div class="col-2 p-2 buisnessman mx-2 text-center" style="border:1px solid #007bff;background:#fff;color:#007bff;font-size:13px;">
+								<div id="search" class="col-2 p-2 buisnessman mx-2 text-center" style="font-size:13px;">
 									<span>주소검색</span>
 								</div>
-								<input class="form-control col-3 mx-1" type="text" id="ex_rd2">
+								<input class="form-control col-5 mx-1" type="text" id="search_address" name="company_address">
 							</div>
-							<div class="mt-1">
-								<input class="form-control col-7 mx-1" type="text" id="ex_rd2">
+							<div class="mt-1">	
+								<input class="form-control col-7 mx-1" type="text" id="address_details" name="company_address_detail">
 							</div>
 						</td>
 					</tr>
@@ -510,27 +394,29 @@
 						<th scope="row">
 							<span class=" mx-2" style="color:red">*</span>
 							<span >대표전화</span>
+							<input type="hidden" id="main_phone_input" name="main_phone">
 						</th>
 						<td>
 							<div class="form-inline">
-								<input class="form-control col-2 mx-1" type="text" id="ex_rd2">
+								<input class="form-control col-2 mx-1" type="text" id="main_phone_input1">
 								-
-								<input class="form-control col-2 mx-1" type="text" id="ex_rd2">
+								<input class="form-control col-2 mx-1" type="text" id="main_phone_input2">
 								-
-								<input class="form-control col-2 mx-1" type="text" id="ex_rd2">
+								<input class="form-control col-2 mx-1" type="text" id="main_phone_input3">
 							</div>
 						</td>
 						<th scope="row">
 							<span class=" mx-2" style="color:red">*</span>
 							<span >팩스번호</span>
+							<input type="hidden" id="fax_input" name="fax">
 						</th>
 						<td>
 							<div class="form-inline">
-								<input class="form-control col-2 mx-1" type="text" id="ex_rd2">
+								<input class="form-control col-2 mx-1" type="text" id="fax_input1">
 								-
-								<input class="form-control col-2 mx-1" type="text" id="ex_rd2">
+								<input class="form-control col-2 mx-1" type="text" id="fax_input2">
 								-
-								<input class="form-control col-2 mx-1" type="text" id="ex_rd2">
+								<input class="form-control col-2 mx-1" type="text" id="fax_input3">
 							</div>
 						</td>
 					</tr>
@@ -541,7 +427,7 @@
 						</th>
 						<td>
 							<div>
-								<input class="form-control col-10 mx-1" type="text" id="ex_rd2">
+								<input class="form-control col-10 mx-1" type="text" name="business_type">
 							</div>
 						</td>
 						<th scope="row">
@@ -550,16 +436,16 @@
 						</th>
 						<td>
 							<div>
-								<select class="sabang-select mx-1" name="category" style="width:100%;height:38px;">
+								<select class="sabang-select mx-1" name="employee_number" style="width:100%;height:38px;">
 									<option value="default">선택</option>
-									<option value="total_product">10인 미만</option>
-									<option value="fasion">10인 이상 30인 미만</option>
-									<option value="fasion">30인 이상 50인 미만</option>
-									<option value="fasion">50인 이상 100인 미만</option>
-									<option value="fasion">100인 이상 200인 미만</option>
-									<option value="fasion">200인 이상 300인 미만</option>
-									<option value="fasion">300인 이상 500인 미만</option>
-									<option value="fasion">500인 이상</option>
+									<option value="10인 미만">10인 미만</option>
+									<option value="10인 이상 30인 미만">10인 이상 30인 미만</option>
+									<option value="30인 이상 50인 미만">30인 이상 50인 미만</option>
+									<option value="50인 이상 100인 미만">50인 이상 100인 미만</option>
+									<option value="100인 이상 200인 미만">100인 이상 200인 미만</option>
+									<option value="200인 이상 300인 미만">200인 이상 300인 미만</option>
+									<option value="300인 이상 500인 미만">300인 이상 500인 미만</option>
+									<option value="500인 이상">500인 이상</option>
 								</select>
 							</div>
 						</td>
@@ -575,4 +461,44 @@
 		</div>
 	</div>
  </body>
+
+	<!-- 실행에 필요한 자바스크립트 파일들 -->
+	<!--                                   -->
+
+	<!-- 페이지 이동 스크립트         -->
+	<script src="/resources/js/main.js"></script>
+
+	<!-- 다음주소api -->
+	<script type="text/JavaScript" src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+
+	<script>
+		$(document).ready(function() {
+
+			//사업자유형 div 클릭시 하이라이트 이동
+			$(".buisnessman").on("click",function() {
+				$(".buisnessman-selected").removeClass("buisnessman-selected");
+
+				$(this).addClass("buisnessman-selected");
+			})
+
+			//주소검색시 다음주소api 실행
+			$("#search").on("click",function() {
+				
+				new daum.Postcode({
+
+					oncomplete:function(data) {
+						
+						$("#search_zonecode").val(data.zonecode);
+						
+						$("#search_address").val(data.address);
+
+						$("#address_details").focus();
+					}
+
+				}).open();
+			});
+
+
+		});
+	</script>
 </html>

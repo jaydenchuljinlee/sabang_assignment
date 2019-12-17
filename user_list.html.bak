@@ -13,15 +13,8 @@
 
 	<!-- 부트스트랩 CSS -->
 	<link rel="stylesheet" href="//unpkg.com/bootstrap@4/dist/css/bootstrap.min.css">
-	<style>
-		.list_btn {
-			font-size:20px;
-			border-radius:.3rem;padding:.5rem 1rem;
-			background-color: #fff;
-			border:1px solid #007bff;
-			color:#007bff;
-		}
-	</style>
+	<!-- style.css -->
+	<link rel="stylesheet" href="/resources/css/style.css" />
 
 	<!--          -->
 	<!-- Javascript 시작 -->
@@ -35,13 +28,14 @@
 
 	<!-- 페이지 이동 스크립트         -->
 	<script>
-		$({
+		$(document).ready(function() {
+			
 			$(".next-page").on("click",function() {
-				var page_name = $(this).attr("id");
+				var id = $(this).attr("id");
 
 				location.href = id+".html";
-			})
-		})
+			});
+		});
 	</script>
  </head>
  <body>

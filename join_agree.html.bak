@@ -1,40 +1,22 @@
 <!doctype html>
 <html lang="en">
  <head>
-  <meta charset="UTF-8">
-  <meta name="Generator" content="EditPlus®">
-  <meta name="Author" content="">
-  <meta name="Keywords" content="">
-  <meta name="Description" content="">
-  <title>Document</title>
+	<meta charset="UTF-8">
+	<meta name="Generator" content="EditPlus®">
+	<meta name="Author" content="">
+	<meta name="Keywords" content="">
+	<meta name="Description" content="">
+	<title>Document</title>
+
+	<link rel="shortcut icon" href="#">
 
 	<!--          -->
 	<!-- CSS 시작 -->
 
 	<!-- 부트스트랩 CSS -->
 	<link rel="stylesheet" href="//unpkg.com/bootstrap@4/dist/css/bootstrap.min.css">
-	<style>
-		#all-agree{
-			position:relative;
-		}
-		.agree:hover{
-			background:#f0f0f0;
-			cursor:pointer;
-			transition-duration:0.5s;
-		}
-
-		.agree {
-			border : 1px solid #dee2e6;
-		}
-
-		.child-agree-checked.agree-checked{
-			border:1px solid #0075df;
-		}
-
-		.agree-checked > span{
-			color:#0075df;
-		}
-	</style>
+	<!-- style.css -->
+	<link rel="stylesheet" href="/resources/css/style.css" />
 
 	<!--          -->
 	<!-- Javascript 시작 -->
@@ -45,62 +27,7 @@
 	<!-- 부트스트랩 Javascript -->
 	<script src='//unpkg.com/popper.js@1/dist/umd/popper.min.js'></script>
 	<script src='//unpkg.com/bootstrap@4/dist/js/bootstrap.min.js'></script>
-
-	<!-- 페이지 이동 스크립트         -->
-	<script>
-		$(document).ready(function() {
-			
-			$(".next-page").on("click",function() {
-				var id = $(this).attr("id");
-
-				location.href = id+".html";
-			});
-
-			$(".child-agree").on("click",function() {
-				var chk = $(this).attr("class");
-
-				if (chk.indexOf("child-agree-checked") != -1) {
-					$(this).removeClass("child-agree-checked");
-					$("#all-agree").removeClass("agree-checked");
-					$(this).children().eq(1).show();
-				} else {
-					$(this).addClass("child-agree-checked");
-					$(this).children().eq(1).hide();
-
-					var len = $(".child-agree-checked").length;
-
-					console.log(len);
-				}
-			});
-
-			$("#all-agree").on("click",function() {
-				var chk = $(this).attr("class");
-
-				if (chk.indexOf("agree-checked") != 1) {
-					$(this).removeClass("agree-checked");
-					$(".child-agree").removeClass("child-agree-checked");
-
-					var nodes = $(".child-agree").children();
-
-					nodes.each(function() {
-						$(this).eq(1).show();
-					});
-
-				} else {
-					$(this).addClass("agree-checked");
-					$(".child-agree").addClass("child-agree-checked");
-
-					var nodes = $(".child-agree").children();
-
-					nodes.each(function() {
-						$(this).eq(1).hide();
-					});
-				}
-			});
-		});
-
 	
-	</script>
  </head>
  <body>
  	<div class="contents" style="margin-top:200px;">
@@ -149,5 +76,82 @@
 			</div>
 		</div>
 	</div>
+
+	<!-- 실행에 필요한 자바스크립트 파일들 -->
+	<!--                                   -->
+
+	<!-- 페이지 이동 스크립트         -->
+	<script src="/resources/js/main.js"></script>
+
+	<!-- 페이지 이동 스크립트         -->
+	<script>
+		$(document).ready(function() {
+
+			/* 
+			   서브 동의 항목 클릭 함수
+			   @chk		: 동의를 클릭한 div태그
+			   @this	: 이벤트리스너 안에서 this는 클릭한 객체를 가리킨다
+			*/
+			$(".child-agree").on("click",function() {
+				var chk = $(this).attr("class");
+
+				//체크를 명시해주는 클래스를 갖고 있을 때는 true문을 탄다.
+				if (chk.indexOf("child-agree-checked") != -1) {
+
+					//이벤트리스너의 객체(여기서 동의를 클릭한 div)의 체크를 풀어주고,상위 객체의 동의 div 또한 제거해준다.
+					$(this).removeClass("child-agree-checked");
+					$("#all-agree").removeClass("agree-checked");
+
+					$(this).children().eq(1).show();
+				
+				} else {
+					$(this).addClass("child-agree-checked");
+					$(this).children().eq(1).hide();
+
+					//서브 동의 div의 체크표시 개수
+					var len = $(".child-agree-checked").length;
+
+					//서브 동의가 두개 다 체크 돼있으면, 전체 동의를 하이라이트
+					if (len == 2) {
+						
+						$("#all-agree").addClass("agree-checked");
+					}
+				}
+			});
+
+			/* 
+			   전체 동의 항목 클릭 함수
+			   @chk			: 동의를 클릭한 div태그
+			   @nodes		: 서브 동의 항목들
+			   @span_1,2	: 서브 동의 항목의 (필수) span태그
+			   @this		: 이벤트리스너 안에서 this는 클릭한 객체를 가리킨다
+			*/
+			$("#all-agree").on("click",function() {
+				var chk		= $(this).attr("class"),
+				    nodes	= $(".child-agree").children(),
+					span_1	= nodes[1],
+					span_2	= nodes[6];
+
+				//체크를 명시해주는 클래스를 갖고 있을 때는 true문을 탄다.
+				if (chk.indexOf("agree-checked") != -1) {
+					
+					//이벤트리스너의 객체(여기서 동의를 클릭한 div)의 체크를 풀어주고,하위 객체들의 동의 div 또한 제거해준다.
+					$(this).removeClass("agree-checked");
+					$(".child-agree").removeClass("child-agree-checked");
+						
+					$(span_1).show();
+					$(span_2).show();
+
+				} else {
+					
+					$(this).addClass("agree-checked");
+					$(".child-agree").addClass("child-agree-checked");
+						
+					$(span_1).hide();
+					$(span_2).hide();
+				}
+			});
+		});
+	</script>
  </body>
 </html>

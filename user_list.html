@@ -13,15 +13,8 @@
 
 	<!-- 부트스트랩 CSS -->
 	<link rel="stylesheet" href="//unpkg.com/bootstrap@4/dist/css/bootstrap.min.css">
-	<style>
-		.list_btn {
-			font-size:20px;
-			border-radius:.3rem;padding:.5rem 1rem;
-			background-color: #fff;
-			border:1px solid #007bff;
-			color:#007bff;
-		}
-	</style>
+	<!-- style.css -->
+	<link rel="stylesheet" href="/resources/css/style.css" />
 
 	<!--          -->
 	<!-- Javascript 시작 -->
@@ -33,17 +26,6 @@
 	<script src='//unpkg.com/popper.js@1/dist/umd/popper.min.js'></script>
 	<script src='//unpkg.com/bootstrap@4/dist/js/bootstrap.min.js'></script>
 
-	<!-- 페이지 이동 스크립트         -->
-	<script>
-		$(document).ready(function() {
-			
-			$(".next-page").on("click",function() {
-				var id = $(this).attr("id");
-
-				location.href = id+".html";
-			});
-		});
-	</script>
  </head>
  <body>
 	<div class="contents" style="margin-top:200px;">
@@ -80,4 +62,10 @@
 		</div>
 	</div>
  </body>
+
+	<!-- 실행에 필요한 자바스크립트 파일들 -->
+	<!--                                   -->
+
+	<!-- 페이지 이동 스크립트         -->
+	<script src="/resources/js/main.js"></script>
 </html>

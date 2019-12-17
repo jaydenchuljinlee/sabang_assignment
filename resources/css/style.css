@@ -1,0 +1,252 @@
+/*****************************************************************
+* 공통 CSS
+*****************************************************************/
+
+/* 체크박스 디자인 */
+.check { 
+	position:relative; 
+	margin-bottom:12px; 
+	padding-left:25px; 
+	font-size:15px; 
+	cursor:pointer; 
+	user-select:none;
+	-webkit-user-select:none; 
+	-moz-user-select:none; 
+	-ms-user-select:none;
+}
+
+.check input {
+	position:absolute; 
+	opacity:0; 
+	cursor:pointer;
+}
+.checkmark {
+	position:absolute; 
+	top:0; 
+	left:0px; 
+	width:20px; 
+	height:20px; 
+	background-color:#fff; 
+	border:1px solid #ddd;
+}
+.check:hover input ~ .checkmark {
+	background-color:#ccc;
+}
+.check input:checked ~ .checkmark {
+	background-color:#2196F3;
+}
+.checkmark:after {
+	display:none; 
+	position:absolute; 
+	content:"";
+}
+.check input:checked ~ .checkmark:after {
+	display:block;
+}
+.check .checkmark:after {
+	top:2px; 
+	left:7px; 
+	width:5px; 
+	height:10px; 
+	border:solid white; 
+	border-width:0 3px 3px 0; 
+	transform:rotate(45deg);
+	-webkit-transform:rotate(45deg); 
+	-ms-transform:rotate(45deg);
+}
+
+/* 라디오 버튼 디자인 */
+.checks {position: relative;}
+.checks input[type="radio"] { 
+	position: absolute; width: 1px; 
+	height: 1px; 
+	padding: 0; 
+	margin: -1px; 
+	overflow: hidden; 
+	clip:rect(0,0,0,0); 
+	border: 0; 
+}
+.checks input[type="radio"] + label {
+	display: inline-block; 
+	position: relative; 
+	padding-left: 30px; 
+	cursor: pointer; 
+	-webkit-user-select: none; 
+	-moz-user-select: none; 
+	-ms-user-select: none; 
+}
+.checks input[type="radio"] + label:before {
+	margin: 3px 4px 3px 4px;
+	content: ''; 
+	position: absolute; 
+	left: 0; width: 21px; 
+	height: 21px; 
+	background: #fafafa; 
+	border: 1px solid #cacece; 
+	border-radius: 100%; 
+	box-shadow: 0px 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05); 
+}
+.checks input[type="radio"] + label:active:before, .checks input[type="radio"]:checked + label:active:before {
+	margin: 3px 4px 3px 4px;  
+	box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px 1px 3px rgba(0,0,0,0.1); 
+}
+.checks input[type="radio"]:checked + label:before {
+	margin: 3px 4px 3px 4px; 
+	background: #E9ECEE; 
+	border-color: #adb8c0; 
+}
+.checks input[type="radio"]:checked + label:after {
+	margin: 6px 2px 0px 3px; 
+	content: ''; 
+	position: absolute; 
+	top: 1px; 
+	left: 5px; 
+	width: 13px; 
+	height: 13px; 
+	background: #99a1a7; 
+	border-radius: 100%; 
+	box-shadow: inset 0px 0px 10px rgba(0,0,0,0.3); 
+}
+
+/*****************************************************************
+* main 관련 CSS
+*****************************************************************/
+
+/* 로그인 아이디 input */
+#id_input{
+	background:url(/resources/img/login_id.png) no-repeat 0 0;
+}
+
+/* 로그인 비밀번호 input */
+#pwd_input{
+	background:url(/resources/img/login_pwd.png) no-repeat 0 0;
+}
+
+/* 메인 로그인,회원가입 버튼 */
+.main_btn {
+	font-size:20px;
+	border-radius:.3rem;padding:.5rem 1rem;
+}
+
+.main_btn_login {
+	background-color: #007bff;
+	border:none;
+	color:#fff;
+}
+
+.main_btn_login:hover {
+	background-color : #7cb2ec;
+}
+
+.main_btn_join {
+	background-color: #fff;
+	border:1px solid #007bff;
+	color:#007bff;
+}
+
+/*****************************************************************
+* join_agree 관련 CSS
+*****************************************************************/
+
+#all-agree{
+	position:relative;
+}
+.agree:hover{
+	background:#f0f0f0;
+	cursor:pointer;
+	transition-duration:0.5s;
+}
+
+.agree {
+	border : 1px solid #dee2e6;
+}
+
+.child-agree-checked,.agree-checked{
+	border:1px solid #0075df;
+}
+
+.child-agree-checked,.agree-checked > span{
+	color:#0075df;
+}
+
+/*****************************************************************
+* join_default 관련 CSS
+*****************************************************************/
+
+/* 테이블 관련 CSS */
+.table td, .table th {
+	border-top : none;
+	border-bottom : 1px solid #dee2e6;
+}
+
+.join-added-info {
+	font-size:12px;
+	color:#999;
+} 
+
+/* 버튼 관련 CSS */
+.join-btn {
+	display: inline-block;
+	font-weight: 400;
+	text-align: center;
+	background-color: transparent;
+	padding: .375rem .75rem;
+	font-size: 1rem;
+	line-height: 1.5;
+	border-radius: .25rem;
+	border: 1px solid;
+}
+
+.join-btn-outline {
+	color: #007bff;
+	border-color: #007bff;
+}
+
+/* 셀렉트박스 관련 CSS */
+.sabang-select {
+	border-radius:.25rem;
+	border:1px solid #ced4da;
+	color:#999;
+}
+
+/* 사업자 유형*/
+.buisnessman {
+	border:1px solid #007bff;
+	background:#fff;
+	color:#007bff;
+	font-size:15px;
+	cursor:pointer;
+}
+
+.buisnessman-selected {
+	background:#007bff;
+	color:#fff;
+}
+
+/*****************************************************************
+* join_added 관련 CSS
+*****************************************************************/
+
+.join-added-info {
+	font-size:12px;
+	color:#999;
+} 
+
+/* 셀렉트박스 관련 CSS */
+.sabang-select {
+	border-radius:.25rem;
+	border:1px solid #ced4da;
+	color:#999;
+}
+
+/*****************************************************************
+* join_complete 관련 CSS
+*****************************************************************/
+
+.list_btn {
+	font-size:20px;
+	border-radius:.3rem;padding:.5rem 1rem;
+	background-color: #fff;
+	border:1px solid #007bff;
+	color:#007bff;
+}
