@@ -210,7 +210,7 @@
 }
 
 /* 사업자 유형*/
-.buisnessman {
+.buisnessman,.address_btn {
 	border:1px solid #007bff;
 	background:#fff;
 	color:#007bff;
@@ -222,6 +222,8 @@
 	background:#007bff;
 	color:#fff;
 }
+
+
 
 /*****************************************************************
 * join_added 관련 CSS

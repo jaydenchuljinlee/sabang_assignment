@@ -243,3 +243,10 @@
 * join_complete ฐüทร CSS
 *****************************************************************/
 
+.list_btn {
+	font-size:20px;
+	border-radius:.3rem;padding:.5rem 1rem;
+	background-color: #fff;
+	border:1px solid #007bff;
+	color:#007bff;
+}

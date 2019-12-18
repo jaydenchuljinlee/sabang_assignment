@@ -17,8 +17,7 @@
 	<!-- Font Awesome -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
 	<!-- style.css -->
-	<link rel="stylesheet" href="/resources/css/style.css" /> 
-
+	<link rel="stylesheet" href="/resources/css/style.css" />
 
 	<!--          -->
 	<!-- Javascript 시작 -->
@@ -29,36 +28,10 @@
 	<!-- 부트스트랩 Javascript -->
 	<script src='//unpkg.com/popper.js@1/dist/umd/popper.min.js'></script>
 	<script src='//unpkg.com/bootstrap@4/dist/js/bootstrap.min.js'></script>
+	
  </head>
  <body>
  	<form id="join_frm">
-		<!-- 계정 -->
-		<input type="hidden" name="version" value="<?php echo $_POST['version'] ?>">
-		<input type="hidden" name="id" value="<?php echo $_POST['id'] ?>">
-		<input type="hidden" name="password" value="<?php echo $_POST['password'] ?>">
-
-		<!-- 담당자 -->
-		<input type="hidden" name="manager" value="<?php echo $_POST['manager'] ?>">
-		<input type="hidden" name="manager_rank" value="<?php echo $_POST['manager_rank'] ?>">
-		<input type="hidden" name="company_call" value="<?php echo $_POST['company_call'] ?>">
-		<input type="hidden" name="manager_call" value="<?php echo $_POST['manager_call'] ?>">
-		<input type="hidden" name="email" value="<?php echo $_POST['email'] ?>">
-		<input type="hidden" name="reception_aggree" value="<?php echo $_POST['reception_aggree'] ?>">
-
-		<!-- 회사 -->
-		<input type="hidden" name="sectors" value="<?php echo $_POST['sectors'] ?>">
-		<input type="hidden" name="company" value="<?php echo $_POST['company'] ?>">
-		<input type="hidden" name="representative" value="<?php echo $_POST['representative'] ?>">
-		<input type="hidden" name="company_type" value="<?php echo $_POST['company_type'] ?>">
-		<input type="hidden" name="business_no" value="<?php echo $_POST['business_no'] ?>">
-		<input type="hidden" name="business_img" value="<?php echo $_POST['business_img'] ?>">
-		<input type="hidden" name="zondecode" value="<?php echo $_POST['zondecode'] ?>">
-		<input type="hidden" name="company_address" value="<?php echo $_POST['company_address'] ?>">
-		<input type="hidden" name="company_address_detail" value="<?php echo $_POST['company_address_detail'] ?>">
-		<input type="hidden" name="main_phone" value="<?php echo $_POST['main_phone'] ?>">
-		<input type="hidden" name="fax" value="<?php echo $_POST['fax'] ?>">
-		<input type="hidden" name="business_type" value="<?php echo $_POST['business_type'] ?>">
-		<input type="hidden" name="employee_number" value="<?php echo $_POST['employee_number'] ?>">
 
 		<div class="contents" style="margin-top:200px;">
 			<div class="container">
@@ -242,6 +215,27 @@
 	<!-- 실행에 필요한 자바스크립트 파일들 -->
 	<!--                                   -->
 
-	<!-- 페이지 이동 스크립트         -->
-	<script src="/resources/js/main.js"></script>
+	<script>
+		$(document).ready(function() {
+			
+			/**************************************
+			가입완료 버튼을 눌렀을 때, 이전 페이지의 값들에 대한 input을 그려주는 이벤트
+			@completeBtn : 가입완료 버튼
+			**************************************/
+			var completeBtn = document.getElementById('join_complete');
+
+			completeBtn.addEventListener('click',function() {
+				<?php foreach($_POST as $key => $value) {
+					
+					echo	"var inputTag = document.createElement('input');";
+					echo	"inputTag.setAttribute('type','hidden');";
+					echo	"inputTag.setAttribute('name','".$key."');";
+					echo	"inputTag.setAttribute('value','".$value."');";
+					echo	"$('#join_frm').prepend(inputTag);";
+				}
+				?>
+			})
+		});
+
+	</script>
 </html>

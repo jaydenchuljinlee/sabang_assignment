@@ -31,442 +31,441 @@
 	
  </head>
  <body>
- 	<div class="contents" style="margin-top:200px;">
-		<div class="container">
-			<!-- 회원가입 메인 텍스트 -->
-			<div class="text-center">
-				<span class="display-4 font-weight-normal">회원가입</span>
-				</br></br></br>
-				<span class="text-primary">회원가입시 7일 무료 테스트가 가능합니다</span>
-			</div>
-			<!-- 회원가입 프로세스 이미지 -->
-			<div class="join_img text-center mt-5">
-				<img src="/resources/img/join_default.png">
-			</div>
-			<!-- 계정정보 -->
-			<div class="account-info p-3 mt-3" style="border-bottom:2px solid #000000">
-				<span style="font-size:20px;">계정정보</span>
-				<span style="font-size:15px;color:red">(* 표시는 필수 입력입니다.)</span>
+	<form id="default_frm" method="post"> 
+		<div class="contents" style="margin-top:200px;">
+			<div class="container">
+				<!-- 회원가입 메인 텍스트 -->
+				<div class="text-center">
+					<span class="display-4 font-weight-normal">회원가입</span>
+					</br></br></br>
+					<span class="text-primary">회원가입시 7일 무료 테스트가 가능합니다</span>
+				</div>
+				<!-- 회원가입 프로세스 이미지 -->
+				<div class="join_img text-center mt-5">
+					<img src="/resources/img/join_default.png">
+				</div>
+				<!-- 계정정보 -->
+				<div class="account-info p-3 mt-3" style="border-bottom:2px solid #000000">
+					<span style="font-size:20px;">계정정보</span>
+					<span style="font-size:15px;color:red">(* 표시는 필수 입력입니다.)</span>
+					
+				</div>
 				
-			</div>
-			
-			<!-- 계정정보 section -->
-			<table class="table mt-3">
-				<colgroup>
-					<col width="20%">
-				</colgroup>
-				<tbody>
-					<!-- 계정정보 버전선택 -->
-					<tr>
-						<th scope="row">
-							<span class=" mx-2" style="color:red">*</span>
-							<span >버전선택</span>
-							<a id="join_question" class="col-1 mx-2" style="background:url(./resources/img/join_question.png) no-repeat 0 0;width:20px;height:20px;"></a>
-							
-						</th>
-						<td class="form-inline">
-							<div class="checks col-4">
-								<input type="radio" id="version_radio" name="version">
-								<label for="version_radio">종합몰버전</label> 
-							</div>
-							<div class="checks col-4">
-								<input type="radio" id="version_radio" name="version">
-								<label for="version_radio">오픈플러스</label> 
-							</div>
-						</td>
-					</tr>
-					<!-- 계정정보 아이디 입력 -->
-					<tr>
-						<th scope="row">
-							<span class=" mx-2" style="color:red">*</span>
-							<span >아이디</span>
-						</th>
-						<td>
-							<input class="form-control col-4 mx-1" type="text" name="id" style="display:inline;">
-							<button type="button" class="join-btn join-btn-outline mx-1">중복확인</button>
-							</br>
-							<span class="join-added-info">중복확인 아이디는 영문 또는 숫자를 입력해 주세요.</span>
-						</td>
-					</tr>
-					<!-- 계정정보 비밀번호 입력 -->
-					<tr>
-						<th scope="row">
-							<span class=" mx-2" style="color:red">*</span>
-							<span >비밀번호</span>
-						</th>
-						<td>
-							<input class="form-control col-4 mx-1" type="text" name="password">
-							
-							<span class="join-added-info" >비밀번호는 영문, 숫자, 특수문자를 조합하여 10자 이상 입력해 주세요.</span>
-						</td>
-					</tr>
-					<!-- 계정정보 비밀번호 확인 -->
-					<tr>
-						<th scope="row">
-							<span class=" mx-2" style="color:red">*</span>
-							<span>비밀번호 확인</span>
-						</th>
-						<td>
-							<input class="form-control col-4 mx-1" type="text" id="confirm_pwd">
-							
-							<span class="join-added-info" >	비밀번호 확인을 위해 다시 한번 입력해주세요.</span>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-			<!-- 계정정보 End -->
-			<!--              -->
-
-			<!-- 담당자정보 -->
-			<div class="account-info p-3 mt-3" style="border-bottom:2px solid #000000">
-				<span style="font-size:20px;">담당자정보</span>
-				<span style="font-size:15px;color:red">(* 표시는 필수 입력입니다.)</span>
-			</div>
-
-			<!-- 담당자정보 section -->
-			<table class="table mt-4">
-				<colgroup>
-					<col width="20%">
-				</colgroup>
-				<tbody>
-					<!-- 담당자정보 담당자명 -->
-					<tr>
-						<th scope="row">
-							<span class=" mx-2" style="color:red">*</span>
-							<span >담당자명</span>
-						</th>
-						<td class="form-inline">
-							<input class="form-control col-4 mx-1" type="text" name="manager">
-						</td>
-					</tr>
-					<!-- 담당자정보 담당자직급 입력 -->
-					<tr>
-						<th scope="row">
-							<span >담당자직급</span>
-						</th>
-						<td >
-							<input class="form-control col-4 mx-1" type="text" name="manager_rank">
-						</td>
-					</tr>
-					<!-- 담당자정보 회사전화번호 입력 -->
-					<tr>
-						<th scope="row">
-							<span class=" mx-2" style="color:red">*</span>
-							<span >회사전화번호</span>
-							<input type="hidden" id="company_call_input" name="company_call">
-						</th>
-						<td class="form-inline">
-							<input class="form-control col-1 mx-1" type="text" id="company_call_input1">
-							-
-							<input class="form-control col-1 mx-1" type="text" id="company_call_input1">
-							-
-							<input class="form-control col-1 mx-1" type="text" id="company_call_input2">
-						</td>
-					</tr>
-					<!-- 담당자정보 휴대폰번호 입력 -->
-					<tr>
-						<th scope="row">
-							<span class=" mx-2" style="color:red">*</span>
-							<span >휴대폰번호</span>
-							<input type="hidden" id="manager_call_input" name="manager_call">
-						</th>
-						<td class="form-inline">
-							<input class="form-control col-1 mx-1" type="text" id="manager_call_input1">
-							-
-							<input class="form-control col-1 mx-1" type="text" id="manager_call_input2">
-							-
-							<input class="form-control col-1 mx-1" type="text" id="manager_call_input3">
-						</td>
-					</tr>
-					<!-- 담당자정보 이메일주소 입력 -->
-					<tr>
-						<th scope="row">
-							<span class=" mx-2" style="color:red">*</span>
-							<span >이메일주소</span>
-							<input type="hidden" id="email_input" name="email">
-						</th>
-						<td class="form-inline">
-							<input class="form-control col-3 mx-1" type="text" id="email_id">
-							@
-							<input class="form-control col-4 mx-1" type="text" id="email_address">
-							<select class="sabang-select" name="mail" style="height:38px;">
-								<option value="naver">naver.com</option>
-								<option value="gmail">gmail.com</option>
-								<option value="hanmail">hanmail.net</option>
-								<option value="daum">daum.net</option>
-								<option value="nate">nate.com</option>
-								<option value="gmail">gmail.com</option>
-							</select>
-							<span class="join-added-info" >입력해 주신 이메일 계정으로 세금계산서를 발행해 드립니다.</span>
-						</td>
-					</tr>
-					<!-- 담당자정보 마케팅/광고 정보 수신동의 입력 -->
-					<tr>
-						<th scope="row">
-							<span >마케팅/광고 정보 수신동의</span>
-						</th>
-						<td>
-							<div id="manager-agree" class="form-inline">
-								<label class="check mx-1">문자 수신 동의
-									<input type="checkbox" name="reception_aggree">
-									<span class="checkmark"></span>
-								</label>
-								<label class="check mx-1">이메일 수신 동의
-									<input type="checkbox" name="reception_aggree">
-									<span class="checkmark"></span>
-								</label>
-							</div>
-							<div id="manager-table" class="mt-4">
-								<table class="table text-center" style="border-top:2px solid black;">
-									<colgroup>
-										<col width="25%"/>
-										<col width="25%"/>
-										<col width="50%"/>
-									</colgroup>
-									<thead class="thead-light table-bordered" style="font-size:15px;">
-										<th>목적</th>
-										<th>항목</th>
-										<th>보유기간</th>
-									</thead>
-									<tbody style="font-size:18px; font-weight:bold">
-										<tr>
-											<td>이벤트,할인 혜택 등</br>
-											마케팅/광고 정보 제공</td>
-											<td style="font-size:14px;font-weight:light;">휴대폰번호,이메일 주소</td>
-											<td>해당 사업 종료하기 전까지(단, 회원탈퇴 시 삭제)</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-							<div id="manager-info">
-								<div>
-									<span style="font-size:18px;font-weight:bold">마케팅/광고 정보 수신에 동의합니다.</span>
-									<span style="font-size:18px;font-weight:bold;color:red">(선택)</span>
+				<!-- 계정정보 section -->
+				<table class="table mt-3">
+					<colgroup>
+						<col width="20%">
+					</colgroup>
+					<tbody>
+						<!-- 계정정보 버전선택 -->
+						<tr>
+							<th scope="row">
+								<span class=" mx-2" style="color:red">*</span>
+								<span >버전선택</span>
+								<a id="join_question" class="col-1 mx-2" style="background:url(./resources/img/join_question.png) no-repeat 0 0;width:20px;height:20px;"></a>
+								
+							</th>
+							<td class="form-inline">
+								<div class="checks col-4">
+									<input type="radio" id="version_radio" name="version" checked>
+									<label for="version_radio">종합몰버전</label> 
 								</div>
-								<div>
-									<span style="font-size:14px;color:#999">- 광고성 정보 수신동의 여부와 관계없이 회원가입이 가능합니다.</span>
+								<div class="checks col-4">
+									<input type="radio" id="version_radio" name="version">
+									<label for="version_radio">오픈플러스</label> 
 								</div>
-								<div>
-									<span style="font-size:14px;color:#999">- 수신에 동의하지 않으셔도 광고나 영리성 목적 외에 주요 안내 및 공지 사항은 정상적으로 발송됩니다.</span>
-								</div>
-							</div>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-			<!-- 담당자정보 End -->
-			<!--              -->
+							</td>
+						</tr>
+						<!-- 계정정보 아이디 입력 -->
+						<tr>
+							<th scope="row">
+								<span class=" mx-2" style="color:red">*</span>
+								<span >아이디</span>
+							</th>
+							<td>
+								<input id="identity_input" class="form-control col-4 mx-1 necessary" type="text" name="identity" style="display:inline;">
+								<input id="confirmed" type="hidden">
+								<button type="button" id="confirm_overlap" class="join-btn join-btn-outline mx-1 confirm">중복확인</button>
+								</br>
+								<span class="join-added-info">중복확인 아이디는 영문 또는 숫자를 입력해 주세요.</span>
+							</td>
+						</tr>
+						<!-- 계정정보 비밀번호 입력 -->
+						<tr>
+							<th scope="row">
+								<span class=" mx-2" style="color:red">*</span>
+								<span >비밀번호</span>
+							</th>
+							<td>
+								<input id="input_pwd" class="form-control col-4 mx-1 necessary" type="text" name="password">
+								
+								<span class="join-added-info" >비밀번호는 영문, 숫자, 특수문자를 조합하여 10자 이상 입력해 주세요.</span>
+							</td>
+						</tr>
+						<!-- 계정정보 비밀번호 확인 -->
+						<tr>
+							<th scope="row">
+								<span class=" mx-2" style="color:red">*</span>
+								<span>비밀번호 확인</span>
+							</th>
+							<td>
+								<input class="form-control col-4 mx-1 necessary" type="text" id="confirm_pwd">
+								
+								<span class="join-added-info" >	비밀번호 확인을 위해 다시 한번 입력해주세요.</span>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<!-- 계정정보 End -->
+				<!--              -->
 
-			<!-- 회사정보 -->
-			<div class="account-info p-3 mt-3" style="border-bottom:2px solid #000000">
-				<span style="font-size:20px;">회사정보</span>
-				<span style="font-size:15px;color:red">(* 표시는 필수 입력입니다.)</span>
-			</div>
+				<!-- 담당자정보 -->
+				<div class="account-info p-3 mt-3" style="border-bottom:2px solid #000000">
+					<span style="font-size:20px;">담당자정보</span>
+					<span style="font-size:15px;color:red">(* 표시는 필수 입력입니다.)</span>
+				</div>
 
-			<!-- 회사정보 section -->
-			<table class="table mt-4">
-				<colgroup>
-					<col width="20%"/>
-					<col width="30%"/>
-					<col width="20%"/>
-					<col width="30%"/>
-				</colgroup>
-				<tbody>
-					<!-- 회사정보 업종 -->
-					<tr>
-						<th scope="row">
-							<span class=" mx-2" style="color:red">*</span>
-							<span >업종(카테고리)</span>
-						</th>
-						<td colspan="3">
-							<div class="col-3 p-0">
-								<select class="sabang-select mx-1" name="sectors" style="width:100%;height:38px;">
-									<option value="default">카테고리</option>
-									<option value="total_product">종합상품벤더</option>
-									<option value="fasion">패션</option>
+				<!-- 담당자정보 section -->
+				<table class="table mt-4">
+					<colgroup>
+						<col width="20%">
+					</colgroup>
+					<tbody>
+						<!-- 담당자정보 담당자명 -->
+						<tr>
+							<th scope="row">
+								<span class=" mx-2" style="color:red">*</span>
+								<span >담당자명</span>
+							</th>
+							<td class="form-inline">
+								<input id="manager_input" class="form-control col-4 mx-1 necessary" type="text" name="manager">
+							</td>
+						</tr>
+						<!-- 담당자정보 담당자직급 입력 -->
+						<tr>
+							<th scope="row">
+								<span >담당자직급</span>
+							</th>
+							<td >
+								<input id class="form-control col-4 mx-1" type="text" name="manager_rank">
+							</td>
+						</tr>
+						<!-- 담당자정보 회사전화번호 입력 -->
+						<tr>
+							<th scope="row">
+								<span class=" mx-2" style="color:red">*</span>
+								<span >회사전화번호</span>
+								<input type="hidden" id="company_call_input" name="company_call">
+							</th>
+							<td class="form-inline">
+								<input class="form-control col-1 mx-1 necessary" type="text" id="company_call_input1">
+								-
+								<input class="form-control col-1 mx-1 necessary" type="text" id="company_call_input1">
+								-
+								<input class="form-control col-1 mx-1 necessary" type="text" id="company_call_input2">
+							</td>
+						</tr>
+						<!-- 담당자정보 휴대폰번호 입력 -->
+						<tr>
+							<th scope="row">
+								<span class=" mx-2" style="color:red">*</span>
+								<span >휴대폰번호</span>
+								<input type="hidden" id="manager_call_input" name="manager_call">
+							</th>
+							<td class="form-inline">
+								<input class="form-control col-1 mx-1 necessary" type="text" id="manager_call_input1">
+								-
+								<input class="form-control col-1 mx-1 necessary" type="text" id="manager_call_input2">
+								-
+								<input class="form-control col-1 mx-1 necessary" type="text" id="manager_call_input3">
+							</td>
+						</tr>
+						<!-- 담당자정보 이메일주소 입력 -->
+						<tr>
+							<th scope="row">
+								<span class=" mx-2" style="color:red">*</span>
+								<span >이메일주소</span>
+								<input type="hidden" id="email_input" name="email">
+							</th>
+							<td class="form-inline">
+								<input class="form-control col-3 mx-1 necessary" type="text" id="email_id">
+								@
+								<input class="form-control col-4 mx-1 necessary" type="text" id="email_address">
+								<select id="email_select" class="sabang-select" name="mail" style="height:38px;">
+									<option value="naver">naver.com</option>
+									<option value="gmail">gmail.com</option>
+									<option value="hanmail">hanmail.net</option>
+									<option value="daum">daum.net</option>
+									<option value="nate">nate.com</option>
+									<option value="gmail">gmail.com</option>
 								</select>
-							</div>
-							
-						</td>
-					</tr>
-					<!-- 회사정보 회사명 입력 -->
-					<tr>
-						<th scope="row">
-							<span class=" mx-2" style="color:red">*</span>
-							<span >회사명</span>
-						</th>
-						<td>
-							<input class="form-control col-6 mx-1" type="text" name="company">
-						</td>
-						<th scope="row">
-							<span class=" mx-2" style="color:red">*</span>
-							<span >대표자명</span>
-						</th>
-						<td>
-							<input class="form-control col-6 mx-1" type="text" name="representative">
-						</td>
-					</tr>
-					<!-- 회사정보 사업자유형 입력 -->
-					<tr>
-						<th scope="row">
-							<span class=" mx-2" style="color:red">*</span>
-							<span >사업자유형</span>
-							<input type="hidden" id="company_type_input" name="company_type">
-						</th>
-						<td colspan="3">
-							<div class="form-inline">
-								<div class="col-2 p-2 buisnessman buisnessman-selected mx-2 text-center">
-									<span>법인사업자</span>
+								<span class="join-added-info" >입력해 주신 이메일 계정으로 세금계산서를 발행해 드립니다.</span>
+							</td>
+						</tr>
+						<!-- 담당자정보 마케팅/광고 정보 수신동의 입력 -->
+						<tr>
+							<th scope="row">
+								<span >마케팅/광고 정보 수신동의</span>
+							</th>
+							<td>
+								<div id="manager-agree" class="form-inline">
+									<label class="check mx-1">문자 수신 동의
+										<input type="checkbox" name="reception_aggree">
+										<span class="checkmark"></span>
+									</label>
+									<label class="check mx-1">이메일 수신 동의
+										<input type="checkbox" name="reception_aggree">
+										<span class="checkmark"></span>
+									</label>
 								</div>
-								<div class="col-2 p-2 buisnessman mx-2 text-center">
-									<span>일반사업자</span>
+								<div id="manager-table" class="mt-4">
+									<table class="table text-center" style="border-top:2px solid black;">
+										<colgroup>
+											<col width="25%"/>
+											<col width="25%"/>
+											<col width="50%"/>
+										</colgroup>
+										<thead class="thead-light table-bordered" style="font-size:15px;">
+											<th>목적</th>
+											<th>항목</th>
+											<th>보유기간</th>
+										</thead>
+										<tbody style="font-size:18px; font-weight:bold">
+											<tr>
+												<td>이벤트,할인 혜택 등</br>
+												마케팅/광고 정보 제공</td>
+												<td style="font-size:14px;font-weight:light;">휴대폰번호,이메일 주소</td>
+												<td>해당 사업 종료하기 전까지(단, 회원탈퇴 시 삭제)</td>
+											</tr>
+										</tbody>
+									</table>
 								</div>
-								<div class="col-2 p-2 buisnessman mx-2 text-center">
-									<span>면세사업자</span>
+								<div id="manager-info">
+									<div>
+										<span style="font-size:18px;font-weight:bold">마케팅/광고 정보 수신에 동의합니다.</span>
+										<span style="font-size:18px;font-weight:bold;color:red">(선택)</span>
+									</div>
+									<div>
+										<span style="font-size:14px;color:#999">- 광고성 정보 수신동의 여부와 관계없이 회원가입이 가능합니다.</span>
+									</div>
+									<div>
+										<span style="font-size:14px;color:#999">- 수신에 동의하지 않으셔도 광고나 영리성 목적 외에 주요 안내 및 공지 사항은 정상적으로 발송됩니다.</span>
+									</div>
 								</div>
-								<div class="col-2 p-2 buisnessman mx-2 text-center">
-									<span>간이사업자</span>
-								</div>
-								<div class="col-2 p-2 buisnessman mx-2 text-center">
-									<span>해외사업자</span>
-								</div>
-							</div>
-						</td>
-					</tr>
-					<!-- 회사정보 사업자등록번호/사업자등록증 입력 -->
-					<tr>
-						<th scope="row">
-							<span class=" mx-2" style="color:red">*</span>
-							<span >사업자등록번호</span>
-							<input type="hidden" id="business_no_input" name="business_no">
-						</th>
-						<td>
-							<div class="form-inline">
-								<input class="form-control col-2 mx-1" type="text" id="business_no_input1">
-								-
-								<input class="form-control col-2 mx-1" type="text" id="business_no_input2">
-								-
-								<input class="form-control col-2 mx-1" type="text" id="business_no_input3">
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<!-- 담당자정보 End -->
+				<!--              -->
 
-								<div class="col-3 p-2 buisnessman mx-2 text-center" style="font-size:10px;">
-									<span>사업자확인</span>
-								</div>
-							</div>
-							<div style="color:#999;font-size:10px;">
-								<span>사업자등록번호 입력 후 우측의 버튼을 클릭해 주세요.</span>
-							</div>
-						</td>
-						<th scope="row">
-							<span class=" mx-2" style="color:red">*</span>
-							<span >사업자등록증</span>
-						</th>
-						<td>
-							<div>
-								<input type="file" name="business_img">
-							</div>
-							<div style="color:#999;font-size:10px;">
-								<span>이미지 파일만 업로드 가능합니다.</span>
-							</div>
-						</td>
-					</tr>
-					<!-- 회사정보 회사주소 입력 -->
-					<tr>
-						<th scope="row">
-							<span class=" mx-2" style="color:red">*</span>
-							<span >회사주소</span>
-						</th>
-						<td colspan="3">
-							<div class="form-inline">
-								<input class="form-control col-3 mx-1" type="text" id="search_zonecode" name="zondecode">
+				<!-- 회사정보 -->
+				<div class="account-info p-3 mt-3" style="border-bottom:2px solid #000000">
+					<span style="font-size:20px;">회사정보</span>
+					<span style="font-size:15px;color:red">(* 표시는 필수 입력입니다.)</span>
+				</div>
 
-								<div id="search" class="col-2 p-2 buisnessman mx-2 text-center" style="font-size:13px;">
-									<span>주소검색</span>
+				<!-- 회사정보 section -->
+				<table class="table mt-4">
+					<colgroup>
+						<col width="20%"/>
+						<col width="30%"/>
+						<col width="20%"/>
+						<col width="30%"/>
+					</colgroup>
+					<tbody>
+						<!-- 회사정보 업종 -->
+						<tr>
+							<th scope="row">
+								<span class=" mx-2" style="color:red">*</span>
+								<span >업종(카테고리)</span>
+							</th>
+							<td colspan="3">
+								<div class="col-3 p-0">
+									<select id="sectors_input" class="sabang-select mx-1 necessary" name="sectors" style="width:100%;height:38px;">
+										<option value="default">카테고리</option>
+										<option value="total_product">종합상품벤더</option>
+										<option value="fasion">패션</option>
+									</select>
 								</div>
-								<input class="form-control col-5 mx-1" type="text" id="search_address" name="company_address">
-							</div>
-							<div class="mt-1">	
-								<input class="form-control col-7 mx-1" type="text" id="address_details" name="company_address_detail">
-							</div>
-						</td>
-					</tr>
-					<!-- 회사정보 대표전화/팩스번호 입력 -->
-					<tr>
-						<th scope="row">
-							<span class=" mx-2" style="color:red">*</span>
-							<span >대표전화</span>
-							<input type="hidden" id="main_phone_input" name="main_phone">
-						</th>
-						<td>
-							<div class="form-inline">
-								<input class="form-control col-2 mx-1" type="text" id="main_phone_input1">
-								-
-								<input class="form-control col-2 mx-1" type="text" id="main_phone_input2">
-								-
-								<input class="form-control col-2 mx-1" type="text" id="main_phone_input3">
-							</div>
-						</td>
-						<th scope="row">
-							<span class=" mx-2" style="color:red">*</span>
-							<span >팩스번호</span>
-							<input type="hidden" id="fax_input" name="fax">
-						</th>
-						<td>
-							<div class="form-inline">
-								<input class="form-control col-2 mx-1" type="text" id="fax_input1">
-								-
-								<input class="form-control col-2 mx-1" type="text" id="fax_input2">
-								-
-								<input class="form-control col-2 mx-1" type="text" id="fax_input3">
-							</div>
-						</td>
-					</tr>
-					<!-- 회사정보 업태,종목/직원수 입력 -->
-					<tr>
-						<th scope="row">
-							<span >업태/종목</span>
-						</th>
-						<td>
-							<div>
-								<input class="form-control col-10 mx-1" type="text" name="business_type">
-							</div>
-						</td>
-						<th scope="row">
-							<span class=" mx-2" style="color:red">*</span>
-							<span >직원수</span>
-						</th>
-						<td>
-							<div>
-								<select class="sabang-select mx-1" name="employee_number" style="width:100%;height:38px;">
-									<option value="default">선택</option>
-									<option value="10인 미만">10인 미만</option>
-									<option value="10인 이상 30인 미만">10인 이상 30인 미만</option>
-									<option value="30인 이상 50인 미만">30인 이상 50인 미만</option>
-									<option value="50인 이상 100인 미만">50인 이상 100인 미만</option>
-									<option value="100인 이상 200인 미만">100인 이상 200인 미만</option>
-									<option value="200인 이상 300인 미만">200인 이상 300인 미만</option>
-									<option value="300인 이상 500인 미만">300인 이상 500인 미만</option>
-									<option value="500인 이상">500인 이상</option>
-								</select>
-							</div>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-			<!-- 회사정보 End -->
-			<!--              -->
+								
+							</td>
+						</tr>
+						<!-- 회사정보 회사명 입력 -->
+						<tr>
+							<th scope="row">
+								<span class=" mx-2" style="color:red">*</span>
+								<span >회사명</span>
+							</th>
+							<td>
+								<input id="company_input" class="form-control col-6 mx-1 necessary" type="text" name="company">
+							</td>
+							<th scope="row">
+								<span class=" mx-2" style="color:red">*</span>
+								<span >대표자명</span>
+							</th>
+							<td>
+								<input id="representative_input" class="form-control col-6 mx-1 necessary" type="text" name="representative">
+							</td>
+						</tr>
+						<!-- 회사정보 사업자유형 입력 -->
+						<tr>
+							<th scope="row">
+								<span class=" mx-2" style="color:red">*</span>
+								<span >사업자유형</span>
+								<input type="hidden" id="buisnessman_type_input" name="buisnessman_type">
+							</th>
+							<td colspan="3">
+								<div class="form-inline">
+									<div class="col-2 p-2 buisnessman buisnessman-selected mx-2 text-center">
+										<span>법인사업자</span>
+									</div>
+									<div class="col-2 p-2 buisnessman mx-2 text-center">
+										<span>일반사업자</span>
+									</div>
+									<div class="col-2 p-2 buisnessman mx-2 text-center">
+										<span>면세사업자</span>
+									</div>
+									<div class="col-2 p-2 buisnessman mx-2 text-center">
+										<span>간이사업자</span>
+									</div>
+									<div class="col-2 p-2 buisnessman mx-2 text-center">
+										<span>해외사업자</span>
+									</div>
+								</div>
+							</td>
+						</tr>
+						<!-- 회사정보 사업자등록번호/사업자등록증 입력 -->
+						<tr>
+							<th scope="row">
+								<span class=" mx-2" style="color:red">*</span>
+								<span >사업자등록번호</span>
+								<input type="hidden" id="business_no_input" name="business_no">
+							</th>
+							<td>
+								<div class="form-inline">
+									<input class="form-control col-2 mx-1 necessary" type="text" id="business_no_input1">
+									-
+									<input class="form-control col-2 mx-1 necessary" type="text" id="business_no_input2">
+									-
+									<input class="form-control col-2 mx-1 necessary" type="text" id="business_no_input3">
 
-			<div class="next_btn text-center mt-5 pt-5 mb-5">
-				<button id="join_added" type="button" class="btn btn-outline-primary btn-lg next-page">다음단계</button>
+									<div id="buisnessman_confirm" class="col-3 p-2 buisnessman mx-2 text-center" style="font-size:10px;">
+										<span>사업자확인</span>
+									</div>
+								</div>
+								<div style="color:#999;font-size:10px;">
+									<span>사업자등록번호 입력 후 우측의 버튼을 클릭해 주세요.</span>
+								</div>
+							</td>
+							<th scope="row">
+								<span class=" mx-2" style="color:red">*</span>
+								<span >사업자등록증</span>
+							</th>
+							<td>
+								<div>
+									<input type="file" name="business_img">
+								</div>
+								<div style="color:#999;font-size:10px;">
+									<span>이미지 파일만 업로드 가능합니다.</span>
+								</div>
+							</td>
+						</tr>
+						<!-- 회사정보 회사주소 입력 -->
+						<tr>
+							<th scope="row">
+								<span class=" mx-2" style="color:red">*</span>
+								<span >회사주소</span>
+							</th>
+							<td colspan="3">
+								<div class="form-inline">
+									<input class="form-control col-3 mx-1 necessary" type="text" id="search_zonecode" name="zondecode">
+
+									<div id="search" class="col-2 p-2 mx-2 text-center address_btn" style="font-size:13px;">
+										<span>주소검색</span>
+									</div>
+									<input class="form-control col-5 mx-1 necessary" type="text" id="search_address" name="company_address">
+								</div>
+								<div class="mt-1">	
+									<input class="form-control col-7 mx-1 necessary" type="text" id="address_details" name="company_address_detail">
+								</div>
+							</td>
+						</tr>
+						<!-- 회사정보 대표전화/팩스번호 입력 -->
+						<tr>
+							<th scope="row">
+								<span class=" mx-2" style="color:red">*</span>
+								<span >대표전화</span>
+								<input type="hidden" id="main_phone_input" name="main_phone">
+							</th>
+							<td>
+								<div class="form-inline">
+									<input class="form-control col-2 mx-1 necessary" type="text" id="main_phone_input1">
+									-
+									<input class="form-control col-2 mx-1 necessary" type="text" id="main_phone_input2">
+									-
+									<input class="form-control col-2 mx-1 necessary" type="text" id="main_phone_input3">
+								</div>
+							</td>
+							<th scope="row">
+								<span class=" mx-2" style="color:red">*</span>
+								<span >팩스번호</span>
+								<input type="hidden" id="fax_input" name="fax">
+							</th>
+							<td>
+								<div class="form-inline">
+									<input class="form-control col-2 mx-1 necessary" type="text" id="fax_input1">
+									-
+									<input class="form-control col-2 mx-1 necessary" type="text" id="fax_input2">
+									-
+									<input class="form-control col-2 mx-1 necessary" type="text" id="fax_input3">
+								</div>
+							</td>
+						</tr>
+						<!-- 회사정보 업태,종목/직원수 입력 -->
+						<tr>
+							<th scope="row">
+								<span >업태/종목</span>
+							</th>
+							<td>
+								<div>
+									<input id="business_type_input" class="form-control col-10 mx-1 necessary" type="text" name="business_type">
+								</div>
+							</td>
+							<th scope="row">
+								<span class=" mx-2" style="color:red">*</span>
+								<span >직원수</span>
+							</th>
+							<td>
+								<div>
+									<select id="employees_input" class="sabang-select mx-1 necessary" name="employee_number" style="width:100%;height:38px;">
+										<option value="default">선택</option>
+										<option value="10인 미만">10인 미만</option>
+										<option value="10인 이상 30인 미만">10인 이상 30인 미만</option>
+										<option value="30인 이상 50인 미만">30인 이상 50인 미만</option>
+										<option value="50인 이상 100인 미만">50인 이상 100인 미만</option>
+										<option value="100인 이상 200인 미만">100인 이상 200인 미만</option>
+										<option value="200인 이상 300인 미만">200인 이상 300인 미만</option>
+										<option value="300인 이상 500인 미만">300인 이상 500인 미만</option>
+										<option value="500인 이상">500인 이상</option>
+									</select>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<!-- 회사정보 End -->
+				<!--              -->
+
+				<div class="next_btn text-center mt-5 pt-5 mb-5">
+					<button id="join_added" type="button" class="btn btn-outline-primary btn-lg next-page">다음단계</button>
+				</div>
 			</div>
 		</div>
-	</div>
  </body>
 
 	<!-- 실행에 필요한 자바스크립트 파일들 -->
 	<!--                                   -->
-
-	<!-- 페이지 이동 스크립트         -->
-	<script src="/resources/js/main.js"></script>
 
 	<!-- 다음주소api -->
 	<script type="text/JavaScript" src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
@@ -479,9 +478,20 @@
 				$(".buisnessman-selected").removeClass("buisnessman-selected");
 
 				$(this).addClass("buisnessman-selected");
-			})
+				$("#buisnessman_type_input").val($(this).val());
+			});
 
-			//주소검색시 다음주소api 실행
+			//이메일 셀렉트박스 변경
+			$("#email_select").on("change",function() {
+				$("#email_address").val($(this).val());
+			});
+
+			/********************** 
+			*주소검색시 다음주소api 실행
+			* #search_zonecode		: 우편번호 태그
+			* #search_address		: 검색후 입력되는 주소 태그
+			* #address_details		: 상세주소 입력 태그
+			***********************/
 			$("#search").on("click",function() {
 				
 				new daum.Postcode({
@@ -489,16 +499,176 @@
 					oncomplete:function(data) {
 						
 						$("#search_zonecode").val(data.zonecode);
-						
 						$("#search_address").val(data.address);
-
 						$("#address_details").focus();
 					}
 
 				}).open();
 			});
+ 
+			$("#confirm_overlap").on("click",function() {
+				
+				if (overLapCheck()) {
+					alert("이미 있는 아이디 입니다.");
+					return;
+				} else {
+					alert("사용할 수 있는 아이디 입니다.");
+					$("#confirm_overlap").addClass("overlap-check");
+					$("#confirmed").val($("#identity_input").val());
+				}
+
+			});
+
+			$("#buisnessman_confirm").on("click",function() {
+				
+				var businessman_no = $("#business_no_input1").val() + "-" + $("#business_no_input2").val() + "-" + $("#business_no_input3").val();
+
+				$.ajax({
+				url			: "/resources/php/buisnessmanConfirm.php",
+				type		: "post",
+				data		: "businessman_no="+businessman_no,
+				success		: function(data){
+					
+					if (data == '' || data == null) {
+						console.log("값이 비어있음");
+						rtnVal = 0;
+					} else {
+						console.log(data);
+						rtnVal = 1;
+					}
+				},
+				error		: function (request, status, error){    
+					console.log(request);
+					console.log(status);
+					console.log(error);
+				}
+
+			  });
+			});
+
+			/********************** 
+			*기본정보 전송
+			*@arr		: 필수항목 클래스를 가진 태그
+			*@return	: 0은 비정상 종료,1은 정상 종료
+			***********************/
+			$("#join_added").on("click",function() {
+
+				if (!necessaryCheck()) return;
+				
+				if (!accountCheck()) return;
+
+				var company_call	= $("#company_call_input1").val() + "-" + $("#company_call_input2").val() + "-" + $("#company_call_input3").val(),
+					manager_phone	= $("#company_call_input1").val() + "-" + $("#company_call_input2").val() + "-" + $("#company_call_input3").val(),
+					email			= $("#email_id").val() + "@" + $("#email_address").val(),
+					businessman_no	= $("#business_no_input1").val() + "-" + $("#business_no_input2").val() + "-" + $("#business_no_input3").val(),
+					main_call		= $("#main_phone_input1").val() + "-" + $("#main_phone_input2").val() + "-" + $("#main_phone_input3").val(),
+					fax				= $("#fax_input1").val() + "-" + $("#fax_input1").val() + "-" + $("#fax_input1").val();
+
+					$("#company_call_input").val(company_call);
+					$("#company_call_input").val(manager_phone);
+					$("#email_input").val(email);
+					$("#business_no_input").val(businessman_no);
+					$("#main_phone_input").val(main_call);
+					$("#fax_input").val(fax);
 
 
+				//$("#default_frm").attr("action","join_added.html");
+				//$("#default_frm").submit();
+				
+			})
 		});
+		
+		/********************** 
+		*필수항목 체크
+		*@arr		: 필수항목 클래스를 가진 태그
+		*@return	: 0은 비정상 종료,1은 정상 종료
+		***********************/
+		function necessaryCheck() {
+			
+			var arr = new Array();
+			
+			arr = $(".necessary");
+			
+			for (var i=0; i<arr.length ; i++) {
+				var tag = arr[i];
+
+				if ($(tag).val() == '' || $(tag).val() == 'default') {
+
+					alert("필수항목을 입력해주세요!");
+					$(tag).focus();
+
+					return 0;
+				}
+			}
+			
+			return 1;
+		}
+
+		/********************** 
+		*아이디 중복 체크
+		*@identity	: 아이디 태그의 값
+		*@rtnVal	: 0이면 정상 종료, 1이면 비정상 종료
+		***********************/
+		function overLapCheck() {
+			
+			var identity	= $("#identity_input").val(),
+				rtnVal		= 0;
+
+			$.ajax({
+				url			: "/resources/php/overlapCheck.php",
+				type		: "post",
+				data		: "identity="+identity,
+				success		: function(data){
+					
+					if (data == '' || data == null) {
+						console.log("값이 비어있음");
+						rtnVal = 0;
+					} else {
+						console.log(data);
+						rtnVal = 1;
+					}
+				},
+				error		: function (request, status, error){    
+					console.log(request);
+					console.log(status);
+					console.log(error);
+				}
+
+			  });
+
+			  return rtnVal;
+		}
+
+		/********************** 
+		*아이디,비밀번호 확인 체크
+		*@id_confirm	: 중복확인 버튼
+		*@id_input		: 아이디 인풋
+		*@compare_input : 아이디 비교 인풋
+		*@pwd_input		: 비밀번호 인풋
+		*@pwd_confirm	: 비밀번호 확인 인풋
+		*@return		: 0은 비정상 종료, 1은 정상 종료
+		***********************/
+		function accountCheck() {
+			
+			var id_confirm		= $("#confirm_overlap").attr("class"),
+				id_input		= $("#identity_input").val(),
+				compare_input	= $("#confirmed").val(),
+				pwd_input		= $("#input_pwd").val(),
+				pwd_confirm		= $("#confirm_pwd").val();
+
+			if (id_confirm.indexOf("overlap-check") == -1 || id_input !== compare_input) {
+				alert("아이디 중복확인을 해주세요.");
+				$("#confirm_overlap").focus();
+				return 0;
+			}
+			
+			if (pwd_input !== pwd_confirm) {
+				alert("비밀번호를 확인해 주세요.");
+				$("#confirm_pwd").focus();
+				return 0;
+			}
+
+			return 1;
+		}
 	</script>
 </html>
