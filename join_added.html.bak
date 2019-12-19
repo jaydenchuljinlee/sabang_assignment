@@ -205,7 +205,6 @@
 
 				<div class="next_btn text-center mt-5 pt-5 mb-5">
 					<button id="join_complete" type="button" class="btn btn-outline-primary btn-lg next-page">가입완료</button>
-
 				</div>
 			</div>
 		</div>
@@ -227,14 +226,26 @@
 			completeBtn.addEventListener('click',function() {
 				<?php foreach($_POST as $key => $value) {
 					
-					echo	"var inputTag = document.createElement('input');";
-					echo	"inputTag.setAttribute('type','hidden');";
-					echo	"inputTag.setAttribute('name','".$key."');";
-					echo	"inputTag.setAttribute('value','".$value."');";
-					echo	"$('#join_frm').prepend(inputTag);";
-				}
+						echo	"var inputTag = document.createElement('input');";
+						echo	"inputTag.setAttribute('type','hidden');";
+						echo	"inputTag.setAttribute('name','".$key."');";
+						echo	"inputTag.setAttribute('value','".$value."');";
+						echo	"$('#join_frm').prepend(inputTag);";
+					}
 				?>
-			})
+
+				var len = $("input");
+				console.log(len);
+				for (var i=0; ; )
+				{
+				}
+				
+
+				
+
+				
+
+
 		});
 
 	</script>

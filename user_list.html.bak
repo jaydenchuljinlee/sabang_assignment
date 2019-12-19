@@ -26,19 +26,14 @@
 	<script src='//unpkg.com/popper.js@1/dist/umd/popper.min.js'></script>
 	<script src='//unpkg.com/bootstrap@4/dist/js/bootstrap.min.js'></script>
 
-	<!-- 페이지 이동 스크립트         -->
-	<script>
-		$(document).ready(function() {
-			
-			$(".next-page").on("click",function() {
-				var id = $(this).attr("id");
-
-				location.href = id+".html";
-			});
-		});
-	</script>
  </head>
  <body>
+
+ 	<?php
+		if (!isset($_SESSION['identity'])) {
+			echo "<script>alert('로그인을 해주세요');location.href='/';</script>";
+		}
+	?>
 	<div class="contents" style="margin-top:200px;">
 		<div class="container">
 			<div class="user-list form-group col-12 mx-auto p-4 text-center" style="border: 1px solid #dee2e6;">
@@ -52,25 +47,54 @@
 						<th>기타</th>
 					</thead>
 					<tbody>
-						<tr>
-							<td>asddqe</td>
-							<td>철진</td>
-							<td>2019-12-16</td>
-							<td>2019-12-16</td>
-							<td>수정</td>
-						</tr>
-						<tr>
-							<td>cheoljin</td>
-							<td>이철진</td>
-							<td>2019-12-16</td>
-							<td>2019-12-16</td>
-							<td>비활성화</td>
-						</tr>
+						<?php
+							
+							#데이터 베이스 연결
+							$conn = mysqli_connect(
+								'localhost',
+								'root',
+								'cheoljin1234',
+								'cheoljin'
+							);
+
+							$user_list	= "select user_id,user_name,created_date,updated_date,activation from user";
+							$result		= mysqli_query($conn,$user_list);
+
+							while($row = mysqli_fetch_array($result)) {
+								echo "<tr>";
+								echo "<td>".$row['user_id']."</td>";
+								echo "<td>".$row['user_name']."</td>";
+								echo "<td>".$row['created_date']."</td>";
+								echo "<td>".$row['updated_date']."</td>";
+								echo "<td>".$row['activation']."</td>";
+								echo "</tr>";
+							}
+						?>
 					</tbody>
 				</table>
 				<button id="user_update" class="list_btn next-page">정보수정</button>
+				<button id="logout" class="list_btn next-page">로그아웃</button>
 			</div>
 		</div>
 	</div>
  </body>
+
+	<!-- 실행에 필요한 자바스크립트 파일들 -->
+	<!--                                   -->
+
+	<!-- 페이지 이동 스크립트         -->
+	<script src="/resources/js/main.js"></script>
+
+	<script>
+		
+		$(document).ready(function() {
+			
+			$("#logout").on("click",function() {
+				alert("로그인을 해주세요!");
+				sessionStorage.removeItem('identity');
+				console.log(sessionStorage.getItem('identity'));
+				location.href = "/";
+			});
+		});
+	</script>
 </html>

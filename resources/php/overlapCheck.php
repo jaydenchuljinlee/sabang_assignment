@@ -12,9 +12,10 @@
 			'cheoljin'
 		);
 
-		$chk_query	= "select user_id from user where user_id=".$identity;
+		$chk_query	= "select user_id from user where user_id='".$identity."'";
 		
 		$result		= mysqli_query($conn,$chk_query);
-		echo $result;
+		$row		= mysqli_fetch_array($login_result);
+		echo $row;
 	}
 ?>

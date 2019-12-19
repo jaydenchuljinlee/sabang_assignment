@@ -67,11 +67,11 @@
 							</th>
 							<td class="form-inline">
 								<div class="checks col-4">
-									<input type="radio" id="version_radio" name="version" checked>
+									<input type="radio" id="version_radio" name="version" value="totalmall" checked>
 									<label for="version_radio">종합몰버전</label> 
 								</div>
 								<div class="checks col-4">
-									<input type="radio" id="version_radio" name="version">
+									<input type="radio" id="version_radio" name="version" value="openplus" >
 									<label for="version_radio">오픈플러스</label> 
 								</div>
 							</td>
@@ -210,11 +210,11 @@
 							<td>
 								<div id="manager-agree" class="form-inline">
 									<label class="check mx-1">문자 수신 동의
-										<input type="checkbox" name="reception_aggree">
+										<input type="checkbox" name="reception_aggree" value="sms">
 										<span class="checkmark"></span>
 									</label>
 									<label class="check mx-1">이메일 수신 동의
-										<input type="checkbox" name="reception_aggree">
+										<input type="checkbox" name="reception_aggree" value="email">
 										<span class="checkmark"></span>
 									</label>
 								</div>
@@ -350,7 +350,7 @@
 									-
 									<input class="form-control col-2 mx-1 necessary" type="text" id="business_no_input3">
 
-									<div id="buisnessman_confirm" class="col-3 p-2 buisnessman mx-2 text-center" style="font-size:10px;">
+									<div id="buisnessman_confirm" class="col-3 p-2 mx-2 text-center" style="font-size:10px;">
 										<span>사업자확인</span>
 									</div>
 								</div>
@@ -521,16 +521,17 @@
 
 			$("#buisnessman_confirm").on("click",function() {
 				
-				var businessman_no = $("#business_no_input1").val() + "-" + $("#business_no_input2").val() + "-" + $("#business_no_input3").val();
-
+				var business_no	= $("#business_no_input1").val() + "-" + $("#business_no_input2").val() + "-" + $("#business_no_input3").val(),
+					rtnVal		= 0;
+			
 				$.ajax({
 				url			: "/resources/php/buisnessmanConfirm.php",
 				type		: "post",
-				data		: "businessman_no="+businessman_no,
+				data		: "business_no="+business_no,
 				success		: function(data){
 					
 					if (data == '' || data == null) {
-						console.log("값이 비어있음");
+						console.log("사용할 수 있음");
 						rtnVal = 0;
 					} else {
 						console.log(data);
@@ -544,6 +545,8 @@
 				}
 
 			  });
+
+			  return rtnVal;
 			});
 
 			/********************** 
@@ -571,9 +574,8 @@
 					$("#main_phone_input").val(main_call);
 					$("#fax_input").val(fax);
 
-
-				//$("#default_frm").attr("action","join_added.html");
-				//$("#default_frm").submit();
+				$("#default_frm").attr("action","join_added.html");
+				$("#default_frm").submit();
 				
 			})
 		});

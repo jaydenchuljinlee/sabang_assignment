@@ -25,9 +25,7 @@
 	<!-- 부트스트랩 Javascript -->
 	<script src='//unpkg.com/popper.js@1/dist/umd/popper.min.js'></script>
 	<script src='//unpkg.com/bootstrap@4/dist/js/bootstrap.min.js'></script>
-
-	<!-- 페이지 이동 스크립트         -->
-	<script src="/resources/js/main.js"></script>
+	
  </head>
  <body>
 	<div class="contents" style="margin-top:200px;">
@@ -42,14 +40,14 @@
 					</div>
 					<div class="chk_frm mt-2">
 						<label class="check mx-1">아이디 저장
-							<input type="checkbox" checked="checked" name="save_id">
+							<input type="checkbox" checked="checked">
 							<span class="checkmark"></span>
 						</label>
 						<a href="#" id="find_idpw" class=" mx-1" style="color:#000000">ID/PW 찾기</a>
 						<a href="https://goo.gl/forms/9BaMaefq1tQiydHJ2" id="find_idpw" class=" mx-1" style="color:#000000">DM 쿠폰입력</a>
 					</div>
 					<div class="btn_frm mt-2">
-						<button type="button" id="user_list" class="main_btn main_btn_login col-12 my-1 next-page">로그인</button>
+						<button type="button" id="login" class="main_btn main_btn_login col-12 my-1">로그인</button>
 						</br>
 						<button type="button" id="join_agree" class="main_btn main_btn_join col-12 my-1 next-page">회원가입</button>
 					</div>
@@ -59,4 +57,46 @@
 	</div>
  </body>
 	
+	<!-- 실행에 필요한 자바스크립트 파일들 -->
+	<!--                                   -->
+
+	<!-- 페이지 이동 스크립트         -->
+	<script src="/resources/js/main.js"></script>
+
+	<script>
+		$(document).ready(function() {
+
+			$("#login").on("click",function() {
+				
+				var obj = {
+					id	: $("#id_input").val(),
+					pwd	: $("#pwd_input").val()
+				}
+
+				$.ajax({
+					url			: "/resources/php/login.php",
+					type		: "post",
+					data		: {"data" : JSON.stringify(obj)},
+					success		: function(result){
+						console.log(result);
+						if (result == "성공") {
+
+							$("#main_frm").attr("action","user_list.html");
+							$("#main_frm").attr("method","post");
+							$("#main_frm").submit();
+						} else {
+							alert("아이디나 비밀번호를 체크해주세요!");
+							return;
+						}
+					},
+					error		: function (request, status, error){    
+						console.log(request);
+						console.log(status);
+						console.log(error);
+					}
+				});
+			});
+		});
+
+	</script>
 </html>

@@ -67,11 +67,11 @@
 							</th>
 							<td class="form-inline">
 								<div class="checks col-4">
-									<input type="radio" id="version_radio" name="version" checked>
+									<input type="radio" id="version_radio" name="version" value="totalmall" checked>
 									<label for="version_radio">종합몰버전</label> 
 								</div>
 								<div class="checks col-4">
-									<input type="radio" id="version_radio" name="version">
+									<input type="radio" id="version_radio" name="version" value="openplus" >
 									<label for="version_radio">오픈플러스</label> 
 								</div>
 							</td>
@@ -192,12 +192,12 @@
 								@
 								<input class="form-control col-4 mx-1 necessary" type="text" id="email_address">
 								<select id="email_select" class="sabang-select" name="mail" style="height:38px;">
-									<option value="naver">naver.com</option>
-									<option value="gmail">gmail.com</option>
-									<option value="hanmail">hanmail.net</option>
-									<option value="daum">daum.net</option>
-									<option value="nate">nate.com</option>
-									<option value="gmail">gmail.com</option>
+									<option value="naver.com">naver.com</option>
+									<option value="gmail.com">gmail.com</option>
+									<option value="hanmail.net">hanmail.net</option>
+									<option value="daum.net">daum.net</option>
+									<option value="nate.com">nate.com</option>
+									<option value="gmail.com">gmail.com</option>
 								</select>
 								<span class="join-added-info" >입력해 주신 이메일 계정으로 세금계산서를 발행해 드립니다.</span>
 							</td>
@@ -210,11 +210,11 @@
 							<td>
 								<div id="manager-agree" class="form-inline">
 									<label class="check mx-1">문자 수신 동의
-										<input type="checkbox" name="reception_aggree">
+										<input type="checkbox" name="reception_aggree" value="sms">
 										<span class="checkmark"></span>
 									</label>
 									<label class="check mx-1">이메일 수신 동의
-										<input type="checkbox" name="reception_aggree">
+										<input type="checkbox" name="reception_aggree" value="email">
 										<span class="checkmark"></span>
 									</label>
 								</div>
@@ -350,7 +350,7 @@
 									-
 									<input class="form-control col-2 mx-1 necessary" type="text" id="business_no_input3">
 
-									<div id="buisnessman_confirm" class="col-3 p-2 buisnessman mx-2 text-center" style="font-size:10px;">
+									<div id="buisnessman_confirm" class="col-3 p-2 mx-2 text-center" style="font-size:10px;">
 										<span>사업자확인</span>
 									</div>
 								</div>
@@ -521,12 +521,13 @@
 
 			$("#buisnessman_confirm").on("click",function() {
 				
-				var businessman_no = $("#business_no_input1").val() + "-" + $("#business_no_input2").val() + "-" + $("#business_no_input3").val();
-
+				var business_no	= $("#business_no_input1").val() + "-" + $("#business_no_input2").val() + "-" + $("#business_no_input3").val(),
+					rtnVal		= 0;
+			
 				$.ajax({
 				url			: "/resources/php/buisnessmanConfirm.php",
 				type		: "post",
-				data		: "businessman_no="+businessman_no,
+				data		: "business_no="+business_no,
 				success		: function(data){
 					
 					if (data == '' || data == null) {
@@ -544,6 +545,8 @@
 				}
 
 			  });
+
+			  return rtnVal;
 			});
 
 			/********************** 
@@ -571,9 +574,8 @@
 					$("#main_phone_input").val(main_call);
 					$("#fax_input").val(fax);
 
-
-				//$("#default_frm").attr("action","join_added.html");
-				//$("#default_frm").submit();
+				$("#default_frm").attr("action","join_added.html");
+				$("#default_frm").submit();
 				
 			})
 		});
