@@ -30,6 +30,8 @@
  <body>
 
  	<?php
+		session_start();
+		
 		if (!isset($_SESSION['identity'])) {
 			echo "<script>alert('로그인을 해주세요');location.href='/';</script>";
 		}
@@ -78,22 +80,23 @@
 		</div>
 	</div>
  </body>
-
+<form id="user_list_frm">
+	<input name="state"></input>
+</form>
 	<!-- 실행에 필요한 자바스크립트 파일들 -->
 	<!--                                   -->
-
-	<!-- 페이지 이동 스크립트         -->
-	<script src="/resources/js/main.js"></script>
 
 	<script>
 		
 		$(document).ready(function() {
 			
 			$("#logout").on("click",function() {
-				alert("로그인을 해주세요!");
-				sessionStorage.removeItem('identity');
-				console.log(sessionStorage.getItem('identity'));
-				location.href = "/";
+
+				$("#user_list_frm").attr("action","/");
+				console.log($("#user_list_frm").children());
+				$("#user_list_frm").children().val("logout");
+				
+				$("#user_list_frm").submit();
 			});
 		});
 	</script>

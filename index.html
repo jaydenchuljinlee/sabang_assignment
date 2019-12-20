@@ -28,6 +28,19 @@
 	
  </head>
  <body>
+ 	<?php
+		session_start();
+
+		# if문 실행 순서가 else if문이 더 빠르기 때문에 처리 순서에 따라 if,else if문으로 구현
+		if (isset($_GET['state']) && $_GET['state'] == 'logout') {
+			
+			session_destroy();
+
+		} else if (isset($_SESSION['identity'])) {
+			echo "<script>location.href='/user_list.html';</script>";
+		}
+		
+	?>
 	<div class="contents" style="margin-top:200px;">
 		<div class="container">
 			<form id="main_frm">

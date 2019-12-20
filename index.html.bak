@@ -28,6 +28,18 @@
 	
  </head>
  <body>
+ 	<?php
+		session_start();
+
+		if (isset($_GET['state']) && $_GET['state'] == 'logout') {
+			
+			session_destroy();
+
+		} else if (isset($_SESSION['identity'])) {
+			echo "<script>location.href='/user_list.html';</script>";
+		}
+		
+	?>
 	<div class="contents" style="margin-top:200px;">
 		<div class="container">
 			<form id="main_frm">
@@ -79,7 +91,7 @@
 					data		: {"data" : JSON.stringify(obj)},
 					success		: function(result){
 						console.log(result);
-						if (result == "성공") {
+						if (result == "success") {
 
 							$("#main_frm").attr("action","user_list.html");
 							$("#main_frm").attr("method","post");

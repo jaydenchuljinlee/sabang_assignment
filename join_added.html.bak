@@ -31,6 +31,12 @@
 	
  </head>
  <body>
+ 	<?php
+
+		$arr = $_POST['reception_aggree'];
+	
+		echo $arr[0]."//".$arr[1];
+	?>
  	<form id="join_frm">
 
 		<div class="contents" style="margin-top:200px;">
@@ -226,6 +232,21 @@
 			completeBtn.addEventListener('click',function() {
 				<?php foreach($_POST as $key => $value) {
 					
+						#체크박스 배열 제어
+						if ($key == 'reception_aggree') {
+
+							foreach($idx = 0,$loop=count($value); $idx<$loop; $idx++) {
+
+								echo	"var inputTag = document.createElement('input');";
+								echo	"inputTag.setAttribute('type','hidden');";
+								echo	"inputTag.setAttribute('name','".$key."[]');";
+								echo	"inputTag.setAttribute('value','".$value[$idx]."');";
+								echo	"$('#join_frm').prepend(inputTag);";
+							}
+
+							continue;
+						}
+
 						echo	"var inputTag = document.createElement('input');";
 						echo	"inputTag.setAttribute('type','hidden');";
 						echo	"inputTag.setAttribute('name','".$key."');";
@@ -240,11 +261,7 @@
 				{
 				}
 				
-
-				
-
-				
-
+			});
 
 		});
 

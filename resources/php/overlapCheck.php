@@ -15,7 +15,7 @@
 		$chk_query	= "select user_id from user where user_id='".$identity."'";
 		
 		$result		= mysqli_query($conn,$chk_query);
-		$row		= mysqli_fetch_array($login_result);
+		$row		= mysqli_fetch_array($result);
 		echo $row;
 	}
 ?>

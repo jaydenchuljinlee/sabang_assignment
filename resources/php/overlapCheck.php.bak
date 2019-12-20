@@ -16,6 +16,6 @@
 		
 		$result		= mysqli_query($conn,$chk_query);
 		$row		= mysqli_fetch_array($login_result);
-		echo $result;
+		echo $row;
 	}
 ?>

@@ -31,6 +31,15 @@
 	
  </head>
  <body>
+ 	<?php
+		session_start();
+
+		# if문 실행 순서가 else if문이 더 빠르기 때문에 처리 순서에 따라 if,else if문으로 구현
+		if (isset($_SESSION['identity'])) {
+			echo "<script>location.href='/user_list.html';</script>";
+		}
+		
+	?>
 	<form id="default_frm" method="post"> 
 		<div class="contents" style="margin-top:200px;">
 			<div class="container">
@@ -83,7 +92,7 @@
 								<span >아이디</span>
 							</th>
 							<td>
-								<input id="identity_input" class="form-control col-4 mx-1 necessary" type="text" name="identity" style="display:inline;">
+								<input id="identity_input" class="form-control col-4 mx-1 necessary" type="text" name="identity" pattern="[A-Za-z0-9]{4,10}" maxlength="10" style="display:inline;">
 								<input id="confirmed" type="hidden">
 								<button type="button" id="confirm_overlap" class="join-btn join-btn-outline mx-1 confirm">중복확인</button>
 								</br>
@@ -97,7 +106,7 @@
 								<span >비밀번호</span>
 							</th>
 							<td>
-								<input id="input_pwd" class="form-control col-4 mx-1 necessary" type="text" name="password">
+								<input id="input_pwd" class="form-control col-4 mx-1 necessary" type="password" name="password">
 								
 								<span class="join-added-info" >비밀번호는 영문, 숫자, 특수문자를 조합하여 10자 이상 입력해 주세요.</span>
 							</td>
@@ -109,7 +118,7 @@
 								<span>비밀번호 확인</span>
 							</th>
 							<td>
-								<input class="form-control col-4 mx-1 necessary" type="text" id="confirm_pwd">
+								<input class="form-control col-4 mx-1 necessary" type="password" id="confirm_pwd">
 								
 								<span class="join-added-info" >	비밀번호 확인을 위해 다시 한번 입력해주세요.</span>
 							</td>
@@ -138,7 +147,7 @@
 								<span >담당자명</span>
 							</th>
 							<td class="form-inline">
-								<input id="manager_input" class="form-control col-4 mx-1 necessary" type="text" name="manager">
+								<input id="manager_input" class="form-control col-4 mx-1 necessary" type="text" name="manager" pattern="[가-힣A-Za-z]" maxlength="5">
 							</td>
 						</tr>
 						<!-- 담당자정보 담당자직급 입력 -->
@@ -147,7 +156,7 @@
 								<span >담당자직급</span>
 							</th>
 							<td >
-								<input id class="form-control col-4 mx-1" type="text" name="manager_rank">
+								<input id class="form-control col-4 mx-1" type="text" name="manager_rank" pattern="[가-힣A-Za-z]" maxlength="5">
 							</td>
 						</tr>
 						<!-- 담당자정보 회사전화번호 입력 -->
@@ -158,11 +167,11 @@
 								<input type="hidden" id="company_call_input" name="company_call">
 							</th>
 							<td class="form-inline">
-								<input class="form-control col-1 mx-1 necessary" type="text" id="company_call_input1">
+								<input class="form-control col-1 mx-1 necessary" type="number" id="company_call_input1" maxlength="5" oninput="maxLengthCheck(this)">
 								-
-								<input class="form-control col-1 mx-1 necessary" type="text" id="company_call_input1">
+								<input class="form-control col-1 mx-1 necessary" type="number" id="company_call_input1" maxlength="4" oninput="maxLengthCheck(this)">
 								-
-								<input class="form-control col-1 mx-1 necessary" type="text" id="company_call_input2">
+								<input class="form-control col-1 mx-1 necessary" type="number" id="company_call_input2" maxlength="4" oninput="maxLengthCheck(this)">
 							</td>
 						</tr>
 						<!-- 담당자정보 휴대폰번호 입력 -->
@@ -173,11 +182,11 @@
 								<input type="hidden" id="manager_call_input" name="manager_call">
 							</th>
 							<td class="form-inline">
-								<input class="form-control col-1 mx-1 necessary" type="text" id="manager_call_input1">
+								<input class="form-control col-1 mx-1 necessary" type="number" id="manager_call_input1" maxlength="5" oninput="maxLengthCheck(this)">
 								-
-								<input class="form-control col-1 mx-1 necessary" type="text" id="manager_call_input2">
+								<input class="form-control col-1 mx-1 necessary" type="number" id="manager_call_input2" maxlength="4" oninput="maxLengthCheck(this)">
 								-
-								<input class="form-control col-1 mx-1 necessary" type="text" id="manager_call_input3">
+								<input class="form-control col-1 mx-1 necessary" type="number" id="manager_call_input3" maxlength="4" oninput="maxLengthCheck(this)">
 							</td>
 						</tr>
 						<!-- 담당자정보 이메일주소 입력 -->
@@ -190,7 +199,7 @@
 							<td class="form-inline">
 								<input class="form-control col-3 mx-1 necessary" type="text" id="email_id">
 								@
-								<input class="form-control col-4 mx-1 necessary" type="text" id="email_address">
+								<input class="form-control col-4 mx-1 necessary" type="text" id="email_address" readonly>
 								<select id="email_select" class="sabang-select" name="mail" style="height:38px;">
 									<option value="naver.com">naver.com</option>
 									<option value="gmail.com">gmail.com</option>
@@ -210,11 +219,11 @@
 							<td>
 								<div id="manager-agree" class="form-inline">
 									<label class="check mx-1">문자 수신 동의
-										<input type="checkbox" name="reception_aggree" value="sms">
+										<input type="checkbox" name="reception_aggree[]" value="sms">
 										<span class="checkmark"></span>
 									</label>
 									<label class="check mx-1">이메일 수신 동의
-										<input type="checkbox" name="reception_aggree" value="email">
+										<input type="checkbox" name="reception_aggree[]" value="email">
 										<span class="checkmark"></span>
 									</label>
 								</div>
@@ -298,14 +307,14 @@
 								<span >회사명</span>
 							</th>
 							<td>
-								<input id="company_input" class="form-control col-6 mx-1 necessary" type="text" name="company">
+								<input id="company_input" class="form-control col-6 mx-1 necessary" type="text" name="company" pattern="[가-힣a-zA-Z]">
 							</td>
 							<th scope="row">
 								<span class=" mx-2" style="color:red">*</span>
 								<span >대표자명</span>
 							</th>
 							<td>
-								<input id="representative_input" class="form-control col-6 mx-1 necessary" type="text" name="representative">
+								<input id="representative_input" class="form-control col-6 mx-1 necessary" type="text" name="representative" pattern="[가-힣a-zA-Z]" maxlength="5">
 							</td>
 						</tr>
 						<!-- 회사정보 사업자유형 입력 -->
@@ -344,11 +353,11 @@
 							</th>
 							<td>
 								<div class="form-inline">
-									<input class="form-control col-2 mx-1 necessary" type="text" id="business_no_input1">
+									<input class="form-control col-2 mx-1 necessary" type="number" id="business_no_input1" maxlength="3" oninput="maxLengthCheck(this)">
 									-
-									<input class="form-control col-2 mx-1 necessary" type="text" id="business_no_input2">
+									<input class="form-control col-2 mx-1 necessary" type="number" id="business_no_input2" maxlength="3" oninput="maxLengthCheck(this)">
 									-
-									<input class="form-control col-2 mx-1 necessary" type="text" id="business_no_input3">
+									<input class="form-control col-2 mx-1 necessary" type="number" id="business_no_input3" maxlength="3" oninput="maxLengthCheck(this)">
 
 									<div id="buisnessman_confirm" class="col-3 p-2 mx-2 text-center" style="font-size:10px;">
 										<span>사업자확인</span>
@@ -379,12 +388,12 @@
 							</th>
 							<td colspan="3">
 								<div class="form-inline">
-									<input class="form-control col-3 mx-1 necessary" type="text" id="search_zonecode" name="zondecode">
+									<input class="form-control col-3 mx-1 necessary" type="text" id="search_zonecode" name="zondecode" readonly>
 
 									<div id="search" class="col-2 p-2 mx-2 text-center address_btn" style="font-size:13px;">
 										<span>주소검색</span>
 									</div>
-									<input class="form-control col-5 mx-1 necessary" type="text" id="search_address" name="company_address">
+									<input class="form-control col-5 mx-1 necessary" type="text" id="search_address" name="company_address" readonly>
 								</div>
 								<div class="mt-1">	
 									<input class="form-control col-7 mx-1 necessary" type="text" id="address_details" name="company_address_detail">
@@ -400,11 +409,11 @@
 							</th>
 							<td>
 								<div class="form-inline">
-									<input class="form-control col-2 mx-1 necessary" type="text" id="main_phone_input1">
+									<input class="form-control col-2 mx-1 necessary" type="number" id="main_phone_input1" maxlength="5" oninput="maxLengthCheck(this)">
 									-
-									<input class="form-control col-2 mx-1 necessary" type="text" id="main_phone_input2">
+									<input class="form-control col-2 mx-1 necessary" type="number" id="main_phone_input2" maxlength="4" oninput="maxLengthCheck(this)">
 									-
-									<input class="form-control col-2 mx-1 necessary" type="text" id="main_phone_input3">
+									<input class="form-control col-2 mx-1 necessary" type="number" id="main_phone_input3" maxlength="4" oninput="maxLengthCheck(this)">
 								</div>
 							</td>
 							<th scope="row">
@@ -414,11 +423,11 @@
 							</th>
 							<td>
 								<div class="form-inline">
-									<input class="form-control col-2 mx-1 necessary" type="text" id="fax_input1">
+									<input class="form-control col-2 mx-1 necessary" type="number" id="fax_input1" maxlength="5" oninput="maxLengthCheck(this)">
 									-
-									<input class="form-control col-2 mx-1 necessary" type="text" id="fax_input2">
+									<input class="form-control col-2 mx-1 necessary" type="number" id="fax_input2" maxlength="4" oninput="maxLengthCheck(this)">
 									-
-									<input class="form-control col-2 mx-1 necessary" type="text" id="fax_input3">
+									<input class="form-control col-2 mx-1 necessary" type="number" id="fax_input3" maxlength="4" oninput="maxLengthCheck(this)">
 								</div>
 							</td>
 						</tr>
@@ -429,7 +438,7 @@
 							</th>
 							<td>
 								<div>
-									<input id="business_type_input" class="form-control col-10 mx-1 necessary" type="text" name="business_type">
+									<input id="business_type_input" class="form-control col-10 mx-1 necessary" type="text" name="business_type" pattern="[가-힣a-zA-Z]">
 								</div>
 							</td>
 							<th scope="row">
@@ -508,6 +517,8 @@
  
 			$("#confirm_overlap").on("click",function() {
 				
+				regexCheck();
+
 				if (overLapCheck()) {
 					alert("이미 있는 아이디 입니다.");
 					return;
@@ -560,6 +571,8 @@
 				
 				if (!accountCheck()) return;
 
+				if (!regexCheck()) return;
+
 				var company_call	= $("#company_call_input1").val() + "-" + $("#company_call_input2").val() + "-" + $("#company_call_input3").val(),
 					manager_phone	= $("#company_call_input1").val() + "-" + $("#company_call_input2").val() + "-" + $("#company_call_input3").val(),
 					email			= $("#email_id").val() + "@" + $("#email_address").val(),
@@ -579,6 +592,40 @@
 				
 			})
 		});
+
+		/********************** 
+		*정규식 체크
+		*@arr		: 필수항목 클래스를 가진 태그
+		*@return	: 0은 비정상 종료,1은 정상 종료   email_input  
+		***********************/
+		function regexCheck() {
+
+			var rtnVal		= 0;
+			
+			var regexEn		= /^[a-zA-Z]/,
+				regexNum	= /[0-9]/,
+				regexSign	= /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/;
+
+			var identity	= $("#identity_input").val(),
+				password	= $("#input_pwd").val(),
+				email_1		= $("#email_input").val(),
+				email_2		= $("#email_input").val();
+			
+			if (!(regexEn.test(identity) || regexNum.test(identity))) {
+
+				alert("아이디는 영어로 시작해야하고, 대/소문자/숫자 조합이어야 합니다.");
+			}
+
+			if (regexEn.test(password) && regexNum.test(password) && regexSign.test(password) && password.length >= 8) {
+
+				
+			} else {
+				alert("비밀번호는 숫자,문자,특수문자 조합으로 8자 이상 입력해주세요.");
+			}
+			
+			
+
+		}
 		
 		/********************** 
 		*필수항목 체크
@@ -672,5 +719,13 @@
 
 			return 1;
 		}
+
+		//input number 길이 체크
+		function maxLengthCheck(object){
+			if (object.value.length > object.maxLength){
+				object.value = object.value.slice(0, object.maxLength);
+			}    
+		}
+
 	</script>
 </html>
