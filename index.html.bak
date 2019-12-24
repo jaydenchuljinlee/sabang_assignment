@@ -12,51 +12,63 @@
 	<!-- CSS 시작 -->
 
 	<!-- 부트스트랩 CSS -->
-	<link rel="stylesheet" href="//unpkg.com/bootstrap@4/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 	<!-- style.css -->
 	<link rel="stylesheet" href="/resources/css/style.css" />
 
 	<!--          -->
 	<!-- Javascript 시작 -->
 
-	<!-- Jquery Javascript -->
-	<script src='http://code.jquery.com/jquery-latest.js'></script>
 
 	<!-- 부트스트랩 Javascript -->
-	<script src='//unpkg.com/popper.js@1/dist/umd/popper.min.js'></script>
-	<script src='//unpkg.com/bootstrap@4/dist/js/bootstrap.min.js'></script>
-	
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
  </head>
  <body>
  	<?php
 		session_start();
 
+		# if문 실행 순서가 else if문이 더 빠르기 때문에 처리 순서에 따라 if,else if문으로 구현
 		if (isset($_GET['state']) && $_GET['state'] == 'logout') {
 			
 			session_destroy();
 
-		} else if (isset($_SESSION['identity'])) {
+		} else if (isset($_SESSION['user_info'])) {
 			echo "<script>location.href='/user_list.html';</script>";
 		}
 		
 	?>
-	<div class="contents" style="margin-top:200px;">
+	<div class="navigation">
+		<nav class="navbar navbar-expand-sm bg-info">
+			<ul class="navbar-nav mx-auto">
+				<li class="nav-item">
+					<a class="navbar-brand" href="/" style="color:#ffffff" ><img src="/resources/img/home.png"style="width:50xp;height:50px;"></a>
+					<?php
+						
+						if (isset($_SESSION['user_info'])) {
+						?>
+							<a class="navbar-brand" href="/?state=logout" style="color:#ffffff" ><img src="/resources/img/logout.png"style="width:50xp;height:50px;"></a>
+						<?php	
+						}
+					?>
+					
+				</li>
+			</nav>
+		</nav>
+	</div>
+	<div class="contents" style="margin-top:100px;">
 		<div class="container">
+			<div class="information text-center my-5">
+				<span class="display-1 border-top border-bottom">처음이시죠?</span>
+			</div>
 			<form id="main_frm">
 				<div class="login_frm form-group col-4 mx-auto p-4" style="border: 8px solid #007bff;">
 					<div class="id_frm">
 						<label class="sr-only" for="id_input">Email address</label>
 						<input type="text" id="id_input" class="form-control" name="id">
 						<label class="sr-only" for="pwd_input">Password</label>
-						<input type="text" id="pwd_input" class="form-control" name="pwd">
-					</div>
-					<div class="chk_frm mt-2">
-						<label class="check mx-1">아이디 저장
-							<input type="checkbox" checked="checked">
-							<span class="checkmark"></span>
-						</label>
-						<a href="#" id="find_idpw" class=" mx-1" style="color:#000000">ID/PW 찾기</a>
-						<a href="https://goo.gl/forms/9BaMaefq1tQiydHJ2" id="find_idpw" class=" mx-1" style="color:#000000">DM 쿠폰입력</a>
+						<input type="password" id="pwd_input" class="form-control" name="pwd">
 					</div>
 					<div class="btn_frm mt-2">
 						<button type="button" id="login" class="main_btn main_btn_login col-12 my-1">로그인</button>
@@ -107,6 +119,11 @@
 						console.log(error);
 					}
 				});
+			});
+
+			$("#pwd_input").keydown(function() {
+				
+				$(this).attr("style","background:none");
 			});
 		});
 

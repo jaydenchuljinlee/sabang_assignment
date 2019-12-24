@@ -32,7 +32,14 @@
 		
 		if (!isset($_SESSION['user_info'])) {
 			echo "<script>alert('로그인을 해주세요');location.href='/';</script>";
+		} else {
+			
+			if ($_SESSION['user_info']['authority'] != 'master') {
+				echo "<script>alert('페이지를 열람할 권한이 없습니다.');location.href='/';</script>";
+			}
 		}
+
+		
 	?>
 	<div class="navigation">
 		<nav class="navbar navbar-expand-sm bg-info">
@@ -78,39 +85,22 @@
 							);
 							
 							$user_list		= "";
-							$user_count		= "";
 							$list_result	= false;
-							$count_result	= false;
 
 							#세션은 유저의 아이디와 권한을 갖고있음
 							$identity	= $_SESSION['user_info']['identity'];
 							$authority	= $_SESSION['user_info']['authority'];
-
-							#권한정보를 가져오기 위한 쿼리문
-							$auth_query		= "select auth_name,auth_priority from authority;";
-							$auth_result	= mysqli_query($conn,$auth_query);
-							$auth_list		= array();
-
-							#권한 테이블을 가져와 배열에 권한 우선순위를 키밸류 형식으로 담음
-							while($row = mysqli_fetch_array($auth_result)) {
 							
-								$auth_list[$row['auth_name']] = $row['auth_priority'];
+							#권한이 마스터인 유저만 탈퇴회원 조회 가능
+							if ($authority == 'master') {
+								
+								$user_list	= "select user_id,created_date,updated_date,activation,type from user where activation=0 ;";
+
 							}
 							
-							#권한에 따라 회원정보를 다르게 보여줌
-							if ($authority == 'user') {
-								
-								$user_count	= "select user_id,created_date,updated_date,activation,type from user where user_id='".$identity."' and activation=1 ;";
+							$user_result = mysqli_query($conn,$user_list);
 
-							} else if ($authority != 'user') {
-								
-								$user_count	= "select user_id,created_date,updated_date,activation,type from user where ".$auth_list[$authority]
-											. " < (select auth_priority from authority where auth_name = type) and activation=1 ;";
-							}
-	
-							$count_result		= mysqli_query($conn,$user_count);
-
-							$num		= mysqli_num_rows($count_result);
+							$num		= mysqli_num_rows($user_result);
 								
 							$page		= (isset($_GET['page']))?$_GET['page']:1; 
 							$list		= 5;
@@ -127,17 +117,6 @@
 							$e_page		= $nowBlock * $block;
 
 							$user_range	= ($page-1)*5;
-
-							#권한에 따라 회원정보를 다르게 보여줌
-							if ($authority == 'user') {
-								
-								$user_list	= "select user_id,created_date,updated_date,activation,type from user where user_id='".$identity."' and activation=1 limit $user_range,5";
-
-							} else if ($authority != 'user') {
-								
-								$user_list	= "select user_id,created_date,updated_date,activation,type from user where (".$auth_list[$authority]
-											. " < (select auth_priority from authority where auth_name = type) or user_id='".$identity."') and activation=1 limit $user_range,5;";
-							}
 
 							$list_result = mysqli_query($conn,$user_list);
 
@@ -176,22 +155,6 @@
 						</ul>
 					</div>
 				</div>
-				<div class="form-inline mx-auto">
-					<?php
-						if ($authority == 'master') {
-						?>
-						<button id="secession" class="list_btn ml-auto">탈퇴회원</button>
-						<button id="logout" class="list_btn mr-auto">로그아웃</button>
-						<?php
-						} else {
-						?>
-						<button id="logout" class="list_btn mx-auto">로그아웃</button>
-						<?php
-						}
-					?>
-					
-					
-				</div>
 			</div>
 		</div>
 	</div>
@@ -220,12 +183,6 @@
 				$("#user_list_frm").attr("action","/user_detail.html");
 				$("#state_input").val(user_id);
 				$("#user_list_frm").submit();
-			});
-
-			$("#secession").on("click",function() {
-				$("#user_list_frm").attr("action","/user_secession.html");
-				$("#user_list_frm").submit();
-
 			})
 
 		});

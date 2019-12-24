@@ -1,0 +1,54 @@
+<?php 
+	
+	if(!isset($_GET['user_id'])) {
+		echo "<script>alert('통신오류');location.href='/user_list.html'</script>";
+	}
+
+	$user_id = $_GET['user_id'];
+
+	#데이터 베이스 연결
+	$conn = mysqli_connect(
+		'localhost',
+		'root',
+		'cheoljin1234',
+		'cheoljin'
+	);
+
+	//트랜잭션 성공 여부
+	$success = true;
+
+	//트랜잭션 시작
+	
+	mysqli_query($conn,"SET AUTOCOMMIT=0");
+	mysqli_query($conn,"START TRANSACTION");
+
+	$change_state_query = "UPDATE `user` SET `activation`= 0 where user_id='$user_id';";
+
+	if (!$state_result = mysqli_query($conn,$change_state_query)) $success = false;
+
+	$secession_insert = "insert into `secession` (`user_id`, `secession_date`) values('$user_id',NOW());";
+
+	if (!$secession_result = mysqli_query($conn,$secession_insert)) $success = false;
+
+	if(!$success) {
+		mysqli_query($conn,"ROLLBACK");
+		echo "<script>alert('DB오류로인한 롤백');</script>";
+	} else {
+		mysqli_query($conn,"COMMIT");
+		echo "<script>alert('회원 비활성화');</script>";
+	}
+
+	session_start();
+
+	#세션정보랑 삭제한 정보가 같으면, 세션정보를 파기하고 메인 화면으로 보낸다
+	if ($user_id == $_SESSION['user_info']) {
+		
+		session_destroy();
+		echo "<script>location.href='/';</script>";
+	} else {
+		
+		echo "<script>location.href='/user_list.html';</script>";
+	}
+
+	
+?>

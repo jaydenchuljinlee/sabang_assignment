@@ -12,22 +12,40 @@
 	<!-- CSS 시작 -->
 
 	<!-- 부트스트랩 CSS -->
-	<link rel="stylesheet" href="//unpkg.com/bootstrap@4/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 	<!-- style.css -->
 	<link rel="stylesheet" href="/resources/css/style.css" />
 
 	<!--          -->
 	<!-- Javascript 시작 -->
 
-	<!-- Jquery Javascript -->
-	<script src='//unpkg.com/jquery@3/dist/jquery.min.js'></script>
 
 	<!-- 부트스트랩 Javascript -->
-	<script src='//unpkg.com/popper.js@1/dist/umd/popper.min.js'></script>
-	<script src='//unpkg.com/bootstrap@4/dist/js/bootstrap.min.js'></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 
  </head>
  <body>
+ 	<div class="navigation">
+		<nav class="navbar navbar-expand-sm bg-info">
+			<ul class="navbar-nav mx-auto">
+				<li class="nav-item">
+					<a class="navbar-brand" href="/" style="color:#ffffff" ><img src="/resources/img/home.png"style="width:50xp;height:50px;"></a>
+					<?php
+						session_start();
+
+						if (isset($_SESSION['user_info'])) {
+						?>
+							<a class="navbar-brand" href="/?state=logout" style="color:#ffffff" ><img src="/resources/img/logout.png"style="width:50xp;height:50px;"></a>
+						<?php	
+						}
+					?>
+					
+				</li>
+			</nav>
+		</nav>
+	</div>
 	<div class="contents" style="margin-top:200px;">
 		<div class="container">
 			<div class="user-list form-group col-12 mx-auto p-4 text-center" style="border: 1px solid #dee2e6;">

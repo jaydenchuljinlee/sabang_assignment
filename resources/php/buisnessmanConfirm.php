@@ -15,6 +15,6 @@
 		$chk_query	= "select business_no from company where business_no =".$business_no;
 		
 		$result		= mysqli_query($conn,$chk_query);
-		echo $row = mysqli_fetch_array($result);
+		echo $row = mysqli_num_rows($result);
 	}
 ?>

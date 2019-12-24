@@ -12,7 +12,7 @@
 	<!-- CSS 시작 -->
 
 	<!-- 부트스트랩 CSS -->
-	<link rel="stylesheet" href="//unpkg.com/bootstrap@4/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 
 	<!-- Font Awesome -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
@@ -26,18 +26,32 @@
 	<script src='//unpkg.com/jquery@3/dist/jquery.min.js'></script>
 
 	<!-- 부트스트랩 Javascript -->
-	<script src='//unpkg.com/popper.js@1/dist/umd/popper.min.js'></script>
-	<script src='//unpkg.com/bootstrap@4/dist/js/bootstrap.min.js'></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 	
  </head>
  <body>
- 	<?php
+ 	<div class="navigation">
+		<nav class="navbar navbar-expand-sm bg-info">
+			<ul class="navbar-nav mx-auto">
+				<li class="nav-item">
+					<a class="navbar-brand" href="/" style="color:#ffffff" ><img src="/resources/img/home.png"style="width:50xp;height:50px;"></a>
+					<?php
+						session_start();
 
-		$arr = $_POST['reception_aggree'];
-	
-		echo $arr[0]."//".$arr[1];
-	?>
- 	<form id="join_frm">
+						if (isset($_SESSION['user_info'])) {
+						?>
+							<a class="navbar-brand" href="/?state=logout" style="color:#ffffff" ><img src="/resources/img/logout.png"style="width:50xp;height:50px;"></a>
+						<?php	
+						}
+					?>
+					
+				</li>
+			</nav>
+		</nav>
+	</div>
+ 	<form id="complete_frm" method="post">
 
 		<div class="contents" style="margin-top:200px;">
 			<div class="container">
@@ -97,7 +111,7 @@
 								<span >쿠폰코드</span>
 							</th>
 							<td>
-								<input class="form-control col-8 mx-1" type="text" name="cuppon" style="display:inline;">
+								<input class="form-control col-8 mx-1" type="text" name="cuppon" style="display:inline;" maxlength="13" oninput="maxLengthCheck(this)">
 							</td>
 						</tr>
 					</tbody>
@@ -125,7 +139,7 @@
 							</th>
 							<td colspan="3">
 								<div class="">
-									<select class="sabang-select col-6" name="mail" style="height:38px;">
+									<select class="sabang-select col-6" name="type_of_mall" style="height:38px;">
 										<option value="default">선택</option>
 										<option value="self">자체 구축 및 개발</option>
 										<option value="hosting">호스팅(카페24,메이크샵,고도몰 등)</option>
@@ -144,7 +158,7 @@
 							</th>
 							<td colspan="3">
 								<div class="">
-									<select class="sabang-select col-6" name="mail" style="height:38px;">
+									<select class="sabang-select col-6" name="number_of_mall" style="height:38px;">
 										<option value="default">선택</option>
 										<option value="under_10">0~10</option>
 										<option value="under_20">11~20</option>
@@ -178,7 +192,7 @@
 
 										while($solutions_row = mysqli_fetch_array($solutions_result)) {
 											echo '<label class="check mx-1">'.$solutions_row[1]
-												 .'<input type="checkbox" name="current_solutions" value="'.$solutions_row[0].'"><span class="checkmark"></span></label>';
+												 .'<input type="checkbox" name="current_solutions[]" value="'.$solutions_row[0].'"><span class="checkmark"></span></label>';
 										}
 									?>
 								</div>
@@ -197,7 +211,7 @@
 
 										while($solutions_row = mysqli_fetch_array($solutions_result)) {
 											echo '<label class="check mx-1">'.$solutions_row[1]
-												 .'<input type="checkbox" name="prev_solutions" value="'.$solutions_row[0].'"><span class="checkmark"></span></label>';
+												 .'<input type="checkbox" name="prev_solutions[]" value="'.$solutions_row[0].'"><span class="checkmark"></span></label>';
 										}
 									?>
 								</div>
@@ -210,7 +224,7 @@
 
 
 				<div class="next_btn text-center mt-5 pt-5 mb-5">
-					<button id="join_complete" type="button" class="btn btn-outline-primary btn-lg next-page">가입완료</button>
+					<button id="join_complete" type="button" class="btn btn-outline-primary btn-lg">가입완료</button>
 				</div>
 			</div>
 		</div>
@@ -220,50 +234,42 @@
 	<!-- 실행에 필요한 자바스크립트 파일들 -->
 	<!--                                   -->
 
-	<script>
-		$(document).ready(function() {
+	<script src="/resources/js/main.js"></script>
+
+	<script type="text/javascript">
+		
+		/**************************************
+		가입완료 버튼을 눌렀을 때, 이전 페이지의 값들에 대한 input을 그려주는 이벤트
+		**************************************/
+		$("#join_complete").on("click",function() {
 			
-			/**************************************
-			가입완료 버튼을 눌렀을 때, 이전 페이지의 값들에 대한 input을 그려주는 이벤트
-			@completeBtn : 가입완료 버튼
-			**************************************/
-			var completeBtn = document.getElementById('join_complete');
+			<?php foreach($_POST as $key => $value) {
+				
+					#체크박스 배열 제어
+					if ($key == 'reception_aggree') {
 
-			completeBtn.addEventListener('click',function() {
-				<?php foreach($_POST as $key => $value) {
-					
-						#체크박스 배열 제어
-						if ($key == 'reception_aggree') {
+						for($idx = 0,$loop=count($value); $idx<$loop; $idx++) {
 
-							foreach($idx = 0,$loop=count($value); $idx<$loop; $idx++) {
-
-								echo	"var inputTag = document.createElement('input');";
-								echo	"inputTag.setAttribute('type','hidden');";
-								echo	"inputTag.setAttribute('name','".$key."[]');";
-								echo	"inputTag.setAttribute('value','".$value[$idx]."');";
-								echo	"$('#join_frm').prepend(inputTag);";
-							}
-
-							continue;
+							echo	"var inputTag = document.createElement('input');";
+							echo	"inputTag.setAttribute('type','hidden');";
+							echo	"inputTag.setAttribute('name','".$key."[]');";
+							echo	"inputTag.setAttribute('value','".$value[$idx]."');";
+							echo	"$('#complete_frm').prepend(inputTag);";
 						}
 
-						echo	"var inputTag = document.createElement('input');";
-						echo	"inputTag.setAttribute('type','hidden');";
-						echo	"inputTag.setAttribute('name','".$key."');";
-						echo	"inputTag.setAttribute('value','".$value."');";
-						echo	"$('#join_frm').prepend(inputTag);";
+						continue;
 					}
-				?>
 
-				var len = $("input");
-				console.log(len);
-				for (var i=0; ; )
-				{
+					echo	"var inputTag = document.createElement('input');";
+					echo	"inputTag.setAttribute('type','hidden');";
+					echo	"inputTag.setAttribute('name','".$key."');";
+					echo	"inputTag.setAttribute('value','".$value."');";
+					echo	"$('#complete_frm').prepend(inputTag);";
 				}
-				
-			});
+			?>
 
+			$("#complete_frm").attr("action","/resources/php/joinComplete.php");
+			$("#complete_frm").submit();
 		});
-
 	</script>
 </html>

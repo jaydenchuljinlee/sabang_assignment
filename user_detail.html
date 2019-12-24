@@ -1,0 +1,490 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+
+	<!--          -->
+	<!-- CSS 시작 -->
+
+	<!-- 부트스트랩 CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+	<!-- style.css -->
+	<link rel="stylesheet" href="/resources/css/style.css" />
+	
+	<!--          -->
+	<!-- Javascript 시작 -->
+
+
+	<!-- 부트스트랩 Javascript -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+ </head>
+ <body>
+ 	<?php
+		session_start();
+		
+		if (!(isset($_GET['state']) && isset($_SESSION['user_info']))) {
+			
+			echo "<script>alert('전송 오류!');location.href='/user_list.html';</script>";
+		}
+
+		#데이터 베이스 연결
+		$conn = mysqli_connect(
+			'localhost',
+			'root',
+			'cheoljin1234',
+			'cheoljin'
+		);
+
+		$user_id = $_GET['state'];
+
+		$user_query		= "select user_id,mall_version,join_root,recommender,cuppon,pwd,created_date,type,activation from user where user_id='".$user_id."';";
+		$company_query	= "select s_name,company_type,business_no,business_img,zip_code,address,address_detail,main_phone,fax,business_type,employees,representative"
+							.",company_name from company c,sectors s where user_id='".$user_id."' and c.s_code = s.s_code;";
+		$manager_query	= "select m.name,m.rank,m.company_call,m.email from manager m where m.user_id='".$user_id."';";
+
+		$user_result		= mysqli_query($conn,$user_query); 
+		$user_info			= mysqli_fetch_array($user_result);
+		
+		$company_result		= mysqli_query($conn,$company_query); 
+		$company_info		= mysqli_fetch_array($company_result);
+		
+		$manager_result		= mysqli_query($conn,$manager_query); 
+		$manager_info		= mysqli_fetch_array($manager_result);
+		
+		
+		$current_query		= "select s.s_code,s.s_name from current_solutions cs,solutions s where cs.user_id='".$user_id."' and cs.s_code=s.s_code;";
+		$prev_query			= "select s.s_code,s.s_name from prev_solutions ps,solutions s where ps.user_id='".$user_id."' and ps.s_code=s.s_code;";
+
+		$current_result		= mysqli_query($conn,$current_query); 
+		$current_info		= mysqli_fetch_array($current_result);
+
+		$prev_result		= mysqli_query($conn,$prev_query); 
+		$prev_info			= mysqli_fetch_array($prev_result);
+
+
+	?>
+	<div class="navigation">
+		<nav class="navbar navbar-expand-sm bg-info">
+			<ul class="navbar-nav mx-auto">
+				<li class="nav-item">
+					<a class="navbar-brand" href="/" style="color:#ffffff" ><img src="/resources/img/home.png"style="width:50xp;height:50px;"></a>
+					<?php
+
+						if (isset($_SESSION['user_info'])) {
+						?>
+							<a class="navbar-brand" href="/?state=logout" style="color:#ffffff" ><img src="/resources/img/logout.png"style="width:50xp;height:50px;"></a>
+						<?php	
+						}
+					?>
+					
+				</li>
+			</nav>
+		</nav>
+	</div>
+ 	<div class="contents" style="margin-top:200px;">
+		<div class="container">
+			<!-- 회원가입 메인 텍스트 -->
+			<div class="text-center">
+				<span class="display-4 font-weight-normal">회원정보</span>
+				</br></br></br>
+			</div>
+			<!-- 계정정보 -->
+			<div class="account-info p-3 mt-3" style="border-bottom:2px solid #000000">
+				<span style="font-size:20px;">계정정보</span>
+				
+			</div>
+			
+			<!-- 계정정보 section -->
+			<table class="table mt-3">
+				<colgroup>
+					<col width="20%">
+				</colgroup>
+				<tbody>
+					<!-- 계정정보 버전선택 -->
+					<tr>
+						<th scope="row">
+							<span class=" mx-2" style="color:red">*</span>
+							<span >버전</span>
+							
+						</th>
+						<td class="form-inline">
+							<?php 
+								echo $user_info['mall_version'];
+							?>
+						</td>
+					</tr>
+					<!-- 계정정보 아이디 입력 -->
+					<tr>
+						<th scope="row">
+							<span class=" mx-2" style="color:red">*</span>
+							<span >아이디</span>
+						</th>
+						<td>
+							<?php 
+								echo $user_info['user_id'];
+							?>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<!-- 계정정보 End -->
+			<!--              -->
+
+			<!-- 담당자정보 -->
+			<div class="account-info p-3 mt-3" style="border-bottom:2px solid #000000">
+				<span style="font-size:20px;">담당자정보</span>
+			</div>
+
+			<!-- 담당자정보 section -->
+			<table class="table mt-4">
+				<colgroup>
+					<col width="20%">
+				</colgroup>
+				<tbody>
+					<!-- 담당자정보 담당자명 -->
+					<tr>
+						<th scope="row">
+							<span class=" mx-2" style="color:red">*</span>
+							<span >담당자명</span>
+						</th>
+						<td class="form-inline">
+							<?php 
+								echo $manager_info['name'];
+							?>
+						</td>
+					</tr>
+					<!-- 담당자정보 담당자직급 입력 -->
+					<tr>
+						<th scope="row">
+							<span >담당자직급</span>
+						</th>
+						<td >
+							<?php 
+								echo $manager_info['rank'];
+							?>
+						</td>
+					</tr>
+					<!-- 담당자정보 회사전화번호 입력 -->
+					<tr>
+						<th scope="row">
+							<span class=" mx-2" style="color:red">*</span>
+							<span >회사전화번호</span>
+						</th>
+						<td class="form-inline">
+							<?php 
+								echo $manager_info['company_call'];
+							?>
+						</td>
+					</tr>
+					<!-- 담당자정보 이메일주소 입력 -->
+					<tr>
+						<th scope="row">
+							<span class=" mx-2" style="color:red">*</span>
+							<span >이메일주소</span>
+						</th>
+						<td class="form-inline">
+							<?php 
+								echo $manager_info['email'];
+							?>
+						</td>
+					</tr>
+					<!-- 담당자정보 마케팅/광고 정보 수신동의 입력 -->
+					<tr>
+						<th scope="row">
+							<span >마케팅/광고 정보 수신동의</span>
+						</th>
+						<td>
+							<?php 
+								echo $manager_info['name'];
+							?>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<!-- 담당자정보 End -->
+			<!--              -->
+
+			<!-- 회사정보 -->
+			<div class="account-info p-3 mt-3" style="border-bottom:2px solid #000000">
+				<span style="font-size:20px;">회사정보</span>
+			</div>
+
+			<!-- 회사정보 section -->
+			<table class="table mt-4">
+				<colgroup>
+					<col width="20%"/>
+					<col width="30%"/>
+					<col width="20%"/>
+					<col width="30%"/>
+				</colgroup>
+				<tbody>
+					<!-- 회사정보 업종 -->
+					<tr>
+						<th scope="row">
+							<span class=" mx-2" style="color:red">*</span>
+							<span >업종(카테고리)</span>
+						</th>
+						<td colspan="3">
+							<?php 
+								echo $company_info['s_name'];
+							?>
+							
+						</td>
+					</tr>
+					<!-- 회사정보 회사명 입력 -->
+					<tr>
+						<th scope="row">
+							<span class=" mx-2" style="color:red">*</span>
+							<span >회사명</span>
+						</th>
+						<td>
+							<?php 
+								echo $company_info['company_name'];
+							?>
+						</td>
+						<th scope="row">
+							<span class=" mx-2" style="color:red">*</span>
+							<span >대표자명</span>
+						</th>
+						<td>
+							<?php 
+								echo $company_info['representative'];
+							?>
+						</td>
+					</tr>
+					<!-- 회사정보 사업자유형 입력 -->
+					<tr>
+						<th scope="row">
+							<span class=" mx-2" style="color:red">*</span>
+							<span >사업자유형</span>
+						</th>
+						<td colspan="3">
+							<?php 
+								echo $company_info['business_type'];
+							?>
+						</td>
+					</tr>
+					<!-- 회사정보 사업자등록번호/사업자등록증 입력 -->
+					<tr>
+						<th scope="row">
+							<span class=" mx-2" style="color:red">*</span>
+							<span >사업자등록번호</span>
+						</th>
+						<td>
+							<div class="form-inline">
+								<?php 
+									echo $company_info['business_no'];
+								?>
+						</td>
+						<th scope="row">
+							<span class=" mx-2" style="color:red">*</span>
+							<span >사업자등록증</span>
+						</th>
+						<td>
+							<?php 
+								echo $company_info['business_img'];
+							?>
+						</td>
+					</tr>
+					<!-- 회사정보 회사주소 입력 -->
+					<tr>
+						<th scope="row">
+							<span class=" mx-2" style="color:red">*</span>
+							<span >회사주소</span>
+						</th>
+						<td colspan="3">
+							<div class="form-inline">
+								<?php 
+									echo $company_info['zip_code'];
+								?>
+
+								<?php 
+									echo $company_info['address'];
+								?>
+								<?php 
+									echo $company_info['address_detail'];
+								?>
+						</td>
+					</tr>
+					<!-- 회사정보 대표전화/팩스번호 입력 -->
+					<tr>
+						<th scope="row">
+							<span class=" mx-2" style="color:red">*</span>
+							<span >대표전화</span>
+						</th>
+						<td>
+							<?php 
+								echo $company_info['main_phone'];
+							?>
+						</td>
+						<th scope="row">
+							<span class=" mx-2" style="color:red">*</span>
+							<span >팩스번호</span>
+						</th>
+						<td>
+							<div class="form-inline">
+								<?php 
+									echo $company_info['fax'];
+								?>
+							</div>
+						</td>
+					</tr>
+					<!-- 회사정보 업태,종목/직원수 입력 -->
+					<tr>
+						<th scope="row">
+							<span >업태/종목</span>
+						</th>
+						<td>
+							<?php 
+								echo $company_info['company_type'];
+							?>
+						</td>
+						<th scope="row">
+							<span class=" mx-2" style="color:red">*</span>
+							<span >직원수</span>
+						</th>
+						<td>
+							<?php 
+								echo $company_info['employees'];
+							?>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<!-- 회사정보 End -->
+			<!--              -->
+
+			<!-- 가입경로 -->
+			<div class="account-info p-3 mt-3" style="border-bottom:2px solid #000000">
+				<span style="font-size:20px;">가입경로</span>
+				
+			</div>
+			
+			<!-- 가입경로 section -->
+			<table class="table mt-3">
+				<colgroup>
+					<col width="20%">
+				</colgroup>
+				<tbody>
+					<!-- 계정정보 사방넷 가입경로 입력-->
+					<tr>
+						<th scope="row">
+							<span class=" mx-2" style="color:red">*</span>
+							<span >사방넷 가입경로</span>
+							
+						</th>
+						<td colspan="3">
+							<?php 
+								echo $user_info['join_root'];
+							?>
+						</td>
+					</tr>
+					<!-- 계정정보 추천인 아이디/쿠폰코드 입력 -->
+					<tr>
+						<th scope="row">
+							<span >추천인 아이디</span>
+						</th>
+						<td>
+							<?php 
+								echo $user_info['recommender'];
+							?>
+						</td>
+						<th scope="row">
+							<span >쿠폰코드</span>
+						</th>
+						<td>
+							<?php 
+								echo $user_info['cuppon'];
+							?>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<!-- 가입경로 End -->
+			<!--              -->
+
+			<!-- 추가정보 -->
+			<div class="account-info p-3 mt-3" style="border-bottom:2px solid #000000">
+				<span style="font-size:20px;">추가정보</span>
+				
+			</div>
+			
+			<!-- 추가정보 section -->
+			<table class="table mt-3">
+				<colgroup>
+					<col width="20%">
+				</colgroup>
+				<tbody>
+					<tr>
+						<th scope="row">
+							<span >현재 사용 중인 솔루션</span>
+						</th>
+						<td colspan="3">
+							<?php 
+
+								for($idx=3,$loop=count($current_info);$idx<count($current_info);$idx+=4) {
+									
+									echo $current_info['s_name'];
+								}
+							?>
+						</td>
+					</tr>
+					<!-- 추가정보 전에 사용해본 솔루션 입력-->
+					<tr>
+						<th scope="row">
+							<span >전에 사용해본 솔루션</span>
+							
+						</th>
+						<td colspan="3">
+							<?php 
+
+								for($idx=3,$loop=count($prev_info);$idx<count($prev_info);$idx+=4) {
+									
+									echo $prev_info['s_name'];
+								}
+							?>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<!-- 계정정보 End -->
+			<!--              -->
+
+
+			<div class="next_btn text-center mt-5 pt-5 mb-5">
+				<button type="button" id="user_update" class="btn btn-outline-primary btn-lg">정보수정</button>
+			</div>
+		</div>
+	</div>
+ </body>
+ <form id="update_frm">
+	<input type="hidden" id="user_input" name="user_id">
+ </form>
+
+	<!-- 실행에 필요한 자바스크립트 파일들 -->
+	<!--                                   -->
+
+	<script>
+		
+		$(document).ready(function() {
+			
+			$("#user_update").on("click",function() {
+				
+				$("#update_frm").attr("action","user_update.html");
+				$("#user_input").val("<?php echo $user_id; ?>");
+				$("#update_frm").submit();
+			});
+		});
+	</script>
+</html>

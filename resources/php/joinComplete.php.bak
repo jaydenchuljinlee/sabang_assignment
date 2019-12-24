@@ -49,10 +49,8 @@
 	#메인 테이블(기본,담당자,회사정보)에 대한 쿼리를 만들어주는 함수
 	createItemQuery($_POST,$user_insert,$company_insert,$manager_insert);
 
-	#서브 테이블(체크박스 관련)에 대한 쿼리를 만들어주는 함수
 	createSubItemQuery($_POST,$reception_aggree,$current_solutions,$prev_solutions);
 
-	#쿼리 유효성 검사
 	if (!insert_validation($conn,$user_insert,$company_insert,$manager_insert)) {
 		$success = false;
 		echo "<script>alert('메인에 실패하였습니다.');location.href='/join_agree.html';'</script>";

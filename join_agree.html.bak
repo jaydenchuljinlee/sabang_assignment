@@ -14,7 +14,7 @@
 	<!-- CSS 시작 -->
 
 	<!-- 부트스트랩 CSS -->
-	<link rel="stylesheet" href="//unpkg.com/bootstrap@4/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 	<!-- style.css -->
 	<link rel="stylesheet" href="/resources/css/style.css" />
 
@@ -25,11 +25,31 @@
 	<script src='//unpkg.com/jquery@3/dist/jquery.min.js'></script>
 
 	<!-- 부트스트랩 Javascript -->
-	<script src='//unpkg.com/popper.js@1/dist/umd/popper.min.js'></script>
-	<script src='//unpkg.com/bootstrap@4/dist/js/bootstrap.min.js'></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 	
  </head>
  <body>
+ 	<div class="navigation">
+		<nav class="navbar navbar-expand-sm bg-info">
+			<ul class="navbar-nav mx-auto">
+				<li class="nav-item">
+					<a class="navbar-brand" href="/" style="color:#ffffff" ><img src="/resources/img/home.png"style="width:50xp;height:50px;"></a>
+					<?php
+						session_start();
+
+						if (isset($_SESSION['user_info'])) {
+						?>
+							<a class="navbar-brand" href="/?state=logout" style="color:#ffffff" ><img src="/resources/img/logout.png"style="width:50xp;height:50px;"></a>
+						<?php	
+						}
+					?>
+					
+				</li>
+			</nav>
+		</nav>
+	</div>
  	<div class="contents" style="margin-top:200px;">
 		<div class="container">
 			<div class="text-center">
@@ -55,7 +75,22 @@
 					<span>이용약관에 동의하셔야 회원가입이 가능합니다.</span>
 				</div>
 				<div class="agree-contents border p-5" style="overflow:scroll;">
-					<p>asdf</p>
+					<b><font size="3">제 1 조 [목적]</font></b>
+					<br>
+					본 약관은 주식회사 다우기술(이하 “회사”)이 제공하는 사방넷 서비스(이하 "서비스")의 이용과 관련하여 회사와 이용자의 권리ㆍ의무 및 책임사항, 기타 필요한 사항을 규정함을 목적으로 합니다.<br>
+					<br>
+
+					<b><font size="3">제 2 조 [용어의 정의]</font></b>
+					<br>
+					본 약관에서 사용하는 용어의 정의는 다음과 같습니다.<br>
+					<br>
+					1.	서비스 : 이용자가 쇼핑몰에서의 판매활동을 통합적으로 관리·처리할 수 있도록 상품등록, 주문관리, 클레임처리 등을 할 수 있는 서비스를 말합니다.<br>
+					2.	이용자 : 본 약관에 따라 회사와 서비스 이용계약을 체결하고 회사가 제공하는 서비스를 이용하는 개인 또는 기업을 의미합니다.<br>
+					3.	아이디(ID) : 이용자 식별과 이용자의 서비스 이용을 위하여 이용자가 선정하고 회사가 승인하는 문자와 숫자의 조합을 의미합니다.<br>
+					4.	비밀번호 : 아이디(ID)와 일치된 이용자임을 확인하고, 이용자의 비밀을 보호하기 위해 이용자가 설정한 문자와 숫자의 조합을 의미합니다.<br>
+					5.	스팸 : 수신자가 원하지 않는데도 불구하고 정보통신망을 통해 일방적으로 전송 또는 게시되는 영리목적의 광고성 정보를 말합니다.<br>
+					6.	피싱메시지 : 메시지 내용 중 인터넷 주소를 클릭하면 악성코드가 설치되어 수신자가 모르는 사이에 금전적 피해 또는 개인·금융정보 탈취 피해를 야기하는 메시지를 말합니다.<br>
+					<br>
 				</div>
 			</div>
 			<div class="mt-3">
@@ -67,25 +102,73 @@
 					<span>이용약관에 동의하셔야 회원가입이 가능합니다.</span>
 				</div>
 				<div class="agree-contents border p-5" style="overflow:scroll;">
-					<p>asdf</p>
+					<table border=1 class="intxt_multi" style="width:98%;">
+							<tr style="background:#eee; height:30px; line-height:30px;">
+								<th width="25%" height="40" style=" font-family: 'NanumGothic','malgun Gothic',dotum,sans-serif !important; text-align:center; font-size:15px; font-weight: bold !important; color:#000 !important;  ">목적</th>
+								<th width="50%" style=" font-family: 'NanumGothic','malgun Gothic',dotum,sans-serif !important; text-align:center; font-size:15px; font-weight: bold !important; color:#000 !important;  ">항목</th>
+								<th width="25%" style=" font-family: 'NanumGothic','malgun Gothic',dotum,sans-serif !important; text-align:center; font-size:15px; font-weight: bold !important; color:#000 !important;  ">보유기간</th>
+							</tr>
+							<tr>
+								<td style="  text-align:center;background:white;padding:10px; font-size:14px; color:#000 !important;  ">이용자 식별, 서비스 제공에 관한 계약 이행 및 유료서비스 제공에 따른 요금정산, 서비스이용 만족도조사</td>
+								<td style="  text-align:center;background:white;padding:10px; font-size:14px; color:#000 !important;  ">(필수) 아이디, 비밀번호, 휴대폰번호, 이메일주소, 사업자명, 업종, 사업장주소,<br>가입경로, 대표전화번호</td>
+								<td style=" font-family: 'NanumGothic','malgun Gothic',dotum,sans-serif !important; text-align:center;background:white;padding:10px; font-size:17px; font-weight: bold; color:#000 !important;  "><b>해당 사업 종료하기 전까지 이용(단, 회원탈퇴 시 삭제)</b></td>
+							</tr>
+							<tr>
+								<td style="  text-align:center;background:white;padding:10px; font-size:14px; color:#000 !important;  ">부가가치세법에 따른 세금계산서 발행, 중복가입방지</td>
+								<td style="  text-align:center;background:white;padding:10px; font-size:14px; color:#000 !important;  ">(필수) 대표자명, 사업자유형, 사업자등록번호, 사업자등록증</td>
+								<td style=" font-family: 'NanumGothic','malgun Gothic',dotum,sans-serif !important; text-align:center;background:white;padding:10px; font-size:17px; font-weight: bold; color:#000 !important;  "><b>해당 사업 종료하기 전까지 이용(단, 회원탈퇴 시 삭제)</b></td>
+							</tr>
+							<tr>
+								<td style="  text-align:center;background:white;padding:10px; font-size:14px; color:#000 !important;  ">불법/부정이용 방지, 전자금융거래기록보관</td>
+								<td style="  text-align:center;background:white;padding:10px; font-size:14px; color:#000 !important;  ">(필수) 자동수집정보 : IP Address, 쿠키, 방문 일시, 서비스 이용 기록, 불량 이용 기록 </td>
+								<td style=" font-family: 'NanumGothic','malgun Gothic',dotum,sans-serif !important; text-align:center;background:white;padding:10px; font-size:17px; font-weight: bold; color:#000 !important;  "><b>법령에 따른 보존기간까지</b></td>
+							</tr>
+							<tr>
+								<td style="  text-align:center;background:white;padding:10px; font-size:14px; color:#000 !important;  ">대금결제서비스의 제공, 전자금융기록 보관</td>
+								<td style="  text-align:center;background:white;padding:10px; font-size:14px; color:#000 !important;  ">(필수) 은행계좌정보(예금주, 계좌번호), 신용카드정보 (카드사명, 카드번호)</td>
+								<td style=" font-family: 'NanumGothic','malgun Gothic',dotum,sans-serif !important; text-align:center;background:white;padding:10px; font-size:17px; font-weight: bold; color:#000 !important;  "><b>법령에 따른 보존기간까지</b></td>
+							</tr>
+							<tr>
+								<td style="  text-align:center;background:white;padding:10px; font-size:14px; color:#000 !important;  ">맞춤서비스 제공</td>
+								<td style="  text-align:center;background:white;padding:10px; font-size:14px; color:#000 !important;  ">(선택) 팩스번호, 업태/종목, 직원수, 추천인아이디, 쿠폰코드, 사업자 쇼핑몰 형태,<br>쇼핑몰 판매처 수, 기존 사용 솔루션 명칭</td>
+								<td style=" font-family: 'NanumGothic','malgun Gothic',dotum,sans-serif !important; text-align:center;background:white;padding:10px; font-size:17px; font-weight: bold; color:#000 !important;  "><b>해당 사업 종료하기 전까지 이용(단, 회원탈퇴 시 삭제)</b></td>
+							</tr>
+						</table>
 				</div>
 			</div>
 			<div class="next_btn text-center mt-5 pt-5 mb-5">
 				<button type="button" id="join_default" class="btn btn-outline-primary btn-lg next-page">다음단계</button>
-
 			</div>
 		</div>
 	</div>
+	<form id="page_move"></form>
 
 	<!-- 실행에 필요한 자바스크립트 파일들 -->
 	<!--                                   -->
 
-	<!-- 페이지 이동 스크립트         -->
-	<script src="/resources/js/main.js"></script>
 
-	<!-- 페이지 이동 스크립트         -->
+
 	<script>
 		$(document).ready(function() {
+
+			/* 
+			   기본정보로 페이지 이동
+			*/
+			$("#join_default").on("click",function() {
+				
+				var isChecked = $("#all-agree").attr("class");
+
+				if (isChecked.indexOf("agree-checked") == -1) {
+
+					alert("동의 항목을 체크해 주세요!");
+					return;
+				}
+
+				var page = $(this).attr("id");
+
+				$("#page_move").attr("action",page+".html");
+				$("#page_move").submit();
+			})
 
 			/* 
 			   서브 동의 항목 클릭 함수

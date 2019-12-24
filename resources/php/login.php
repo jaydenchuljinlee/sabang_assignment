@@ -12,18 +12,21 @@
 			'cheoljin'
 		);
 
-		$data = json_decode($_POST['data']);
+		$data		= json_decode($_POST['data']);
+		$enc_pwd	= md5($data->pwd);
 
 		#로그인 정보 조회
-		$login			= "select user_id from user where user_id='".$data->id."'";
+		$login			= "select user_id,type from user where user_id='".$data->id."' and pwd='".$enc_pwd."' and activation = 1;";
 		$login_result	= mysqli_query($conn, $login);
 		$row			= mysqli_fetch_array($login_result);
+		$validation		= mysqli_num_rows($login_result);
 
-		if ($row['user_id'] != '') {
-			$identity = $row['user_id'];
+		if ($validation > 0) {
+
+			$user_info = array('identity'=>$row['user_id'],'authority'=>$row['type']);
 
 			session_start();
-			$_SESSION['identity'] = $identity;
+			$_SESSION['user_info'] = $user_info;
 			
 			$rtnVal = "success";
 		} 
